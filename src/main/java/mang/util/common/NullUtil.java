@@ -13,7 +13,8 @@ public class NullUtil {
 	/**
 	 * 对字符串进行空值处理.
 	 * <p>如果输入为null 则返回"" 否则返回原值
-	 * 
+	 * @param str str
+	 * @return String
 	 * */
 	public static String processNull(String str){
 		if(str==null){
@@ -25,7 +26,7 @@ public class NullUtil {
 	/**
 	 * 对double型进行空值处理.
 	 * <p>如果输入为null 则返回0D 否则回原值
-	 * @param dou 
+	 * @param dou double类型
 	 * @return Double 
 	 * 
 	 * */
@@ -39,7 +40,7 @@ public class NullUtil {
 	/**
 	 * 对BigDecimal型进行空值处理.
 	 * <p>如果输入为null 则返回0 否则返回原值
-	 * @param big
+	 * @param big BigDecimal类型
 	 * @return BigDecimal
 	 * 
 	 * */
@@ -52,7 +53,7 @@ public class NullUtil {
 	
 	/**
 	 * 判断字符串是否为空.
-	 * @param str
+	 * @param str 字符串
 	 * @return boolean 为空返回true 不为空返回false
 	 * */
 	public static boolean isNull(String str){
@@ -65,7 +66,7 @@ public class NullUtil {
 	
 	/**
 	 * 判断字符串是否为非空.
-	 * @param str
+	 * @param str 字符串
 	 * @return boolean 非空返回true 空返回false
 	 * */
 	public static boolean isNotNull(String str){

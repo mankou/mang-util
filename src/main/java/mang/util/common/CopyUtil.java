@@ -145,10 +145,12 @@ public class CopyUtil{
 	
 	/**
 	 * 深度复制.
-	 * <p>如把List<BuPos> srcList复制到List<BuPos> destList。 深度复制后srcList中的属性改变也不会影响到destList
+	 * <p>如把List srcList复制到List destList。 深度复制后srcList中的属性改变也不会影响到destList
 	 * <br>摘自：java中ArrayList深拷贝有关问题 http://rogerfederer.iteye.com/blog/1748747
+	 * @param src List 源
+	 * @return List
 	 * */
-	 public static <T> List<T> deepCopy(List<T> src) {  
+	 public static  List deepCopy(List src) {  
 	        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();  
 	        ObjectOutputStream out;
 			try {
@@ -156,8 +158,7 @@ public class CopyUtil{
 				out.writeObject(src);  
 			    ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());  
 			    ObjectInputStream in = new ObjectInputStream(byteIn);  
-			    @SuppressWarnings("unchecked")  
-			     List<T> dest = (List<T>) in.readObject();  
+			     List dest = (List) in.readObject();  
 			    return dest;  
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -170,6 +171,8 @@ public class CopyUtil{
 	 * 深度复制一个对象.
 	 * 注:需要尝试复制的对象须实现implements Serializable 接口 否则程序运行时会报错
 	 * 摘自 JAVA对象的深度克隆  http://blog.csdn.net/xiaolang85/article/details/7386983
+	 * @param src 源
+	 * @return Object
 	 * */
 	public static Object deepCopy(Object src) {
 		try{

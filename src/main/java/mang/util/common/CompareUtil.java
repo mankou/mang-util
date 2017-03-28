@@ -16,7 +16,7 @@ public class CompareUtil {
 	 * <p>需要自己实现equals()方法,要求如果两个对象相同 则equals()返回true 否则返回false
 	 * @param oldList 旧list
 	 * @param newList 新list
-	 * @return List 返回的结果是List<List> 
+	 * @return 返回的结果是List
 	 * <br>resultList.get(0) 为delelist
 	 * <br>resultList.get(1) 为addlist
 	 * 

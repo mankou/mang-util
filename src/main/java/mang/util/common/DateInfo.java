@@ -27,6 +27,8 @@ public class DateInfo {
 	
 	/** 
 	 * 传入一个时间计算.
+	 * 
+	 * @param time time
 	 */
 	public DateInfo(Timestamp time){
 		if(time!=null){
@@ -83,6 +85,8 @@ public class DateInfo {
 	 * DateInfo dateinfo = new DateInfo(); 或者Date info dateinfo=new DateInfo(t); <br>
 	 * dateinfo.parseData()
 	 * String yeqr = dateinfo.getYear();
+	 * 
+	 * @return String
 	 */
 	public String getYear() {
 		return year;
@@ -98,6 +102,8 @@ public class DateInfo {
 	 * DateInfo dateinfo = new DateInfo(); 或者Date info dateinfo=new DateInfo(t); <br>
 	 * dateinfo.parseData()
 	 * String yeqr = dateinfo.getQuarter();
+	 * 
+	 * @return String
 	 */
 	public String getQuarter() {
 		return quarter;
@@ -113,6 +119,7 @@ public class DateInfo {
 	 * DateInfo dateinfo = new DateInfo(); 或者Date info dateinfo=new DateInfo(t); <br>
 	 * dateinfo.parseData()
 	 * String yeqr = dateinfo.getMonth();
+	 * @return String
 	 */
 	public String getMonth() {
 		return month;
@@ -129,6 +136,7 @@ public class DateInfo {
 	 * DateInfo dateinfo = new DateInfo(); 或者Date info dateinfo=new DateInfo(t); <br>
 	 * dateinfo.parseData()
 	 * String yeqr = dateinfo.getDay();
+	 * @return String
 	 */
 	public String getDay() {
 		return day;

@@ -14,6 +14,8 @@ public class EntityUtil {
 
 	/**
 	 * 获取两个实例相同的属性名.
+	 * @param src 源
+	 * @param target 目标
 	 * @return 返回两个实例相同的属性名组成的字符串数组
 	 * */
 	public static String[] getSameProperty(Object src,Object target){

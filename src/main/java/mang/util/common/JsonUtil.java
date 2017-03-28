@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -59,12 +60,12 @@ public class JsonUtil {
 
 
     /**
-     * Object => String
+     * Object 转 String
      *
-     * @param src
-     * @return
+     * @param src str
+     * @return String
      */
-    public static <T> String obj2String(T src) {
+    public static String obj2String(Object src) {
         if (src == null) {
             return null;
         }
@@ -79,12 +80,12 @@ public class JsonUtil {
     }
 
     /**
-     * Object => byte[]
+     * Object 转 byte[]
      *
      * @param src
-     * @return
+     * @return byte[]
      */
-    public static <T> byte[] obj2Byte(T src) {
+    public static  byte[] obj2Byte(Object src) {
         if (src == null) {
             return null;
         }
@@ -99,10 +100,10 @@ public class JsonUtil {
     }
 
     /**
-     * String => Object
+     * String 转 Object
      *
-     * @param str
-     * @param clazz
+     * @param str str
+     * @param clazz 类
      * @return
      */
     public static <T> T string2Obj(String str, Class<T> clazz) {
@@ -121,7 +122,7 @@ public class JsonUtil {
     }
 
     /**
-     * byte[] => Object
+     * byte[] 转  Object
      *
      * @param bytes
      * @param clazz
@@ -142,7 +143,7 @@ public class JsonUtil {
     }
 
     /**
-     * String => Object
+     * String 转 Object
      *
      * @param str
      * @param typeReference
@@ -165,7 +166,7 @@ public class JsonUtil {
     }
 
     /**
-     * byte[] => Object
+     * byte[] 转 Object
      *
      * @param bytes
      * @param typeReference
@@ -227,5 +228,6 @@ public class JsonUtil {
 		} 
 		return null;
 	}
+	
     
 }

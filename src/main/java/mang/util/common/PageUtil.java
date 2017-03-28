@@ -13,7 +13,8 @@ public class PageUtil {
 	/**
 	 * 计算总页数.
 	 * <p>如果总记录数842330 每页10000条 则总计85页 如果总记录数840000  则总计84页<br>
-	 * 
+	 * @param totalCount 总页数
+	 * @param pagetSize 每页条数
 	 * */
 	public static int computeTotalPage(int totalCount,int pageSize){
 		int totalPageNumber=totalCount/pageSize;

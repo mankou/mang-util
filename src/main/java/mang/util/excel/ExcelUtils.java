@@ -208,13 +208,13 @@ public class ExcelUtils {
 	/**
 	 * 由Excel流的Sheet导出至List
 	 * 
-	 * @param is
-	 * @param fileType
+	 * @param is 文件流
+	 * @param fileType 文件类型
 	 * @param sheetNum 默认第一个sheet编号为0
 	 * @return
 	 * @throws Exception 
 	 */
-	public static <T> List<T> importExcel(InputStream is, String fileName, int sheetNum, boolean isSkipFirst,Class<T> ojbClass) throws Exception {
+	public static  List importExcel(InputStream is, String fileName, int sheetNum, boolean isSkipFirst,Class ojbClass) throws Exception {
 
 		Workbook workbook = null;
 		
@@ -237,14 +237,14 @@ public class ExcelUtils {
 		return parseExcel(workbook, sheetNum,isSkipFirst,ojbClass);
 	}
 
-	private static <T> List<T> parseExcel(Workbook workbook, int sheetNum , boolean isSkipFirst,Class<T> ojbClass) throws Exception{
+	private static  List parseExcel(Workbook workbook, int sheetNum , boolean isSkipFirst,Class ojbClass) throws Exception{
 
 		Sheet sheet = workbook.getSheetAt(sheetNum);
 
 		// 解析公式结果
 		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
-		List<T> list = new ArrayList<T>();
+		List list = new ArrayList();
 
 		int minRowIx = sheet.getFirstRowNum();
 		int maxRowIx = sheet.getLastRowNum();
@@ -253,7 +253,7 @@ public class ExcelUtils {
 		}
 		for (int rowIx = minRowIx; rowIx <= maxRowIx; rowIx++) {
 			Row row = sheet.getRow(rowIx);
-			T beanObject=ojbClass.newInstance();
+			Object beanObject=ojbClass.newInstance();
 			Field[] fields = ojbClass.getDeclaredFields();
 			int minColIx = 0;
 			int maxColIx = fields.length-1;

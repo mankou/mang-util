@@ -10,7 +10,7 @@ public class IPUtil {
 	 
 		/**
 		 * 获取当前ip.
-		 * 
+		 * @return ip
 		 * */
 	    public static String getIP() {  
 	    	try{

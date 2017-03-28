@@ -64,6 +64,7 @@ public class FileUtil {
 	/**
 	 * 判断某一文件或者目录的父目录是否存在 如果不存在则创建父目录.
 	 * <p>多用于rename时 因rename时必须保存目标文件的父目录存在
+	 * @param file file
 	 * */
 	public static void mkParentDir(File file){
 		File parent=file.getParentFile();
@@ -77,6 +78,8 @@ public class FileUtil {
 	/**
 	 * 删除某目录下的所有文件.
 	 * 删除某一路径下所有文件 但是该目录不删除 即清空该目录
+	 * @param foldPath foldPath
+	 * @return boolean
 	 * */
 	 public static boolean clearFolder(String foldPath) {
 	       boolean flag = false;
@@ -113,9 +116,12 @@ public class FileUtil {
 	/**
 	 * 删除文件.
 	 * <p>文件、文件夹都能删除
-	 * @param path 文件或者目录路径
+	 * <ul>
 	 * <li>目录路径示例 c:/Users/mang/Desktop/haiguan/Send/test/ 或者 c:/Users/mang/Desktop/haiguan/Send/test 都行
 	 * <li>文件路径示例 c:/Users/mang/Desktop/haiguan/Send/test/test.txt 
+	 * </ul>
+	 * 
+	 *  @param path 文件或者目录路径
 	 * */
 	public static void delFile(String path) {
 		try {
@@ -172,11 +178,15 @@ public class FileUtil {
 	 * @param sourceFoldPath 源目录
 	 * @param destFoldPath 目标目录
 	 * @param isCleanDestFold 是否清空目录目录  即如果目录下已经有文件是否清空该目录
+	 * <ul>
 	 * <li>如果目标目录下已经有文件 可根据isCleanDestFold 决定是否清空目录目录</li>
 	 * <li>如果目标目录下有文件 也不配置了不清空目标目录,则仍然可以将源目录中不同名文件移动到目标路径下（如果同名按照isOverWrite的配置进行处理）(如海关出入卡口xml本地生成路径与移除路径一致时使用过)</li>
+	 * </ul>
 	 * @param isOverWrite 是否覆盖 如果移动时有同名文件是否覆盖 true表示覆盖 false表示不覆盖
+	 * <ul>
 	 * <li>如果移动时出现同名文件 则根据isOverWrite进行处理处理</li>
 	 * <li>如果移动时出现了同名文件 则肯定是目标目录存在并且配置了isCleanDestFold为false</li>
+	 * </ul>
 	 * */
 	public static void moveFoldfilesToAnotherFold(String sourceFoldPath,String destFoldPath,boolean isCleanDestFold,boolean isOverWrite){
 		File sourceFold = new File(sourceFoldPath);
@@ -215,6 +225,8 @@ public class FileUtil {
 	 * 如果末尾没有路径分隔符则加上 即如果 传来c:\Users\mang\Desktop\haiguan\Send 则处理成c:\Users\mang\Desktop\haiguan\Send\ <br>
 	 * 如果是在linux下，则如果传来 /home/oracle 会处理成 /home/oracle/
 	 * 注：有时在windows下你也可能把路径写成c:/Users/mang/Desktop/haiguan/Send 然后处理成c:/Users/mang/Desktop/haiguan/Send\ 但经测试不影响使用
+	 * @param path path
+	 * @return String
 	 * */
 	public static String processEndSeparator(String path){
 		//TODO 还有一种情况 就是有可能是windows下 但其传的路径类似  "123/" 则你会处理成 "123/\" 也不对
@@ -228,7 +240,8 @@ public class FileUtil {
 	
 	/**
 	 * 根据文件路径获取文件名.
-	 * 
+	 * @param path path
+	 * @return String
 	 * */
 	public static String getFileName(String path){
 		File file=new File(path);
@@ -239,6 +252,8 @@ public class FileUtil {
 	/**
 	 * 根据文件名获取文件后缀名.
 	 * 如文件名是 test1.xlsx 则返回xlsx
+	 * @param fileName 文件名
+	 * @return 返回文件后缀名
 	 * */
 	public static String getFileType(String fileName){
 	    return fileName.substring(fileName.lastIndexOf(".")+1);
