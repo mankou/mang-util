@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonHandle {
 	private static Logger logger=Logger.getLogger(JsonHandle.class);
 	private  ObjectMapper objectMapper = new ObjectMapper();
-	private static String default_timeFormat="yyyy-MM-dd'T'HH:mm:ss'Z'";
+	private static String default_timeFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	private static String default_timeZone="UTC";
 	
 	public JsonHandle(){
@@ -61,5 +61,37 @@ public class JsonHandle {
             logger.error("Parse Object to String error src=" + src, e);
             return null;
         }
+    }
+    
+    /**
+     * String 转 Object
+     *
+     * @param str str
+     * @param clazz 类
+     * @return
+     */
+    public  <T> T string2Obj(String str, Class<T> clazz) {
+        if (str==null || clazz == null) {
+            return null;
+        }
+        str = escapesSpecialChar(str);
+        try {
+            return clazz.equals(String.class) ? (T) str : objectMapper.readValue(str, clazz);
+        }
+        catch (Exception e) {
+//            logger.error("Parse String to Object error\nString: {}\nClass<T>: {}\nError: {}", str, clazz.getName(), e);
+        	e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /**
+     * Escapes Special Character
+     *
+     * @param str
+     * @return
+     */
+    private static String escapesSpecialChar(String str) {
+        return str.replace("\n", "\\n").replace("\r", "\\r");
     }
 }
