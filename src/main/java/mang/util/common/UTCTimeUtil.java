@@ -12,7 +12,7 @@ public class UTCTimeUtil {
 	 * 其它时间格式 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	 * */
 	private static String default_utcTimeFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-	private static String default_localTimeFormat="yyyy-MM-dd HH:mm:ss";
+	private static String default_localTimeFormat="yyyy-MM-dd HH:mm:ss+08:00";
 	private static String default_utcTimeZone="UTC";
 	private static String default_localTimeZone="GMT+8";
 	
@@ -155,7 +155,37 @@ public class UTCTimeUtil {
 		}
 	}
 	
-	
+	public static String getDefault_utcTimeFormat() {
+		return default_utcTimeFormat;
+	}
+
+	public static void setDefault_utcTimeFormat(String default_utcTimeFormat) {
+		UTCTimeUtil.default_utcTimeFormat = default_utcTimeFormat;
+	}
+
+	public static String getDefault_localTimeFormat() {
+		return default_localTimeFormat;
+	}
+
+	public static void setDefault_localTimeFormat(String default_localTimeFormat) {
+		UTCTimeUtil.default_localTimeFormat = default_localTimeFormat;
+	}
+
+	public static String getDefault_utcTimeZone() {
+		return default_utcTimeZone;
+	}
+
+	public static void setDefault_utcTimeZone(String default_utcTimeZone) {
+		UTCTimeUtil.default_utcTimeZone = default_utcTimeZone;
+	}
+
+	public static String getDefault_localTimeZone() {
+		return default_localTimeZone;
+	}
+
+	public static void setDefault_localTimeZone(String default_localTimeZone) {
+		UTCTimeUtil.default_localTimeZone = default_localTimeZone;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("当前时间-getUTCTimeStr:"+getCurrentUTCTimeStr());
@@ -166,7 +196,6 @@ public class UTCTimeUtil {
 		String localTimeStr=convertUtcToLocal(utcTimeStr);
 		System.out.println("utcTimeStr:"+utcTimeStr);
 		System.out.println("localTimeStr:"+localTimeStr);
-		
 		
 	}
 }
