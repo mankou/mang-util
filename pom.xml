@@ -24,6 +24,7 @@
 		<jackson-databind.version>2.8.6</jackson-databind.version>
 		<jackson-core.version>2.8.6</jackson-core.version>
 		<jackson-annotations.version>2.8.6</jackson-annotations.version>
+		<httpclient.version>4.5.3</httpclient.version>
 
 		<!-- maven插件版本 -->
 		<maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
@@ -72,6 +73,8 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>${poi-ooxml.version}</version>
 		</dependency>
+		
+		<!-- jackjson相关 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -87,8 +90,13 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson-annotations.version}</version>
 		</dependency>
-
-
+		
+		<!-- http请求相关 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
 
 
 	</dependencies>
