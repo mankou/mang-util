@@ -37,6 +37,28 @@ public class DateUtil {
 	}
 	
 	/**
+	 * 字符串转时间.
+	 * 
+	 * @param timeStr
+	 *            时间字符串
+	 * @param timeFormat
+	 *            时间格式 如yyyy-MM-dd'T'HH:mm:ss.SSS'Z' yyyy-MM-dd'T'HH:mm:ss+08:00
+	 * @param timeZone
+	 *            时区 如 UTC GMT+8
+	 */
+	public static Date parse(String timeStr, String timeFormat, String timeZone) {
+		SimpleDateFormat df = new SimpleDateFormat(timeFormat);
+		df.setTimeZone(TimeZone.getTimeZone(timeZone));
+		Date date = null;
+		try {
+			date = df.parse(timeStr);
+			return date;
+		} catch (ParseException e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	/**
 	 * @param timeStr 时间字符串
 	 * @return Date 返回转换后的Date时间
 	 **/

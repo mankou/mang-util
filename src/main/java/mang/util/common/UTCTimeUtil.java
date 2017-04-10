@@ -6,13 +6,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * UTC时间格式处理
+ * @author mang
+ * */
 public class UTCTimeUtil {
 	
 	/*
 	 * 其它时间格式 "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	 * */
 	private static String default_utcTimeFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-	private static String default_localTimeFormat="yyyy-MM-dd HH:mm:ss+08:00";
+	private static String default_localTimeFormat="yyyy-MM-dd'T'HH:mm:ss+08:00";
 	private static String default_utcTimeZone="UTC";
 	private static String default_localTimeZone="GMT+8";
 	
@@ -35,51 +39,60 @@ public class UTCTimeUtil {
 		return str;
 	}
 	
-	
-	/**
-	 * 将毫秒型时间转换成UTC时间格式
-	 * */
-	public static String convertLongToUtc(Long millis,String format){
-		Date date=new Date(millis);
-		SimpleDateFormat df = new SimpleDateFormat(format);
-		df.setTimeZone(TimeZone.getTimeZone(default_utcTimeZone));
-		String str=df.format(date);
-		return str;
-	}
-	
-	
 	/**
 	 * 将毫秒型时间转换成UTC时间格式 时间格式按默认的走.
 	 * @param millis 毫秒型时间
 	 * @return String UTC时间字符串
 	 */
 	public static String getUTCTimeStr(Long millis){
-		return convertLongToUtc(millis, default_utcTimeFormat);
+		return convertLong2UTC(millis, default_utcTimeFormat);
+	}
+	
+	
+	/**
+	 * 将毫秒型时间转换成UTC时间格式
+	 * */
+	public static String convertLong2UTC(Long millis,String utcFormat){
+		Date date=new Date(millis);
+		SimpleDateFormat df = new SimpleDateFormat(utcFormat);
+		df.setTimeZone(TimeZone.getTimeZone(default_utcTimeZone));
+		String str=df.format(date);
+		return str;
+	}
+	
+	
+	public static String convertLong2Local(Long millis){
+		return convertLong2Local(millis, default_localTimeFormat);
+	}
+	
+	
+	public static String convertLong2Local(Long millis,String timeFormat){
+		Date date=new Date(millis);
+		SimpleDateFormat df = new SimpleDateFormat(timeFormat);
+		df.setTimeZone(TimeZone.getTimeZone(default_localTimeZone));
+		String str=df.format(date);
+		return str;
+	}
+	
+	
+	/**
+	 * 将UTC时间字符串转换成东八区时间字符串,至于utc时间格式与本地时间格式采用默认的
+	 * @param utcTimeStr UTC时间字符串
+	 * @return 本地时间格式字符串
+	 * */
+	public static String convertUTC2Local(String utcTimeStr){
+		return convertUTC2Local(utcTimeStr,default_utcTimeFormat,default_localTimeFormat);
 	}
 	
 	/**
-	 * 将本地时间字符串转换成utc时间字符串
+	 * 将UTC时间字符串转换成本地时间字符串,至于utc时间格式 yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	 * @param utcTimeStr UTC时间字符串
+	 * @param localTimeFormat 本地时间格式  如 yyyy-MM-dd'T'HH:mm:ss+08:00
+	 * @return 本地时间格式字符串
 	 * */
-	public static String convertLocalToUtc(String localTimeStr, String localTimeFormater, String utcTimeFormater) {
-		SimpleDateFormat df_local = new SimpleDateFormat(localTimeFormater);
-		df_local.setTimeZone(TimeZone.getTimeZone(default_localTimeZone));
-
-		SimpleDateFormat df_utc = new SimpleDateFormat(utcTimeFormater);
-		df_utc.setTimeZone(TimeZone.getTimeZone(default_utcTimeZone));
-
-		try {
-			Date date = df_local.parse(localTimeStr);
-			String utcTimeStr = df_utc.format(date);
-			return utcTimeStr;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-
+	public static String convertUTC2Local(String utcTimeStr,String localTimeFormat){
+		return convertUTC2Local(utcTimeStr,default_utcTimeFormat,localTimeFormat);
 	}
-	
 
 	/**
 	 * 将UTC时间转换为东八区时间
@@ -89,7 +102,7 @@ public class UTCTimeUtil {
 	 * @param localTimeFormat 本地时间格式字符串  如 yyyy-MM-dd HH:mm:ss
 	 * @return
 	 */
-	public static String convertUtcToLocal(String utcTimeStr,String utcTimeFormat,String localTimeFormat) {
+	public static String convertUTC2Local(String utcTimeStr,String utcTimeFormat,String localTimeFormat) {
 		Date UTCDate = null;
 		String localTimeStr = null;
 		try {
@@ -110,50 +123,79 @@ public class UTCTimeUtil {
 	
 	
 	/**
-	 * 将UTC时间字符串转换成东八区时间字符串,至于utc时间格式与本地时间格式采用默认的
-	 * @param utcTimeStr UTC时间字符串
-	 * @return 本地时间格式字符串
-	 * */
-	public static String convertUtcToLocal(String utcTimeStr){
-		return convertUtcToLocal(utcTimeStr,default_utcTimeFormat,default_localTimeFormat);
-	}
-	
-	/**
 	 * utc格式时间字符串转换成java.util.Date类型 这里采用默认的时间格式字符串 yyyy-MM-dd'T'HH:mm:ss'Z'
 	 * @param utcTimeStr utc时间格式字符串
 	 * 
 	 * */
-	public Date convertUtc2Date(String utcTimeStr){
-		return convertUtc2Date(utcTimeStr,default_utcTimeFormat);
+	public static Date convertUTC2Date(String utcTimeStr){
+		return convertUTC2Date(utcTimeStr,default_utcTimeFormat);
 	}
+	
 	
 	/**
 	 * utf格式时间字符串转换成java.util.Date类型.
 	 * @param utcTimeStr utc时间字符串
-	 * @param format 时间格式 如 yyyy-MM-dd'T'HH:mm:ss'Z'
+	 * @param utcFormat 时间格式 如 yyyy-MM-dd'T'HH:mm:ss'Z'
 	 * */
-	public Date convertUtc2Date(String utcTimeStr,String format){
-		return convertStr2Date(utcTimeStr,format,default_utcTimeZone);
+	public static Date convertUTC2Date(String utcTimeStr,String utcFormat){
+		return DateUtil.parse(utcTimeStr,utcFormat,default_utcTimeZone);
 	}
 	
-	public Date convertLocal2Date(String localTimeStr,String formater){
-		return convertStr2Date(localTimeStr,formater,default_utcTimeZone);
+	
+	/**
+	 * UTC格式字符串转换成毫秒型.
+	 * @param utcTimeStr UTC格式的时间字符串
+	 * @param utcFormat UTC格式的时间字符串的时间格式 如yyyy-MM-dd'T'HH:mm:ss.SSS'Z
+	 * @return Long 毫秒数
+	 * */
+	public static Long convertUTC2Long(String utcTimeStr,String utcFormat){
+		Date date=DateUtil.parse(utcTimeStr,utcFormat,default_utcTimeZone);
+		return date.getTime();
 	}
 	
 	/**
-	 * 字符串转时间.
+	 * UTC格式字符串转换成毫秒型.
+	 * @param utcTimeStr UTC格式的时间字符串  这里使用默认的时间格式 yyyy-MM-dd'T'HH:mm:ss.SSS'Z
+	 * @return Long 毫秒数
 	 * */
-	public Date convertStr2Date(String localTimeStr,String format,String timeZone){
-		SimpleDateFormat df = new SimpleDateFormat(format);
-		df.setTimeZone(TimeZone.getTimeZone(timeZone));
-		Date date=null;
-		try {
-			date = df.parse(localTimeStr);
-			return date;
-		} catch (ParseException e) {
-			throw new RuntimeException(e.getMessage());
-		}
+	public static Long convertUTC2Long(String utcTimeStr){
+		Date date=DateUtil.parse(utcTimeStr,default_utcTimeFormat,default_utcTimeZone);
+		return date.getTime();
 	}
+	
+
+	/**
+	 * 将本地时间字符串转换成utc时间字符串
+	 * */
+	public static String convertLocalToUTC(String localTimeStr, String localTimeFormater, String utcTimeFormater) {
+		SimpleDateFormat df_local = new SimpleDateFormat(localTimeFormater);
+		df_local.setTimeZone(TimeZone.getTimeZone(default_localTimeZone));
+
+		SimpleDateFormat df_utc = new SimpleDateFormat(utcTimeFormater);
+		df_utc.setTimeZone(TimeZone.getTimeZone(default_utcTimeZone));
+
+		try {
+			Date date = df_local.parse(localTimeStr);
+			String utcTimeStr = df_utc.format(date);
+			return utcTimeStr;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+	
+	/**
+	 * 将本地时间转换成Date类型
+	 * @param localTimeStr 本地时间字符串
+	 * @param localFormater 本地时间字符串的时间格式
+	 * */
+	public static Date convertLocal2Date(String localTimeStr,String localFormater){
+		return DateUtil.parse(localTimeStr,localFormater,default_localTimeZone);
+	}
+	
 	
 	public static String getDefault_utcTimeFormat() {
 		return default_utcTimeFormat;
@@ -193,7 +235,7 @@ public class UTCTimeUtil {
 		System.out.println();
 		
 		String utcTimeStr="2015-09-01T01:00:00Z";
-		String localTimeStr=convertUtcToLocal(utcTimeStr);
+		String localTimeStr=convertUTC2Local(utcTimeStr);
 		System.out.println("utcTimeStr:"+utcTimeStr);
 		System.out.println("localTimeStr:"+localTimeStr);
 		
