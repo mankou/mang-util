@@ -18,7 +18,7 @@ import java.util.TimeZone;
 public class TimeUtil {
 	/**
 	 * 获取当前时间.
-	 * 
+	 * @return Timestamp
 	 * */
 	public static Timestamp getCurrentTime(){
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
@@ -36,7 +36,7 @@ public class TimeUtil {
 	 * @param time 时间 如果为空 则用当前时间
 	 * @param interval 时间间隔
 	 * @param unit 时间间隔单位 second:秒    minute:分钟 hour:小时 day:天 month:月 year:年
-	 * 
+	 * @return Timestamp
 	 * */
 	public static Timestamp addTime(Timestamp time,Integer interval,String unit){
 		Calendar c = Calendar.getInstance(); //这句好像很浪费，我也不知道该怎么处理
@@ -67,7 +67,7 @@ public class TimeUtil {
 	 * 在一个时间上加一个毫秒数 算出下一个时间.
 	 * @param time 时间 如果为空则用当前时间
 	 * @param millisecond 要相加的毫秒数
-	 * 
+	 * @return Timestamp
 	 * */
 	public static Timestamp addTime(Timestamp time,Integer millisecond){
 		Calendar c = Calendar.getInstance(); //这句好像很浪费，我也不知道该怎么处理
@@ -82,6 +82,8 @@ public class TimeUtil {
 	/**
 	 * 获取当前时间的小时 .
 	 * <p>如 22:00 则返回22
+	 * @param time 时间
+	 * @return int
 	 * */
 	public static int getHour(Timestamp time){
 		Calendar c = Calendar.getInstance();
@@ -92,6 +94,8 @@ public class TimeUtil {
 	/**
 	 * 获取一个时间的0点0分.
 	 *<p>获取一个时间的整天时间 如 2015-7-15 10:21:08 则返回 2015-7-15
+	 *@param time 时间
+	 *@return Timestamp
 	 * */
 	public static Timestamp getDayWithNoTime(Timestamp time){
 		Calendar c = Calendar.getInstance();
@@ -106,7 +110,7 @@ public class TimeUtil {
 	
 	/**
 	 * 返回当前时间的0点0分
-	 * 
+	 * @return Timestamp
 	 * */
 	public static Timestamp getDayWithNoTime(){
 		Timestamp time = TimeUtil.getCurrentTime();
@@ -120,6 +124,7 @@ public class TimeUtil {
 	 * 如传入1 second 则返回1000
 	 * @param interval 时间间隔
 	 * @param unit 时间间隔单位 second:秒   minute:分钟   hour:小时   day:天   month:月  year:年
+	 * @return Integer
 	 * */
 	public static Integer getMillisecond(Integer interval,String unit){
 		Integer millisecond=1000;
@@ -147,6 +152,7 @@ public class TimeUtil {
 	 * @param endTime 结束时间
 	 * @param startTime 开始时间
 	 * @param language 语言  en cn english chinese等 分别表示英文、中文
+	 * @return String
 	 * */
 	public static String computeTimeInterval(Timestamp endTime,Timestamp startTime,String language){
 		Long between = (endTime.getTime()-startTime.getTime())/1000;//除以1000是为了转换成秒
@@ -197,6 +203,7 @@ public class TimeUtil {
 	 * 默认是英文
 	 * @param endTime 结束时间
 	 * @param startTime 开始时间
+	 * @return String
 	 * */
 	public static String computeTimeInterval(Timestamp endTime,Timestamp startTime){
 		return computeTimeInterval(endTime, startTime, "en");
@@ -205,6 +212,8 @@ public class TimeUtil {
 	/**
 	 * 计算两个时间的时间差.
 	 * <p>endTime.getTime()-startTime.getTime()
+	 * @param endTime endTime
+	 * @param startTime startTime
 	 * @param unit 返回时间差的单位: millisecond  second  min hour
 	 * @return Long 返回值是Long型的 只返回整数
 	 * */
@@ -290,7 +299,6 @@ public class TimeUtil {
 	
 	/**
 	 * 给一个时间格式字符串 返回当前时间的字符串
-	 * @param time 时间
 	 * @param format 日期格式  如yyyy-MM-dd yyyyMMddHHmmss
 	 * @return String 格式化后的时间字符串
 	 * */
@@ -376,7 +384,8 @@ public class TimeUtil {
 	
 	/**
 	 * 将date 转换成 timestamp类型
-	 * 
+	 * @param from 时间
+	 * @return Timestamp
 	 * */
 	public static Timestamp convertDateToTimestamp(Date from){
 		Timestamp time=null;
@@ -388,7 +397,8 @@ public class TimeUtil {
 	
 	/**
 	 * 将date 转换成 timestamp类型
-	 * 
+	 * @param from 时间
+	 * @return Date
 	 * */
 	public static Date convertTimestampToDate(Timestamp from){
 		Date date=null;

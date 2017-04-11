@@ -13,6 +13,7 @@ public class SqlUtil {
 	 * 如joinLike("bus_name","测试") 则输出  " and bus_name like '%测试%' "
 	 * @param property 属性名
 	 * @param value 属性值
+	 * @return String
 	 * */
 	public static String joinLike(String property,String value){
 		String result="";
@@ -28,6 +29,7 @@ public class SqlUtil {
 	 * 如joinEqual("bus_name","测试") 则输出  " and bus_name = '测试' "
 	 * @param property 属性名
 	 * @param value 属性值
+	 * @return String
 	 * */
 	public static String joinEqual(String property,String value){
 		String result="";
@@ -43,6 +45,7 @@ public class SqlUtil {
 	 * 如joinIn("bus_name","测试,公文") 则输出  " and bus_name in ('测试','公文')"
 	 * @param property 属性名
 	 * @param value 属性值
+	 * @return String
 	 * */
 	public static String joinIn(String property,String value){
 		String result="";

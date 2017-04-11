@@ -26,14 +26,14 @@ public class JsonHandle {
 	
 	/**
 	 * 
-	 * "yyyy-MM-dd HH:mm:ss"
+	 * @param  formater 时间格式  如"yyyy-MM-dd HH:mm:ss"
 	 * */
 	public void setDateFormater(String formater){
 		this.setDateFormater(formater,default_timeZone);
 	}
 	
 	/**
-	 * 
+	 * @param formater 时间格式字符串
 	 * @param timeZone 时区 如GMT+8 这里默认时间是UTC
 	 * */
 	public void setDateFormater(String formater,String timeZone){
@@ -45,7 +45,6 @@ public class JsonHandle {
 	
 	 /**
      * Object 转 String
-     *
      * @param src str
      * @return String
      */
@@ -63,13 +62,6 @@ public class JsonHandle {
         }
     }
     
-    /**
-     * String 转 Object
-     *
-     * @param str str
-     * @param clazz 类
-     * @return
-     */
     public  <T> T string2Obj(String str, Class<T> clazz) {
         if (str==null || clazz == null) {
             return null;

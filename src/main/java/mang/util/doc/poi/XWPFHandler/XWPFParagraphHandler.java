@@ -65,7 +65,7 @@ public class XWPFParagraphHandler {
 	
 	/**
 	 * 获取所有的文本内容
-	 * @return
+	 * @return String
 	 */
 	public String getString(){
 		return context.toString();
@@ -73,8 +73,8 @@ public class XWPFParagraphHandler {
 	
 	/**
 	 * 判断是否包含指定的内容
-	 * @param key
-	 * @return
+	 * @param key key
+	 * @return boolean
 	 */
 	public boolean contains(String key){
 		return context.indexOf(key) >= 0 ? true : false;
@@ -84,7 +84,7 @@ public class XWPFParagraphHandler {
 	 * 所有匹配的值替换为对应的值
 	 * @param key(匹配模板中的${key})
 	 * @param value 替换后的值
-	 * @return
+	 * @return boolean
 	 */
 	public boolean replaceAll(String key,String value){
 		boolean replaceSuccess = false;
@@ -98,7 +98,7 @@ public class XWPFParagraphHandler {
 	/**
 	 * 所有匹配的值替换为对应的值(key匹配模板中的${key})
 	 * @param param 要替换的key-value集合
-	 * @return
+	 * @return boolean
 	 */
 	public boolean replaceAll(Map<String,String> param){
 		Set<Entry<String, String>> entrys = param.entrySet();

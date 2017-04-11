@@ -58,7 +58,7 @@ public class XWPFTableHandler {
 	
 	/**
 	 * 得到table中所有的文本内容
-	 * @return 
+	 * @return List
 	 */
 	public List<XWPFParagraph> getAllParagraphs(){
 		List<XWPFTableCell> xwpfTableCells = getCells();
@@ -73,7 +73,7 @@ public class XWPFTableHandler {
 	 * 所有匹配的值替换为对应的值
 	 * @param key(匹配模板中的${key})
 	 * @param value 替换后的值
-	 * @return
+	 * @return boolean
 	 */
 	public boolean replace(String key,String value){
 		List<XWPFParagraph> allParagraphs = getAllParagraphs();
@@ -89,7 +89,7 @@ public class XWPFTableHandler {
 	/**
 	 * 所有匹配的值替换为对应的值(key匹配模板中的${key})
 	 * @param param 要替换的key-value集合
-	 * @return
+	 * @return boolean
 	 */
 	public boolean replace(Map<String,String> param){
 		List<XWPFParagraph> allParagraphs = getAllParagraphs();

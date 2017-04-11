@@ -21,13 +21,12 @@ public class PropertyUtil {
 	
 	/**
 	 * 从工程根路径找配置文件 注意path必须以/开头 表示从工程根路径找配置文件.
-	 * 
 	 * <p>使用方法:从工程根路径开始寻找配置文件
-	 * <font color="red">
 	 * <br>Properties ps2 = PropertyUtil.getProperties("/demo_resources2.properties");
 	 * <br>System.out.println(ps.getProperty("test"));
-	 * </font>
 	 * </p>
+	 * @param path 配置文件路径
+	 * @return Properties
 	 * */
 	public static Properties getProperties(String path){
 		return getProperties(PropertyUtil.class,path);
@@ -38,11 +37,12 @@ public class PropertyUtil {
 	 * 
 	 * <p>使用方法:如下是在PropertyTest类的方法中取得配置文件的代码片断 其从PropertyTest.class所在路径找配置文件demo3.properties
 	 * <strong><br>注path不能加绝对路径/ 否则其自动从工程根路径找配置文件而不是从指定的类路径找</strong>
-	 * <font color="red">
 	 * <br>Properties ps = PropertyUtil.getProperties(PropertyTest.class,"demo3.properties");
 	 * <br>System.out.println(ps.getProperty("test"));
-	 * </font>
 	 * </p>
+	 * @param mclass 基准类
+	 * @param path 配置文件路径
+	 * @return Properties
 	 * */
 	public static Properties getProperties(Class mclass,String path){
 		Properties property = null;
@@ -62,9 +62,9 @@ public class PropertyUtil {
 	 * @param path property路径
 	 * <ul>
 	 * <li>注：其是以类路径为基准 假如在你的配置文件在 src/com/mang/config.property 则你应该传入com.mang.config</li>
-	 * <li>注：如上注意传入的参数不带后缀名property</li/
+	 * <li>注：如上注意传入的参数不带后缀名property</li>
 	 * </ul>
-	 * 
+	 * @return Map
 	 * */
 	public static Map<String,String> getBundleMap(String path){
 		ResourceBundle bundle = ResourceBundle.getBundle(path);

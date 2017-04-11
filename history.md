@@ -1,4 +1,7 @@
-﻿# V3.0
+﻿# V3.0.0-SNAPSHOT
+  + 2017-04-11创建
+  + 正式独立出mang-util 今天打包、源码包、javadoc包都能install到本地仓库
+# V3.0
 + 将mang-util独立出来成为单独的maven工程
 
 # V2.0.2

@@ -26,7 +26,7 @@ public class WordTemplate {
 	/**
 	 * 初始化模板内容
 	 * @param inputStream 模板的读取流(docx文件)
-	 * @throws IOException
+	 * @throws IOException IO异常
 	 */
 	public WordTemplate(InputStream inputStream) throws IOException{
 		document = new XWPFDocument(inputStream);
@@ -34,7 +34,7 @@ public class WordTemplate {
 	
 	/**
 	 * 替换模板中的标签为实际的内容
-	 * @param map 
+	 * @param map map
 	 */
 	public void replaceTag(Map<String,String> map){
 		replaceParagraphs(map);
@@ -44,7 +44,7 @@ public class WordTemplate {
 	/**
 	 * 将处理后的内容写入到输出流中
 	 * @param outputStream 输出流
-	 * @throws IOException
+	 * @throws IOException IO异常
 	 */
 	public void write(OutputStream outputStream) throws IOException{
 		document.write(outputStream);

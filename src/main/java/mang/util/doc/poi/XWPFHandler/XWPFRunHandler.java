@@ -12,8 +12,8 @@ public class XWPFRunHandler {
 
 	/**
 	 * 获取所有的文本内容
-	 * @param run
-	 * @return
+	 * @param run run
+	 * @return String
 	 */
 	public static String getText(XWPFRun run) {
 		CTR ctr = run.getCTR();
@@ -31,8 +31,8 @@ public class XWPFRunHandler {
 	
 	/**
 	 * 重新设置XWPFRun的文本内容
-	 * @param run
-	 * @param text
+	 * @param run run
+	 * @param text text
 	 */
 	public static void setText(XWPFRun run,String text){
 		

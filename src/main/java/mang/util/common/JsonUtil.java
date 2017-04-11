@@ -82,7 +82,7 @@ public class JsonUtil {
     /**
      * Object 转 byte[]
      *
-     * @param src
+     * @param src src
      * @return byte[]
      */
     public static  byte[] obj2Byte(Object src) {
@@ -98,14 +98,8 @@ public class JsonUtil {
             return null;
         }
     }
-
-    /**
-     * String 转 Object
-     *
-     * @param str str
-     * @param clazz 类
-     * @return
-     */
+    
+    
     public static <T> T string2Obj(String str, Class<T> clazz) {
         if (str==null || clazz == null) {
             return null;
@@ -121,13 +115,6 @@ public class JsonUtil {
         }
     }
 
-    /**
-     * byte[] 转  Object
-     *
-     * @param bytes
-     * @param clazz
-     * @return
-     */
     public static <T> T byte2Obj(byte[] bytes, Class<T> clazz) {
         if (bytes == null || clazz == null) {
             return null;
@@ -142,13 +129,6 @@ public class JsonUtil {
         }
     }
 
-    /**
-     * String 转 Object
-     *
-     * @param str
-     * @param typeReference
-     * @return
-     */
     public static <T> T string2Obj(String str, TypeReference<T> typeReference) {
         if (str==null || typeReference == null) {
             return null;
@@ -165,13 +145,6 @@ public class JsonUtil {
         }
     }
 
-    /**
-     * byte[] 转 Object
-     *
-     * @param bytes
-     * @param typeReference
-     * @return
-     */
     public static <T> T byte2Obj(byte[] bytes, TypeReference<T> typeReference) {
         if (bytes == null || typeReference == null) {
             return null;
@@ -188,12 +161,6 @@ public class JsonUtil {
         }
     }
 
-    /**
-     * @param map
-     * @param clazz
-     * @param <T>
-     * @return
-     */
     public static <T> T map2Obj(Map<String, String> map, Class<T> clazz) {
         String str = obj2String(map);
         return string2Obj(str, clazz);
@@ -212,6 +179,9 @@ public class JsonUtil {
     
     /**
 	 * 将json转ArrayList
+	 * @param jsonStr json格式字符串
+	 * @param classOfT 要转换的类
+	 * @return List
 	 * */
 	public static List string2List(String jsonStr,Class classOfT){
 		try {

@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 用freemarker的方式生成word的工具类.
  * 
- * @see FreemakerDemo1  FreemakerDemo2
+ *
  * 
  * */
 public class WordFreemarkerUtil {
@@ -17,6 +17,7 @@ public class WordFreemarkerUtil {
 	 * @param xmlTemplatePath xml模板绝对路径
 	 * @param docDestPath 生成word的绝对路径
 	 * @param dataMap 替换word中变量的数据
+	 * @return File
 	 * */
 	public static File createWord(String xmlTemplatePath,String docDestPath,Map<String,Object> dataMap){
 		//生成word

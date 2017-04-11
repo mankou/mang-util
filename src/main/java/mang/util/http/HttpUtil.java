@@ -18,6 +18,7 @@ public class HttpUtil {
 	/**
 	 * get请求
 	 * @param url 请求的url地址
+	 * @return String
 	 * */
 	public static String get(String url){
 		BasicResponseHandler basicResponseHandler=new BasicResponseHandler();
@@ -30,6 +31,7 @@ public class HttpUtil {
 	 * get请求 可自己传入responseHandler进行处理
 	 * @param url 请求的url地址
 	 * @param responseHandler http处理类
+	 * @return String
 	 * */
 	public static String get(String url,ResponseHandler responseHandler){
 		 CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -56,6 +58,7 @@ public class HttpUtil {
 	 * post请求 传json格式字符串.
 	 * @param url 请求url
 	 * @param jsonStr json格式字符串
+	 * @return String
 	 * */
 	public static String postJson(String url,String jsonStr){
 		BasicResponseHandler basicResponseHandler=new BasicResponseHandler();
@@ -78,6 +81,7 @@ public class HttpUtil {
 	 * post请求
 	 * @param url post请求的url
 	 * @param httpEntity post请求的参数
+	 * @return String
 	 * 
 	 * */
 	public static String post(String url,HttpEntity httpEntity){
@@ -91,6 +95,7 @@ public class HttpUtil {
 	 * @param url post请求的url
 	 * @param responseHandler 可传入自定义的responseHandler
 	 * @param httpEntity post请求的参数
+	 * @return String
 	 * */
 	public static String post(String url,ResponseHandler responseHandler,HttpEntity httpEntity){
 		   CloseableHttpClient httpclient = HttpClients.createDefault();

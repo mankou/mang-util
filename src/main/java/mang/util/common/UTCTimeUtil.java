@@ -23,6 +23,7 @@ public class UTCTimeUtil {
 	
 	/**
 	 * 获取当前时间的UTC时间字符串 时间格式用默认的.
+	 * @return String
 	 * */
 	public static String getCurrentUTCTimeStr() {
 		return getCurrentUTCTimeStr(default_utcTimeFormat);
@@ -30,6 +31,8 @@ public class UTCTimeUtil {
 	
 	/**
 	 * 获取当前时间的UTC时间字符串 时间格式可通过参数传入.
+	 * @param format utc时间格式
+	 * @return String
 	 * */
 	public static String getCurrentUTCTimeStr(String format){
 		Calendar cal = Calendar.getInstance();
@@ -51,6 +54,9 @@ public class UTCTimeUtil {
 	
 	/**
 	 * 将毫秒型时间转换成UTC时间格式
+	 * @param millis 毫秒时间
+	 * @param utcFormat utc格式字符串
+	 * @return String
 	 * */
 	public static String convertLong2UTC(Long millis,String utcFormat){
 		Date date=new Date(millis);
@@ -100,7 +106,7 @@ public class UTCTimeUtil {
 	 * @param utcTimeStr UTC格式的时间字符串
 	 * @param utcTimeFormat UTC时间格式  如 yyyy-MM-dd'T'HH:mm:ss'Z'
 	 * @param localTimeFormat 本地时间格式字符串  如 yyyy-MM-dd HH:mm:ss
-	 * @return
+	 * @return String
 	 */
 	public static String convertUTC2Local(String utcTimeStr,String utcTimeFormat,String localTimeFormat) {
 		Date UTCDate = null;
@@ -125,7 +131,7 @@ public class UTCTimeUtil {
 	/**
 	 * utc格式时间字符串转换成java.util.Date类型 这里采用默认的时间格式字符串 yyyy-MM-dd'T'HH:mm:ss'Z'
 	 * @param utcTimeStr utc时间格式字符串
-	 * 
+	 * @return Date
 	 * */
 	public static Date convertUTC2Date(String utcTimeStr){
 		return convertUTC2Date(utcTimeStr,default_utcTimeFormat);
@@ -136,6 +142,7 @@ public class UTCTimeUtil {
 	 * utf格式时间字符串转换成java.util.Date类型.
 	 * @param utcTimeStr utc时间字符串
 	 * @param utcFormat 时间格式 如 yyyy-MM-dd'T'HH:mm:ss'Z'
+	 * @return Date 
 	 * */
 	public static Date convertUTC2Date(String utcTimeStr,String utcFormat){
 		return DateUtil.parse(utcTimeStr,utcFormat,default_utcTimeZone);
@@ -166,6 +173,10 @@ public class UTCTimeUtil {
 
 	/**
 	 * 将本地时间字符串转换成utc时间字符串
+	 * @param localTimeStr 本地时间字符串
+	 * @param localTimeFormater 本地时间格式
+	 * @param utcTimeFormater UTC时间格式
+	 * @return String
 	 * */
 	public static String convertLocalToUTC(String localTimeStr, String localTimeFormater, String utcTimeFormater) {
 		SimpleDateFormat df_local = new SimpleDateFormat(localTimeFormater);
@@ -191,6 +202,7 @@ public class UTCTimeUtil {
 	 * 将本地时间转换成Date类型
 	 * @param localTimeStr 本地时间字符串
 	 * @param localFormater 本地时间字符串的时间格式
+	 * @return Date
 	 * */
 	public static Date convertLocal2Date(String localTimeStr,String localFormater){
 		return DateUtil.parse(localTimeStr,localFormater,default_localTimeZone);

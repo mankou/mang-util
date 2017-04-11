@@ -14,7 +14,8 @@ public class PageUtil {
 	 * 计算总页数.
 	 * <p>如果总记录数842330 每页10000条 则总计85页 如果总记录数840000  则总计84页<br>
 	 * @param totalCount 总页数
-	 * @param pagetSize 每页条数
+	 * @param pageSize 每页条数
+	 * @return int
 	 * */
 	public static int computeTotalPage(int totalCount,int pageSize){
 		int totalPageNumber=totalCount/pageSize;
@@ -32,6 +33,7 @@ public class PageUtil {
 	 * @param pageSize 每页显示多少条
 	 * @param pageNumber 当前第几页 (页数从1开始 如第1页 第2页 没有第0页)
 	 * @param isStartWith0 数据是从第0条开始 还是从第1条开始 true表示从0开始 false表示从1开始
+	 * @return int
 	 * */
 	public static int computeStart(int pageSize,int pageNumber,boolean isStartWith0){
 		int start;

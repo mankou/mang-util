@@ -83,6 +83,7 @@ public class FreemarkerHandler {
 	
 	/**
 	 * 生成word
+	 * @return File
 	 * */
 	public File createDoc() {
 		try {
@@ -213,7 +214,8 @@ public class FreemarkerHandler {
 	
 	/**
 	 * 如果输出文件名重复是否处理 
-	 * true表示处理 false表示不处理 如果没有设置则走默认值 false
+	 * 
+	 * @param isProcessDuplicate true表示处理 false表示不处理 如果没有设置则走默认值 false
 	 * */
 	public void setProcessDuplicate(boolean isProcessDuplicate) {
 		this.isProcessDuplicate = isProcessDuplicate;
@@ -223,7 +225,7 @@ public class FreemarkerHandler {
 	 * 设置重复处理策略 "date" 或者"num"
 	 * 策略1："date"策略 在文件名后面加时间后缀如文件名为 output.doc 则处理成output1609301050.doc这样的格式
 	 * 策略2："num" 策略 是在文件名后面加数字的策略 如文件名为output.doc 如果文件名已经存在则处理成output1.doc 如果还存在则继续 只到找到不存在的文件名
-	 * 
+	 * @param duplicateProcessStrategy duplicateProcessStrategy
 	 * */
 	public void setDuplicateProcessStrategy(String duplicateProcessStrategy) {
 		this.duplicateProcessStrategy = duplicateProcessStrategy;
@@ -231,6 +233,7 @@ public class FreemarkerHandler {
 	
 	/**
 	 * 设置如果采用"date"处理策略时的 默认时间格式
+	 * @param defaultOutputFileDateFormatStr defaultOutputFileDateFormatStr
 	 * */
 	public void setDefaultOutputFileDateFormatStr(String defaultOutputFileDateFormatStr) {
 		this.defaultOutputFileDateFormatStr = defaultOutputFileDateFormatStr;

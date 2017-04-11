@@ -12,6 +12,7 @@ public class RandomUtil {
 	 * 
 	 * @param baseStr 基准字符串 即随机产生的字符串从哪些字符中产生 如果输入为null或""则默认以a-z字符为基准
 	 * @param length 生成字符串的长度
+	 * @return String
 	 * */
 	public static String getRandomStr(String baseStr,int length){
 		String base;   
@@ -33,8 +34,8 @@ public class RandomUtil {
 	
 	/**
 	 * 
-	 * @param baseStr 基准字符串 即随机产生的字符串从哪些字符中产生 如果输入为null或""则默认以a-z字符为基准
 	 * @param length 生成字符串的长度
+	 * @return String
 	 * */
 	public static String getRandomStr(int length){
 		return getRandomStr("", length);

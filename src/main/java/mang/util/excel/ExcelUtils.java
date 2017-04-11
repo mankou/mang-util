@@ -43,7 +43,7 @@ import mang.util.common.FileUtil;
 
 public class ExcelUtils {
 
-	/**
+	/*
 	 * 这是一个通用的方法，利用了JAVA的反射机制，可以将放置在JAVA集合中并且符号一定条件的数据以EXCEL 的形式输出到指定IO设备上
 	 *
 	 * @param title
@@ -209,12 +209,14 @@ public class ExcelUtils {
 	 * 由Excel流的Sheet导出至List
 	 * 
 	 * @param is 文件流
-	 * @param fileType 文件类型
+	 * @param fileName 文件名
 	 * @param sheetNum 默认第一个sheet编号为0
-	 * @return
-	 * @throws Exception 
+	 * @param isSkipFirst 是否忽略第一行
+	 * @param objClass 要转换成bean的类
+	 * @return List
+	 * @throws Exception  Exception
 	 */
-	public static  List importExcel(InputStream is, String fileName, int sheetNum, boolean isSkipFirst,Class ojbClass) throws Exception {
+	public static  List importExcel(InputStream is, String fileName, int sheetNum, boolean isSkipFirst,Class objClass) throws Exception {
 
 		Workbook workbook = null;
 		
@@ -234,7 +236,7 @@ public class ExcelUtils {
 			workbook = new XSSFWorkbook(is);
 		}
 
-		return parseExcel(workbook, sheetNum,isSkipFirst,ojbClass);
+		return parseExcel(workbook, sheetNum,isSkipFirst,objClass);
 	}
 
 	private static  List parseExcel(Workbook workbook, int sheetNum , boolean isSkipFirst,Class ojbClass) throws Exception{

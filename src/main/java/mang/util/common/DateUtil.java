@@ -45,6 +45,7 @@ public class DateUtil {
 	 *            时间格式 如yyyy-MM-dd'T'HH:mm:ss.SSS'Z' yyyy-MM-dd'T'HH:mm:ss+08:00
 	 * @param timeZone
 	 *            时区 如 UTC GMT+8
+	 * @return Date           
 	 */
 	public static Date parse(String timeStr, String timeFormat, String timeZone) {
 		SimpleDateFormat df = new SimpleDateFormat(timeFormat);
@@ -119,7 +120,7 @@ public class DateUtil {
 	 * @param date 时间 如果为空 则用当前时间
 	 * @param interval 时间间隔
 	 * @param unit 时间间隔单位 second:秒    minute:分钟 hour:小时 day:天 month:月 year:年
-	 * 
+	 * @return Date
 	 * */
 	public static Date addTime(Date date,Integer interval,String unit){
 		Calendar c = Calendar.getInstance(); //这句好像很浪费，我也不知道该怎么处理

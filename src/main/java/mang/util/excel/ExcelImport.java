@@ -88,6 +88,7 @@ public class ExcelImport {
 	
 	/**
 	 * 导入excel
+	 * @return List
 	 * */
 	public List doImport(){
 		List list=null;

@@ -44,7 +44,7 @@ public class ZipUtil {
    * <li> 如果想将文件压缩到根路径 则传入 "" 即可 </li>
    * <li> 如果希望压缩文件的根路径为 123 则传入"123" 则压缩文件中的根路径是"123/你要压缩的文件" </li>
    * <li> 如果希望压缩文件的根路径为 123/456 则传入"123/456" 则压缩文件中的根路径是"123/456/你要压缩的文件" </li>
-   * <ol>
+   * </ol>
    * */
 	public static void compress(String sourcePath, String zipFilePath, String baseDir) {
 		
@@ -56,14 +56,14 @@ public class ZipUtil {
 	 /**
 	   * zip压缩一组文件或文件
 	   * 
-	   * @param sourcePathList 要压缩的文件的路径 是一个list<String>
+	   * @param sourcePathList 要压缩的文件的路径 是一个list
 	   * @param zipFilePath 压缩文件路径
 	   * @param baseDir 压缩时的基准路径
 	   * <ol>
 	   * <li> 如果想将文件压缩到根路径 则传入 "" 即可 </li>
 	   * <li> 如果希望压缩文件的根路径为 123 则传入"123" 则压缩文件中的根路径是"123/你要压缩的文件" </li>
 	   * <li> 如果希望压缩文件的根路径为 123/456 则传入"123/456" 则压缩文件中的根路径是"123/456/你要压缩的文件" </li>
-	   * <ol>
+	   * </ol>
 	   * */
 	public static void compress(List<String> sourcePathList, String zipFilePath, String baseDir) {
 
@@ -162,19 +162,19 @@ public class ZipUtil {
 		}
 	}
   /**
-	 * 解压到指定目录
-	 * @param zipPath
-	 * @param descDir
-	 * @author isea533
+	 * 解压到指定目录.
+	 * @param zipPath zip路径
+	 * @param descDir 解压路径
+	 * @throws IOException IO异常
 	 */
 	public static void unZipFiles(String zipPath,String descDir)throws IOException{
 		unZipFiles(new File(zipPath), descDir);
 	}
 	/**
-	 * 解压文件到指定目录
-	 * @param zipFile
-	 * @param descDir
-	 * @author isea533
+	 * 解压文件到指定目录.
+	 * @param zipFile zipFile路径
+	 * @param descDir 目标路径
+	 * @throws IOException IO异常
 	 */
 	@SuppressWarnings("unchecked")
 	public static void unZipFiles(File zipFile,String descDir)throws IOException{

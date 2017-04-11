@@ -314,6 +314,8 @@ public class StringUtil {
 	
 	/**
 	 * 转大写
+	 * @param str 字符串
+	 * @return String
 	 * */
 	public static String toUpperCase(String str){
 		if(str==null){

@@ -12,7 +12,7 @@ public class NumberUtil {
 	 * 
 	 * @param dou 输入的数字
 	 * @param scale 精度 如保留2位小数 就写2
-	 * 
+	 * @return Double
 	 * */
 	public static Double round(Double dou,int scale){
 			if(dou==null){
@@ -25,7 +25,9 @@ public class NumberUtil {
 	
 	/** 
 	 * 将long型数字 转换成double 并保留几位小数.
+	 * @param l 整型数字
 	 * @param scale 精度 如保留2位小数 就写2
+	 * @return Double
 	 * */
 	public static Double round(long l,int scale){
 		double dou = l;
@@ -38,6 +40,8 @@ public class NumberUtil {
 	/**
 	 * 判断字符串是否是数字.
 	 * 如传入123则返回true，传入 123中 则返回false
+	 * @param str 字符串格式数字
+	 * @return boolean 
 	 * */
 	public static boolean isNumber(String str){
 		if(str==null){
@@ -54,6 +58,9 @@ public class NumberUtil {
 	/**
 	 * 比较两个整型数据哪个大? 返回最大的那个.
 	 * 如果num1为空 num2不空 则返回num2 如果num2也为空则返回空 反之
+	 * @param num1 数字1
+	 * @param num2 数字2
+	 * @return Integer
 	 * */
 	public static Integer max(Integer num1,Integer num2){
 		if(num1==null) {
@@ -68,6 +75,9 @@ public class NumberUtil {
 	/**
 	 * 比较两个整型数据哪个大? 返回最大的那个.
 	 * 如果两个数中有一个为空 则返回空
+	 * @param num1 数字1
+	 * @param num2 数字2
+	 * @return Integer
 	 * */
 	public static Integer min(Integer num1,Integer num2){
 		if(num1==null) {
@@ -80,6 +90,9 @@ public class NumberUtil {
 	
 	/**
 	 * 将字符串数字解析成数字
+	 * @param numberStr 字符串格式的数字
+	 * @param objClass 转换成数字类型的类 如Long.class
+	 * @return Object
 	 * */
 	public static  Object parseNumber(String numberStr,Class objClass){
 		Object obj=null;
