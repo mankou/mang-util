@@ -36,7 +36,7 @@ public class HttpUtil {
 	        try {
 	            HttpGet httpget = new HttpGet(url);
 	            System.out.println("Executing request " + httpget.getRequestLine());
-	            String responseBody = httpclient.execute(httpget, responseHandler);
+	            String responseBody = (String) httpclient.execute(httpget, responseHandler);
 	            System.out.println("----------------------------------------");
 	            System.out.println(responseBody);
 	            return responseBody;
@@ -99,7 +99,7 @@ public class HttpUtil {
 	            if(httpEntity!=null){
 	            	httpPost.setEntity(httpEntity);
 	            }
-	           String responseBody = httpclient.execute(httpPost,responseHandler);
+	           String responseBody =  (String)httpclient.execute(httpPost,responseHandler);
 	           return responseBody;
 	           
 	        } catch (HttpResponseException e) {
