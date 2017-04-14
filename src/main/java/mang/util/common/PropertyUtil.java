@@ -1,5 +1,8 @@
 package mang.util.common;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -47,15 +50,44 @@ public class PropertyUtil {
 	public static Properties getProperties(Class mclass,String path){
 		Properties property = null;
 		try {
+			//通过getResourceAsStream 取配置文件即使打成jar包也不会报错
 			property = new Properties();
 			InputStreamReader sr = new InputStreamReader(mclass.getResourceAsStream(path),"utf-8"); 
 			property.load(sr);
+		}catch(NullPointerException e){
+			//如果报错了则尝试从文件中取配置 因为一般我们会把程序打成jar包 则希望从jar包外取配置文件 所以我一般会传入一个文件路径
+			File file=new File(path);
+			try {
+				FileInputStream fi= new FileInputStream(file);
+				property.load(fi);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
 		}catch (IOException e){
 			e.printStackTrace();
 			return null;
 		}
 		return property;
 	}
+	
+	
+	/**
+	 * 从默认位置取配置文件 你只需要传入相对于默认的位置即可. 
+	 * 常用于打包后从当前目录的config下取配置的方式,这里默认的位置由ConfigUtil.defaultConfigPath 决定
+	 * 如代码打成jar包后 希望从当前目录的config/config.properties 下取配置 则可传入参数 config.properties 即可
+	 * 
+	 * @param path 相对于默认路径的配置文件路径  
+	 * @return Properties
+	 * 
+	 * */
+	public static Properties getPropertiesFromDefault(String path){
+		String confPath=ConfigUtil.getConfigPath();
+		return getProperties(confPath+"/"+path);
+	}
+	
 	
 	/**
 	 * 利用ResourceBundle获取配置信息 并将配置信息组装成map返回
