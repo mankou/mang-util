@@ -36,6 +36,8 @@ public class FieldUtil {
 			obj=Double.parseDouble(numberStr);
 		}else if(objClass==BigDecimal.class){
 			obj=new BigDecimal(numberStr);
+		}else if(objClass==String.class){
+			obj=numberStr;
 		}
 		
 		return obj;

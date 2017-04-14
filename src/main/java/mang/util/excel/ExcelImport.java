@@ -1,5 +1,8 @@
 package mang.util.excel;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -41,6 +44,32 @@ public class ExcelImport {
 		this.inputStream=inputStream;
 		this.fileName=fileName;
 		this.beanClass=beanClass;
+	}
+	
+	
+	public ExcelImport(File file,Class beanClass){
+		InputStream in;
+		try {
+			in = new FileInputStream(file);
+			this.inputStream=in;
+			this.fileName=file.getName();
+			this.beanClass=beanClass;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ExcelImport(String filePath,Class beanClass){
+		InputStream in;
+		try {
+			File file=new File(filePath);
+			in = new FileInputStream(file);
+			this.inputStream=in;
+			this.fileName=file.getName();
+			this.beanClass=beanClass;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 
