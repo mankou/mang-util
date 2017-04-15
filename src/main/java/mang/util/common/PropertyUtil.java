@@ -75,17 +75,32 @@ public class PropertyUtil {
 	
 	
 	/**
-	 * 从默认位置取配置文件 你只需要传入相对于默认的位置即可. 
-	 * 常用于打包后从当前目录的config下取配置的方式,这里默认的位置由ConfigUtil.defaultConfigPath 决定
-	 * 如代码打成jar包后 希望从当前目录的config/config.properties 下取配置 则可传入参数 config.properties 即可
+	 * 优先从工作目录下开始找配置文件 如果找不到再从类路径下开始找.
+	 * 到底有什么用：其既能从当前工作目录下取配置文件 也能从jar包里的类路径下取配置文件 这样jar包里可以提供默认的配置 但也可以用当前工作目录下的配置文件覆盖jar包里的配置文件<br/>
+	 * 场景1-平时开发：平时开发时因当前工作目录下没有该配置文件其会从类路径下找配置文件 所以在maven工程中只要把配置文件放在resources下 其会自动打到类路径下<br/>
+	 * 场景2-打成jar包后 先从当前工作目录下取配置文件 如果没有则从jar包里的类路径下取文件 这样jar包里可以提供一份默认的配置<br/>
+	 * 注 什么是工作目录：平时开发时就是工作空间的目录 打成jar包后就是你执行命令时的当前目录
 	 * 
-	 * @param path 相对于默认路径的配置文件路径  
+	 * @param path 配置文件路径 注最好前面加上/表示从根路径下找<br/>
+	 * 如/config/config.properties 表示先从 工作目录/config/config.properties找配置文件 如果没有则从 类路径/config/config.properties下找
 	 * @return Properties
 	 * 
 	 * */
 	public static Properties getPropertiesFromDefault(String path){
-		String confPath=ConfigUtil.getConfigPath();
-		return getProperties(confPath+"/"+path);
+		String resultPath;
+		//取工作目录
+		String workPath = System.getProperty("user.dir");
+		String confPath=workPath+"/"+path;
+		File file=new File(confPath);
+		if(file.exists()){
+			System.out.println("从工作目录取配置文件"+confPath);
+			resultPath=confPath;
+		}else{
+			System.out.println("从类路径取配置文件"+path);
+			resultPath=path;
+		}
+		
+		return getProperties(resultPath);
 	}
 	
 	
