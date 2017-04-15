@@ -96,10 +96,10 @@ public class PropertyUtil {
 		String confPath=workPath+"/"+path;
 		File file=new File(confPath);
 		if(file.exists()){
-			System.out.println("从工作目录取配置文件"+confPath);
+//			System.out.println("从工作目录取配置文件"+confPath);
 			resultPath=confPath;
 		}else{
-			System.out.println("从类路径取配置文件"+path);
+//			System.out.println("从类路径取配置文件"+path);
 			resultPath=path;
 		}
 		
