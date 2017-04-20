@@ -3,6 +3,7 @@ package mang.util.common;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,18 +16,26 @@ import java.util.TimeZone;
  * create:2015-8-25 15:09:53
  * modify:2015-8-25 15:09:58
  * */
-public class TimeUtil {
+public class TimestampUtil {
+	 private final static String default_timeZone="GMT+8";
+	 private final static String default_timeFormat = "yyyy-MM-dd HH:mm:ss";
+	
+	
 	/**
 	 * 获取当前时间.
 	 * @return Timestamp
 	 * */
 	public static Timestamp getCurrentTime(){
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-		df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-//		TimeZone tz = TimeZone.getTimeZone("ETC/GMT-8");
-//		TimeZone.setDefault(tz);
-        String time = df.format(new Date());   
-        Timestamp now = Timestamp.valueOf(time);
+		
+		//方法一
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+//		df.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+//        String time = df.format(new Date());   
+//        Timestamp now = Timestamp.valueOf(time);
+        
+        //方法二
+		Calendar calendar=Calendar.getInstance();
+		Timestamp now = new Timestamp(calendar.getTimeInMillis());
         return now;
 	}
 	
@@ -113,8 +122,8 @@ public class TimeUtil {
 	 * @return Timestamp
 	 * */
 	public static Timestamp getDayWithNoTime(){
-		Timestamp time = TimeUtil.getCurrentTime();
-		return TimeUtil.getDayWithNoTime(time);
+		Timestamp time = TimestampUtil.getCurrentTime();
+		return TimestampUtil.getDayWithNoTime(time);
 		
 	}
 	
@@ -406,6 +415,167 @@ public class TimeUtil {
 			date=new Date(from.getTime());
 		}
 		return date;
+	}
+	
+	/**
+	 * 获取某一时间当月的1号 0点的时间
+	 * 
+	 * */
+	public static Timestamp getMonthFirstDay(Timestamp time){
+		Calendar c = Calendar.getInstance(); 
+		if(time!=null){
+			c.setTime(time);//将Date或Timestamp放进去
+		}
+		
+		c.set(Calendar.DAY_OF_MONTH, 1);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+		
+		Timestamp returnTime=new Timestamp(c.getTimeInMillis());
+		return returnTime;
+		
+	}
+	
+	/**
+	 * 获取下个月1号 0点0分0秒的时间.
+	 * 
+	 * 
+	 * */
+	public static Timestamp getNextMonthFirstDay(Timestamp time){
+		return getFutureMonthFirstDay(time,1);
+	}
+	
+	/**
+	 * 获取未来某几个月 的1号0点0分0秒的时间.
+	 * 
+	 * */
+	public static Timestamp getFutureMonthFirstDay(Timestamp time,int addMonth){
+		Timestamp nextMonth=addTime(time, 1, "month");
+		Timestamp nextMonthFirstDay=getMonthFirstDay(nextMonth);
+		return nextMonthFirstDay;
+	}
+	
+	/**
+	 * @return Timestamp 当天0点时间
+	 * */
+	public static Timestamp getCurrentDayZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Timestamp timestamp=new Timestamp(calendar.getTimeInMillis());
+		return timestamp;
+	}
+	
+	
+	/**
+	 * @return Timestamp 明天0点
+	 * */
+	public static Timestamp getTomorrowZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		Timestamp timestamp=new Timestamp(calendar.getTimeInMillis());
+		return timestamp;
+	}
+	
+	
+	/**
+	 * @return Date 当天0点时间
+	 * */
+	public static Timestamp getCurrentMonthZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Timestamp timestamp=new Timestamp(calendar.getTimeInMillis());
+		return timestamp;
+	}
+	
+
+	/**
+	 * @return Date 当天0点时间
+	 * */
+	public static Timestamp getCurrentYearZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.MONTH, 0);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Timestamp timestamp=new Timestamp(calendar.getTimeInMillis());
+		return timestamp;
+	}
+	
+	/**
+	 * 解析时间字符串转换成Timestamp
+	 * 
+	 * @param timeStr
+	 *            时间字符串
+	 * @param format
+	 *            时间格式 如yyyy-MM-dd HH:mm:ss
+	 * @return Timestamp
+	 */
+	public static Timestamp parse(String timeStr, String format) {
+		SimpleDateFormat df = new SimpleDateFormat(format);
+		df.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		Timestamp time = null;
+		Date date=null;
+		try {
+			date = df.parse(timeStr);
+			time=new Timestamp(date.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return time;
+	}
+
+	/**
+	 * 解析时间字符串转换成Date
+	 * 
+	 * @param timeStr
+	 *            时间字符串 时间格式采用默认的 yyyy-MM-dd HH:mm:ss
+	 */
+	public static Timestamp parse(String timeStr) {
+		return parse(timeStr, default_timeFormat);
+	}
+
+	/**
+	 * 字符串转时间.
+	 * 
+	 * @param timeStr
+	 *            时间字符串
+	 * @param timeFormat
+	 *            时间格式 如yyyy-MM-dd'T'HH:mm:ss.SSS'Z' yyyy-MM-dd'T'HH:mm:ss+08:00
+	 * @param timeZone
+	 *            时区 如 UTC GMT+8
+	 * @return Timestamp
+	 */
+	public static Timestamp parse(String timeStr, String timeFormat, String timeZone) {
+		SimpleDateFormat df = new SimpleDateFormat(timeFormat);
+		df.setTimeZone(TimeZone.getTimeZone(timeZone));
+		Date date = null;
+		Timestamp time=null;
+		try {
+			date = df.parse(timeStr);
+			time=new Timestamp(date.getTime());
+			return time;
+		} catch (ParseException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	
 }

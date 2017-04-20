@@ -22,7 +22,7 @@ public class DateInfo {
 	 * 以当前时间计算.
 	 */
 	public DateInfo(){
-		this.currentTime=TimeUtil.getCurrentTime();
+		this.currentTime=TimestampUtil.getCurrentTime();
 	}
 	
 	/** 
@@ -34,7 +34,7 @@ public class DateInfo {
 		if(time!=null){
 			this.currentTime=time;
 		}else{
-			this.currentTime=TimeUtil.getCurrentTime();
+			this.currentTime=TimestampUtil.getCurrentTime();
 		}
 	}
 	
