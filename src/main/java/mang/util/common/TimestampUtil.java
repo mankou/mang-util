@@ -156,6 +156,18 @@ public class TimestampUtil {
 	}
 	
 	/**
+	 * 计算两个时间之间的时间差 单位是毫秒.
+	 * 
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return 结束时间-开始时间的毫秒数
+	 * 
+	 * */
+	public static Long computeMillisecondTimeInterval(Timestamp startTime,Timestamp endTime){
+		return endTime.getTime()-startTime.getTime();
+	}
+	
+	/**
 	 * 用于计算2个日期间的时间差 并转换成易读的方式 .
 	 * <p>endTime-startTime的值，结果是易读的字符串 如 1年5月6天8小时7分5秒
 	 * @param endTime 结束时间
@@ -164,11 +176,15 @@ public class TimestampUtil {
 	 * @return String
 	 * */
 	public static String computeTimeInterval(Timestamp endTime,Timestamp startTime,String language){
-		Long between = (endTime.getTime()-startTime.getTime())/1000;//除以1000是为了转换成秒
-		between=Math.abs(between); //取绝对值
+		Long betweenSecond = (endTime.getTime()-startTime.getTime())/1000;//除以1000是为了转换成秒
+		betweenSecond=Math.abs(betweenSecond); //取绝对值
+		
+		Long betweenMills=endTime.getTime()-startTime.getTime();
 		
 		boolean isEnglish=isEnglish(language);
 		
+		
+		String millStr=isEnglish?"ms":"毫秒";
 		String secStr=isEnglish?"s":"秒";
 		String minStr=isEnglish?"min":"分";
 		String houStr=isEnglish?"hour":"小时";
@@ -176,16 +192,21 @@ public class TimestampUtil {
 		String monStr=isEnglish?"month":"月";
 		String yearStr=isEnglish?"year":"年";
 		
-		long year=between/(365*24*3600);
-		long month=between%(365*24*3600)/(30*24*3600);
-		long day=between%(30*24*3600)/(24*3600);
-		long hour=between%(24*3600)/3600;
-		long minute=between%(3600)/60;
-		long second=between%(60);
+		long year=betweenSecond/(365*24*3600);
+		long month=betweenSecond%(365*24*3600)/(30*24*3600);
+		long day=betweenSecond%(30*24*3600)/(24*3600);
+		long hour=betweenSecond%(24*3600)/3600;
+		long minute=betweenSecond%(3600)/60;
+		long second=betweenSecond%(60);
 		
 		String result="";
 		//注 如果是0年 0月 0天 0分 0秒 则返回0秒 而不能是"" 所以秒没有参加if判断
-		result+=second+secStr;
+		//如果时间间隔是0秒 则显示毫秒数 否则不显示
+		if(betweenSecond==0){
+			result+=betweenMills+millStr;
+		}else{
+			result+=second+secStr;
+		}
 		
 		if(minute!=0){
 			result=minute+minStr+result;

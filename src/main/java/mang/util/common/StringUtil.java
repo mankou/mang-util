@@ -325,5 +325,28 @@ public class StringUtil {
 		String result=str.toUpperCase();
 		return result;
 	}
+	
+	/**
+	 * 截取字符串.
+	 * 
+	 * <p>
+	 * 如果字符串的长度大于要截取的长度 则截取指定长度
+	 * 如果字符串的长度小于要截取的长度 则返回该字符串
+	 * </p>
+	 * 
+	 * @param str 字符串
+	 * @param size 截取长度
+	 * @return 截取后的字符串
+	 * 
+	 * */
+	public static String subString(String str,int size){
+		
+		if(str.length()<size){
+			return str;
+		}else{
+			return str.substring(0, size);
+		}
+		
+	}
 
 }
