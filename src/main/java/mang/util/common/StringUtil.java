@@ -340,8 +340,7 @@ public class StringUtil {
 	 * 
 	 * */
 	public static String subString(String str,int size){
-		
-		if(str.length()<size){
+		if(str==null||str.length()<size){
 			return str;
 		}else{
 			return str.substring(0, size);
