@@ -47,6 +47,7 @@ public class JsonUtil {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     private JsonUtil() {
+    	
     }
 
     static {
