@@ -2,6 +2,8 @@ package mang.util.common;
 
 /**
  * jackJson处理空字符串的策略
+ * 
+ * @author mang
  * */
 public enum JsonNullStrategy {
 	NON_DEFAULT("NON_DEFAULT"),

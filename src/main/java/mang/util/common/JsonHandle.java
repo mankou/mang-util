@@ -18,6 +18,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
  * json处理类.
  * 因JsonUtil中的方法都是静态方法所以提供的功能都很简单不能配置 如时间转换JsonUtil默认替换成毫秒数  所以重新开发一个JsonHandle类可设置时间格式 时区等
  * 
+ * @author mang
+ * 
  * */
 public class JsonHandle {
 	private static Logger logger=Logger.getLogger(JsonHandle.class);

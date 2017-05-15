@@ -17,7 +17,6 @@
 
 package mang.util.common;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
@@ -26,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +34,8 @@ import org.apache.log4j.Logger;
  * json处理工具类
  * 
  * 20170221来自rocketmq-console工程 我加了str转list的方法
+ * 
+ * @author mang
  * 
  * */
 
