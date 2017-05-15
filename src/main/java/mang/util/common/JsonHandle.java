@@ -83,7 +83,13 @@ public class JsonHandle {
 	
 	
 	 /**
-     * Object 转 String
+     * Object 转 String.
+     * 
+     * <p>
+     * 输入参数可以是一般的java类
+     * 也可以是Map
+     * </p>
+     * 
      * @param src str
      * @return String
      */
