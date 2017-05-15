@@ -1,12 +1,18 @@
 package mang.util.common;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
  * json处理类.
@@ -19,9 +25,37 @@ public class JsonHandle {
 	private static String default_timeFormat="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	private static String default_timeZone="UTC";
 	
-	public JsonHandle(){
+	
+	public JsonHandle() {
 		this.setDateFormater(default_timeFormat);
 	}
+	
+	
+	/**
+	 * 设置json空值处理策略
+	 * 如果为默认值 则不序列化该属性
+	 * 如果为空 则不序列化该属性
+	 * 如果为空或者 空字符串则不序列化该属性
+	 * 如果为空 则处理成空字符串
+	 * */
+	public void setProcessNullStrategy(JsonNullStrategy strategy) {
+		if (JsonNullStrategy.NON_DEFAULT.equals(strategy)) {
+			objectMapper.setSerializationInclusion(Include.NON_DEFAULT);
+		} else if (JsonNullStrategy.NON_NULL.equals(strategy)) {
+			objectMapper.setSerializationInclusion(Include.NON_NULL);
+		} else if (JsonNullStrategy.NON_EMPTY.equals(strategy)) {
+			objectMapper.setSerializationInclusion(Include.NON_EMPTY);
+		} else if (JsonNullStrategy.EMPTY_STRING.equals(strategy)) {
+			objectMapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
+				@Override
+				public void serialize(Object value, JsonGenerator jg, SerializerProvider sp)
+						throws IOException, JsonProcessingException {
+					jg.writeString("");
+				}
+			});
+		}
+	}
+	
 	
 	
 	/**
@@ -31,6 +65,9 @@ public class JsonHandle {
 	public void setDateFormater(String formater){
 		this.setDateFormater(formater,default_timeZone);
 	}
+	
+	
+	
 	
 	/**
 	 * @param formater 时间格式字符串

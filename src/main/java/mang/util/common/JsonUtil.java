@@ -17,6 +17,7 @@
 
 package mang.util.common;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
@@ -56,6 +57,13 @@ public class JsonUtil {
 //        objectMapper.setFilters(new SimpleFilterProvider().setFailOnUnknownId(false));
 //        objectMapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY);
 //        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+    	
+    	//注 2017-05-15我试验如下的方式是好用的 上面的注释的代码有的类都找不到 编译时就报
+    	//Include.Include.ALWAYS 默认
+    	//Include.NON_DEFAULT 属性为默认值不序列化
+    	//Include.NON_EMPTY 属性为 空（“”） 或者为 NULL 都不序列化
+    	//Include.NON_NULL 属性为NULL 不序列化 
+//    	  objectMapper.setSerializationInclusion(Include.NON_NULL);
     }
 
 
