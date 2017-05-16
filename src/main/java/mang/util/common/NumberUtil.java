@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 /**
  * 数字处理工具包.
  * 
+ * @author mang
+ * 
  * */
 public class NumberUtil {
 	/**
@@ -94,26 +96,106 @@ public class NumberUtil {
 	 * @param objClass 转换成数字类型的类 如Long.class
 	 * @return Object
 	 * */
-	public static  Object parseNumber(String numberStr,Class objClass){
-		Object obj=null;
-		Double douValue=Double.parseDouble(numberStr);
-		if(objClass==int.class || objClass==Integer.class){
-			 obj=new Integer(douValue.intValue());
-		}else if(objClass==long.class || objClass==Long.class){
-//			obj=Long.parseLong(numberStr);
-			 obj=new Long(douValue.longValue());
-		}else if(objClass==float.class||objClass==Float.class){
-//			obj=Float.parseFloat(numberStr);
-			obj=new Float(douValue.floatValue());
-		}else if(objClass==double.class || objClass==Double.class){
-//			obj=Double.parseDouble(numberStr);
-			obj=douValue;
-		}else if(objClass==BigDecimal.class){
-			obj=new BigDecimal(numberStr);
+	public static Object parseNumber(String numberStr, Class objClass) {
+		Object obj = null;
+		try {
+			//有可能传入的字符串有问题导致parseDouble有问题 所以try下
+			Double douValue = Double.parseDouble(numberStr);
+			if (objClass == int.class || objClass == Integer.class) {
+				obj = new Integer(douValue.intValue());
+			} else if (objClass == long.class || objClass == Long.class) {
+				// obj=Long.parseLong(numberStr);
+				obj = new Long(douValue.longValue());
+			} else if (objClass == float.class || objClass == Float.class) {
+				// obj=Float.parseFloat(numberStr);
+				obj = new Float(douValue.floatValue());
+			} else if (objClass == double.class || objClass == Double.class) {
+				// obj=Double.parseDouble(numberStr);
+				obj = douValue;
+			} else if (objClass == BigDecimal.class) {
+				obj = new BigDecimal(numberStr);
+			}
+		} catch (Exception e) {
+
 		}
-		
+
 		return obj;
 	}
 	
+	
+	/**
+	 * 将字符串转换成Double.
+	 * 
+	 * @param numberStr 字符串数字
+	 * @return Double 
+	 * */
+	public static Double parseDouble(String numberStr){
+		Double result=null;
+		try{
+			result=Double.parseDouble(numberStr);
+		}catch (Exception e) {
+			
+		}
+		
+		return result;
+	}
+	
+	
+	/**
+	 * 计算2个Double型值 相减后的值
+	 * 
+	 * <p>
+	 * 如果两个值有一个为空则返回空
+	 * </p>
+	 * 
+	 * @param dou1 Double1
+	 * @param dou2 Double2
+	 * @return Double 
+	 * */
+	public static Double subDouble(Double dou1,Double dou2){
+		Double result=null;
+		if(dou1!=null && dou2!=null){
+			result=dou1-dou2;
+		}
+		return result;
+	}
+	
+	/**
+	 * 计算2个Long型值 相减后的值
+	 * 
+	 * <p>
+	 * 如果两个值有一个为空则返回空
+	 * </p>
+	 * 
+	 * @param l1 Long1
+	 * @param l2 Long2
+	 * @return Long
+	 * */
+	public static Long subLong(Long l1,Long l2){
+		Long result=null;
+		if(l1!=null && l2!=null){
+			result=l1-l2;
+		}
+		return result;
+	}
+	
+	/**
+	 * 计算2个Integer值 相减后的值
+	 * 
+	 * <p>
+	 * 如果两个值有一个为空则返回空
+	 * </p>
+	 * 
+	 * @param i1 Integer1
+	 * @param i2 Integer2
+	 * @return Integer
+	 * */
+	public static Integer subInteger(Integer i1,Integer i2){
+		Integer result=null;
+		if(i1!=null && i2!=null){
+			result=i1-i2;
+		}
+		return result;
+	}
 	
 }
