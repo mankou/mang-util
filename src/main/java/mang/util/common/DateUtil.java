@@ -83,6 +83,23 @@ public class DateUtil {
 	
 	
 	/**
+	 * 
+	 * @return Date 获取本周一 0点0分
+	 * */
+	public static Date getCurrentWeekZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); 
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date date=calendar.getTime();
+		return date;
+	}
+	
+	
+	/**
 	 * @return Date 当天0点时间
 	 * */
 	public static Date getCurrentMonthZeroDate(){
