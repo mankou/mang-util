@@ -1,5 +1,7 @@
 package mang.util.common;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -163,5 +165,52 @@ public class DateUtil {
 		return resultDate;
 		
 	}
+	
+	
+	/**
+	 * 返回当前时间的字符串 按默认格式 yyyy-MM-dd HH:mm:ss
+	 * @return String 格式化后时间字符串
+	 * */
+	public static String getCurrentDateString(){
+		String str=getCurrentDateString(default_timeFormat);
+		return str;
+	}
+	
+	/**
+	 * 返回当前时间的时间字符串 .
+	 * 需自己传入时间格式
+	 * @param format 日期格式  如yyyy-MM-dd yyyyMMddHHmmss
+	 * @return String 格式化后的时间字符串
+	 * */
+	public static String getCurrentDateString(String format){
+		Date date = getCurrentDate();
+		return getDateString(date,format,default_timeZone);
+	}
+	
+	
+	/**
+	 * 给一个时间 返回该时间的字符串  
+	 * 需自己传入时间格式
+	 * @param date 时间
+	 * @param format 日期格式  如yyyy-MM-dd yyyyMMddHHmmss
+	 * @param timezone 时区 如GMT+8 UTC
+	 * @return String 格式化后的时间字符串
+	 * */
+	public static String getDateString(Date date,String format,String timezone){
+		if(date==null){
+			date=getCurrentDate();
+		}
+		
+		if(format==null||"".equals(format)){
+			format="yyyy-MM-dd";
+		}
+		
+		DateFormat sdf = new SimpleDateFormat(format);
+		sdf.setTimeZone(TimeZone.getTimeZone(timezone));
+		String str = sdf.format(date);
+		return str;
+	}
+	
+	
 
 }
