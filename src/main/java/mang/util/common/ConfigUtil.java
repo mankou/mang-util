@@ -45,10 +45,9 @@ public class ConfigUtil {
 	}
 
 	/**
-	 * 优先从工作空间取文件 如果找不到则从类路径中取. 
+	 * 优先从工作空间取文件 如果找不到则从类路径中取 目前用于log4j.xml文件外置化.
 	 * 
 	 * <p>
-	 * 目前用于log4j.xml文件外置化
 	 * 
 	 * 使用样例<br>
 	 *  URL url=ConfigUtil.getUrlFromDefault("config/log4j.xml");
