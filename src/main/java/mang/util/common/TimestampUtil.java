@@ -440,7 +440,8 @@ public class TimestampUtil {
 	
 	/**
 	 * 获取某一时间当月的1号 0点的时间
-	 * 
+	 * @param time 时间
+	 * @return Timestamp
 	 * */
 	public static Timestamp getMonthFirstDay(Timestamp time){
 		Calendar c = Calendar.getInstance(); 
@@ -461,7 +462,8 @@ public class TimestampUtil {
 	
 	/**
 	 * 获取下个月1号 0点0分0秒的时间.
-	 * 
+	 * @param time 时间
+	 * @return Timestamp
 	 * 
 	 * */
 	public static Timestamp getNextMonthFirstDay(Timestamp time){
@@ -470,7 +472,9 @@ public class TimestampUtil {
 	
 	/**
 	 * 获取未来某几个月 的1号0点0分0秒的时间.
-	 * 
+	 * @param time 时间
+	 * @param addMonth 增加的月份数
+	 * @return Timestamp 时间
 	 * */
 	public static Timestamp getFutureMonthFirstDay(Timestamp time,int addMonth){
 		Timestamp nextMonth=addTime(time, 1, "month");
