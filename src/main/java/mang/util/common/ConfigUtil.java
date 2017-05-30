@@ -18,8 +18,8 @@ public class ConfigUtil {
 	 * <p>
 	 * 
 	 * 使用样例<br>
-	 * String springXmlParentPath=ConfigUtil.getConfigPathFromDefault("config/applicationContext.xml","classpath:config/applicationContext.xml");
-	 * ApplicationContext ctx = new FileSystemXmlApplicationContext(springXmlParentPath);
+	 * String springXmlParentPath=ConfigUtil.getConfigPathFromDefault("config/applicationContext.xml","classpath:config/applicationContext.xml");<br>
+	 * ApplicationContext ctx = new FileSystemXmlApplicationContext(springXmlParentPath);<br>
 	 * 
 	 * </p>
 	 * 
@@ -50,8 +50,8 @@ public class ConfigUtil {
 	 * <p>
 	 * 
 	 * 使用样例<br>
-	 *  URL url=ConfigUtil.getUrlFromDefault("config/log4j.xml");
-     *  DOMConfigurator.configure(url);
+	 *  URL url=ConfigUtil.getUrlFromDefault("config/log4j.xml");<br>
+     *  DOMConfigurator.configure(url);<br>
 	 * </p>
 	 * 
 	 * @param filePath
