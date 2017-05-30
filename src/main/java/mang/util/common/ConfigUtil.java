@@ -1,48 +1,88 @@
 package mang.util.common;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import org.apache.log4j.xml.DOMConfigurator;
+
+
+/**
+ * 取配置文件工具类 配置文件外置化时常会用到.
+ */
 public class ConfigUtil {
-	
-	public static List<String> defaultConfigPath=new ArrayList<String>();
-	static {
-		defaultConfigPath.add("config");
-		defaultConfigPath.add("conf");
-	}
-	
-	
+
 	/**
-	 * 优先从工作空间取 如果取不到就从classspath中取
-	 * @param defaultPath 默认路径 如果找不到工作空间的路径 就返回该默认路径
+	 * 优先从工作空间取 如果找不到就使用默认的路径 目前用于加载spring的配置文件.
+	 * 
+	 * <p>
+	 * 
+	 * 使用样例<br>
+	 * String springXmlParentPath=ConfigUtil.getConfigPathFromDefault("config/applicationContext.xml","classpath:config/applicationContext.xml");
+	 * ApplicationContext ctx = new FileSystemXmlApplicationContext(springXmlParentPath);
+	 * 
+	 * </p>
+	 * 
+	 * @param filePath
+	 *            文件相对路径 优先从 工作空间下找的路径
+	 * @param defaultPath
+	 *            默认路径 如果从工作空间下找不到则返回该默认路径
 	 * @return String 路径
-	 * */
-	public static String getConfigPathFromDefault(String defaultPath){
+	 */
+	public static String getConfigPathFromDefault(String filePath, String defaultPath) {
 		String workPath = System.getProperty("user.dir");
-		
-		for(String path:defaultConfigPath){
-			String confPath=workPath+File.separator+path;
-			File file = new File(confPath);
-			if(file.exists()&&file.isDirectory()){
-				System.out.println("[ConfigUtil]使用工作空间路径:"+confPath);
-				return confPath;
-			}
+//		System.out.println("[ConfigUtil]工作空间路径: " + workPath);
+		String confPath = workPath + File.separator + filePath;
+		File file = new File(confPath);
+		if (file.exists() && file.isFile()) {
+			System.out.println("[ConfigUtil]使用工作空间路径:" + confPath);
+			return confPath;
 		}
-		
-		System.out.println("[ConfigUtil]使用默认路径:"+defaultPath);
-		//如果找不到就用默认的
+
+		System.out.println("[ConfigUtil]使用默认路径:" + defaultPath);
+		// 如果找不到就用默认的
 		return defaultPath;
 	}
-	
-	
-	public static void addConfigPath(String path){
-		defaultConfigPath.add(path);
-	}
-	
-	public static void clearConfigPath(){
-		defaultConfigPath=new ArrayList<String>();
+
+	/**
+	 * 优先从工作空间取文件 如果找不到则从类路径中取. 
+	 * 
+	 * <p>
+	 * 目前用于log4j.xml文件外置化
+	 * 
+	 * 使用样例<br>
+	 *  URL url=ConfigUtil.getUrlFromDefault("config/log4j.xml");
+     *  DOMConfigurator.configure(url);
+	 * </p>
+	 * 
+	 * @param filePath
+	 *            文件相对路径
+	 * @return URL
+	 */
+	public static URL getUrlFromDefault(String filePath) {
+		URL url = null;
+		boolean isFound = false;
+		String workPath = System.getProperty("user.dir");
+//		System.out.println("[ConfigUtil]工作空间路径: " + workPath);
+		String confPath = workPath + File.separator + filePath;
+		File file = new File(confPath);
+		if (file.exists() && file.isFile()) {
+			System.out.println("[ConfigUtil]使用工作空间路径:" + confPath);
+			isFound = true;
+			try {
+				url = file.toURI().toURL();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (!isFound) {
+			url = ClassLoader.getSystemResource(filePath);
+			System.out.println("[ConfigUtil]使用类路径:" + url.toString());
+		}
+
+		return url;
+
 	}
 
-	
 }

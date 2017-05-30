@@ -82,6 +82,9 @@ public class PropertyUtil {
 	 * 场景1-平时开发：平时开发时因当前工作目录下没有该配置文件其会从类路径下找配置文件 所以在maven工程中只要把配置文件放在resources下 其会自动打到类路径下<br>
 	 * 场景2-打成jar包后 先从当前工作目录下取配置文件 如果没有则从jar包里的类路径下取文件 这样jar包里可以提供一份默认的配置<br>
 	 * 注 什么是工作目录：平时开发时就是工作空间的目录 打成jar包后就是你执行命令时的当前目录
+	 * 
+	 * 样例代码 如下先从工作空间下 找配置文件,如果不存在则再从类路径下找<br>
+	 * Properties config = PropertyUtil.getPropertiesFromDefault("/config/config.properties");
 	 * </p>
 	 * 
 	 * @param path 配置文件路径 注最好前面加上/表示从根路径下找<br>
