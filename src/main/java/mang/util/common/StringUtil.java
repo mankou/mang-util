@@ -145,19 +145,33 @@ public class StringUtil {
 		
 	}
 	
+//	/**
+//	 * 选择字符串，如果新字符串不空返回新的字符串.
+//	 * 如果newStr不是null也不是空字符串，则返回newStr,否则返回oldStr 常用于设置配置 如果配置了用配置的 没有配置用默认的
+//	 * 
+//	 * @param oldStr 要处理的字符串
+//	 * @param newStr 新字符串
+//	 * @return 选择后的字符串
+//	 * */
+//	public static String select(String oldStr,String newStr){
+//		if(newStr==null||"".equals(newStr)){
+//			return oldStr;
+//		}
+//		return newStr;
+//	}
+	
 	/**
-	 * 选择字符串，如果新字符串不空返回新的字符串.
-	 * 如果newStr不是null也不是空字符串，则返回newStr,否则返回oldStr 常用于设置配置 如果配置了用配置的 没有配置用默认的
+	 * 选择字符串,如果字符串为空则使用默认的字符串,常用于取配置
 	 * 
-	 * @param oldStr 要处理的字符串
-	 * @param newStr 新字符串
+	 * @param str 要处理的字符串
+	 * @param defaultStr 默认字符串
 	 * @return 选择后的字符串
 	 * */
-	public static String select(String oldStr,String newStr){
-		if(newStr==null||"".equals(newStr)){
-			return oldStr;
+	public static String select(String str,String defaultStr){
+		if(str==null||"".equals(str)){
+			return defaultStr;
 		}
-		return newStr;
+		return str;
 	}
 	
 	/**
