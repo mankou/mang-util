@@ -232,9 +232,6 @@ public class DateUtil {
 		return getDateString(date, default_timeFormat,default_timeZone);
 	}
 	
-	
-	
-	
 
 	public static String getDefault_timeFormat() {
 		return default_timeFormat;

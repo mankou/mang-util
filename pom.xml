@@ -163,17 +163,16 @@
 		</plugins>
 	</build>
 
-
 	<distributionManagement>
 		<repository>
 			<id>mang-repo-deployment-release</id>
 			<name>mang-release</name>
-			<url>http://10.4.122.106:7081/repository/mang-repo/</url>
+			<url>http://192.168.2.147:7081/repository/mang-repo-release/</url>
 		</repository>
 		<snapshotRepository>
 			<id>mang-repo-deployment-snapshots</id>
 			<name>mang-snapshots</name>
-			<url>http://10.4.122.106:7081/repository/mang-repo/</url>
+			<url>http://192.168.2.147:7081/repository/mang-repo-snapshot/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
