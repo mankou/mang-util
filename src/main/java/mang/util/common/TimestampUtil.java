@@ -498,6 +498,23 @@ public class TimestampUtil {
 	
 	
 	/**
+	 * 
+	 * @return Date 获取本周一 0点0分
+	 * */
+	public static Timestamp getCurrentWeekZeroDate(){
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTimeZone(TimeZone.getTimeZone(default_timeZone));
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); 
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Timestamp timestamp=new Timestamp(calendar.getTimeInMillis());
+		return timestamp;
+	}
+	
+	
+	/**
 	 * @return Timestamp 明天0点
 	 * */
 	public static Timestamp getTomorrowZeroDate(){
@@ -514,7 +531,7 @@ public class TimestampUtil {
 	
 	
 	/**
-	 * @return Date 当天0点时间
+	 * @return Date 当月0点时间
 	 * */
 	public static Timestamp getCurrentMonthZeroDate(){
 		Calendar calendar=Calendar.getInstance();
@@ -530,7 +547,7 @@ public class TimestampUtil {
 	
 
 	/**
-	 * @return Date 当天0点时间
+	 * @return Date 本年0点时间
 	 * */
 	public static Timestamp getCurrentYearZeroDate(){
 		Calendar calendar=Calendar.getInstance();

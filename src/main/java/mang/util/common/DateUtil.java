@@ -1,6 +1,5 @@
 package mang.util.common;
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,8 +8,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DateUtil {
-	private final static String default_timeFormat = "yyyy-MM-dd HH:mm:ss";
-	private final static String default_timeZone="GMT+8";
+	private  static String default_timeFormat = "yyyy-MM-dd HH:mm:ss";
+	private  static String default_timeZone="GMT+8";
 
 	/**
 	 * @return Date 返回当前时间
@@ -189,7 +188,7 @@ public class DateUtil {
 	
 	
 	/**
-	 * 给一个时间 返回该时间的字符串  
+	 * 取时间字符串  
 	 * 需自己传入时间格式
 	 * @param date 时间
 	 * @param format 日期格式  如yyyy-MM-dd yyyyMMddHHmmss
@@ -211,6 +210,55 @@ public class DateUtil {
 		return str;
 	}
 	
+	
+	
+	/**
+	 * 取时间字符串
+	 * @param date 时间
+	 * @param format 时间格式 yyyy-MM-dd HH:mm:ss
+	 * @return String 时间字符串
+	 * */
+	public static String getDateString(Date date,String format){
+		return getDateString(date, format,default_timeZone);
+	}
+	
+	
+	/**
+	 * 取时间字符串  采用默认时间格式和时区
+	 * @param date 时间
+	 * @return String 时间字符串
+	 * */
+	public static String getDateString(Date date){
+		return getDateString(date, default_timeFormat,default_timeZone);
+	}
+	
+	
+	
+	
+
+	public static String getDefault_timeFormat() {
+		return default_timeFormat;
+	}
+
+	public static void setDefault_timeFormat(String default_timeFormat) {
+		DateUtil.default_timeFormat = default_timeFormat;
+	}
+
+	public static String getDefault_timeZone() {
+		return default_timeZone;
+	}
+
+	public static void setDefault_timeZone(String default_timeZone) {
+		DateUtil.default_timeZone = default_timeZone;
+	}
+
+	public static String getDefaultTimeformat() {
+		return default_timeFormat;
+	}
+
+	public static String getDefaultTimezone() {
+		return default_timeZone;
+	}
 	
 
 }

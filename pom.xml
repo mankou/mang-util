@@ -6,8 +6,8 @@
 
 	<groupId>mang.util</groupId>
 	<artifactId>mang-util</artifactId>
-	
-	<!--  <version>3.0.0-SNAPSHOT</version> -->
+
+	<!-- <version>3.0.0-SNAPSHOT</version> -->
 	<version>3.0.0-SNAPSHOT</version>
 	<name>mang-util</name>
 	<url>http://maven.apache.org</url>
@@ -16,11 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
-		
-		<!-- 
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		 -->
+
+		<!-- <maven.compiler.source>1.7</maven.compiler.source> <maven.compiler.target>1.7</maven.compiler.target> -->
 		<!-- 依赖的工程的版本 -->
 		<log4j.version>1.2.17</log4j.version>
 		<junit.version>3.8.1</junit.version>
@@ -165,5 +162,20 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
+	<distributionManagement>
+		<repository>
+			<id>mang-repo-deployment-release</id>
+			<name>mang-release</name>
+			<url>http://10.4.122.106:7081/repository/mang-repo/</url>
+		</repository>
+		<snapshotRepository>
+			<id>mang-repo-deployment-snapshots</id>
+			<name>mang-snapshots</name>
+			<url>http://10.4.122.106:7081/repository/mang-repo/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 
 </project>
