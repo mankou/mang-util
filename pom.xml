@@ -165,14 +165,14 @@
 
 	<distributionManagement>
 		<repository>
-			<id>mang-repo-deployment-release</id>
-			<name>mang-release</name>
-			<url>http://192.168.2.147:7081/repository/mang-repo-release/</url>
+			<id>deployment-release</id>
+			<name>deployment-release</name>
+			<url>http://192.168.2.147:7081/repository/mang-repo-releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>mang-repo-deployment-snapshots</id>
-			<name>mang-snapshots</name>
-			<url>http://192.168.2.147:7081/repository/mang-repo-snapshot/</url>
+			<id>deployment-snapshot</id>
+			<name>deployment-snapshot</name>
+			<url>http://192.168.2.147:7081/repository/mang-repo-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
