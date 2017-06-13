@@ -37,19 +37,11 @@ public class StringUtil {
 	 * @see #join(String, String)
 	 */
 	public static String join(String oldStr, String split, String newStr) {
-
-//		if (oldStr != null && !"".equals(oldStr)) {
-//			oldStr = oldStr + split + newStr;
-//		} else {
-//			oldStr = newStr;
-//		}
-//		return oldStr;
-		
-		if(oldStr==null && newStr==null){
+		if(NullUtil.isNull(oldStr) && NullUtil.isNull(newStr)){
 			return null;
-		}else if(oldStr==null && newStr!=null){
+		}else if(NullUtil.isNull(oldStr)&&NullUtil.isNotNull(newStr)){
 			return newStr;
-		}else if(oldStr!=null && newStr==null){
+		}else if(NullUtil.isNotNull(oldStr) && NullUtil.isNull(newStr)){
 			return oldStr;
 		}else {
 			return oldStr+split+newStr;
@@ -272,6 +264,37 @@ public class StringUtil {
 		return flag;
 		
 	}
+	
+	/**
+	 * 判断用分隔符分隔的字符串是否包含子字符串
+	 * 例1: indexOf("001,002","001",",") 则返回true
+	 * 例1: indexOf("001,002","0",",") 返回true
+	 * 例1: indexOf("001,002","003",",") 返回false
+	 * @param str 要判断的字符串
+	 * @param subStr 子字符串
+	 * @param split 分隔符
+	 * @return boolean true或false
+	 * */
+	public static boolean indexOfSub(String str,String subStr,String split){
+		if(str==null||"".equals(str)){
+			return false;
+		}
+		if(subStr==null||"".equals(subStr)){
+			return false;
+		}
+		
+		boolean flag=false;
+		String[] strArray=splitToArray(str, split);
+		for(int i=0;i<strArray.length;i++){
+			if(strArray[i].indexOf(subStr)>-1){
+				flag=true;
+				break;
+			}
+		}
+		return flag;
+		
+	}
+	
 	
 	/**
 	 * 将用分隔符分隔的字符串 str1 和str2合并 并且不重复.
