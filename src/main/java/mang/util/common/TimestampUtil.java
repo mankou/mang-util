@@ -417,7 +417,7 @@ public class TimestampUtil {
 	 * @param from 时间
 	 * @return Timestamp
 	 * */
-	public static Timestamp convertDateToTimestamp(Date from){
+	public static Timestamp convertUtilDateToTimestamp(Date from){
 		Timestamp time=null;
 		if(from!=null){
 			time=new Timestamp(from.getTime());
@@ -430,13 +430,43 @@ public class TimestampUtil {
 	 * @param from 时间
 	 * @return Date
 	 * */
-	public static Date convertTimestampToDate(Timestamp from){
+	public static Date convertTimestampToUtilDate(Timestamp from){
 		Date date=null;
 		if(from!=null){
 			date=new Date(from.getTime());
 		}
 		return date;
 	}
+	
+	
+	
+	/**
+	 * 将date 转换成 timestamp类型
+	 * @param from 时间
+	 * @return Timestamp
+	 * */
+	public static java.sql.Date convertUtilDateToSqlDate(Date from){
+		java.sql.Date date=null;
+		if(from!=null){
+			date=new java.sql.Date(from.getTime());
+		}
+		return date;
+	}
+	
+	
+	/**
+	 * 将date 转换成 timestamp类型
+	 * @param from 时间
+	 * @return Timestamp
+	 * */
+	public static java.util.Date convertSqlDateToUtilDate(java.sql.Date from){
+		java.util.Date date=null;
+		if(from!=null){
+			date=new java.util.Date(from.getTime());
+		}
+		return date;
+	}
+	
 	
 	/**
 	 * 获取某一时间当月的1号 0点的时间
