@@ -1,5 +1,6 @@
 package mang.util.common;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,26 @@ public class CompareUtil {
 		retList.add(1, addList);
 
 		return retList;
+	}
+	
+	
+	/**
+	 * 判断2个时间是否相等.
+	 * 
+	 * @param t1 时间1
+	 * @param t2 时间2
+	 * 
+	 * @return boolean
+	 * */
+	public static boolean compare(Timestamp t1,Timestamp t2){
+		boolean flag=false;
+		
+		if(t1!=null && t2!=null){
+			if(t1.getTime()==t2.getTime()){
+				flag=true;
+			}
+		}
+		return flag;
 	}
 	
 }
