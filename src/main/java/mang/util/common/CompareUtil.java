@@ -72,7 +72,9 @@ public class CompareUtil {
 	public static boolean compare(Timestamp t1,Timestamp t2){
 		boolean flag=false;
 		
-		if(t1!=null && t2!=null){
+		if(t1==null&&t2==null){
+			flag=true;
+		}else if(t1!=null && t2!=null){
 			if(t1.getTime()==t2.getTime()){
 				flag=true;
 			}
