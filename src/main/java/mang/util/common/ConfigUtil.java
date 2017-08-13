@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.log4j.xml.DOMConfigurator;
 
 
 /**
@@ -35,11 +34,11 @@ public class ConfigUtil {
 		String confPath = workPath + File.separator + filePath;
 		File file = new File(confPath);
 		if (file.exists() && file.isFile()) {
-			System.out.println("[ConfigUtil]使用工作空间路径:" + confPath);
+			System.err.println("[ConfigUtil]使用工作空间路径:" + confPath);
 			return confPath;
 		}
 
-		System.out.println("[ConfigUtil]使用默认路径:" + defaultPath);
+		System.err.println("[ConfigUtil]使用默认路径:" + defaultPath);
 		// 如果找不到就用默认的
 		return defaultPath;
 	}
@@ -66,7 +65,7 @@ public class ConfigUtil {
 		String confPath = workPath + File.separator + filePath;
 		File file = new File(confPath);
 		if (file.exists() && file.isFile()) {
-			System.out.println("[ConfigUtil]使用工作空间路径:" + confPath);
+			System.err.println("[ConfigUtil]使用工作空间路径:" + confPath);
 			isFound = true;
 			try {
 				url = file.toURI().toURL();
@@ -77,7 +76,7 @@ public class ConfigUtil {
 
 		if (!isFound) {
 			url = ClassLoader.getSystemResource(filePath);
-			System.out.println("[ConfigUtil]使用类路径:" + url.toString());
+			System.err.println("[ConfigUtil]使用类路径:" + url.toString());
 		}
 
 		return url;
