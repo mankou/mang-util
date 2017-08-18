@@ -1,5 +1,6 @@
 package mang.util.common;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
 public class FieldUtil {
@@ -42,5 +43,45 @@ public class FieldUtil {
 		
 		return obj;
 		
+	}
+	
+	
+	/**
+	 * 用反射的方式获取某一类实例的属性值.
+	 * 注 该方法只能获取当前类中显示定义的属性 对于父类中的属性值不能获取
+	 * 
+	 * @param obj 类实例
+	 * @param fieldName 属性名
+	 * */
+	public static Object getFieldValue(Object obj,String fieldName){
+		
+		Object result=null;
+		try {
+			Field f = obj.getClass().getDeclaredField(fieldName);
+			f.setAccessible(true);
+			result =  f.get(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	    return result;
+	}
+	
+	/**
+	 * 用反射的方式获取某一类实例的父类中的属性值.
+	 * 
+	 * @param obj 类实例
+	 * @param fieldName 属性名
+	 * */
+	public static Object getSuperClassFieldValue(Object obj,String fieldName){
+		
+		Object result=null;
+		try {
+			Field f = obj.getClass().getSuperclass().getDeclaredField(fieldName);
+			f.setAccessible(true);
+			result =  f.get(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	    return result;
 	}
 }
