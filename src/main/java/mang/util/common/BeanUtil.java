@@ -29,7 +29,7 @@ public class BeanUtil{
 			try {
 				Object targetObj=targetClazz.newInstance();
 				BeanUtils.copyProperties(obj, targetObj);
-				returnLis.add(lis);
+				returnLis.add(targetObj);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
