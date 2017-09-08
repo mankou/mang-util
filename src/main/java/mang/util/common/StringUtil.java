@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
  * modify:2015-8-25 14:25:05
  */
 public class StringUtil {
+	
+	public static String[] default_replace_old_array=new String[]{"\n",","};
+	public static String default_replace_new=",";
+	
 	/**
 	 * 从字符串中提取数字.
 	 * <p>如传入m123 返回 123</p>
@@ -383,6 +387,32 @@ public class StringUtil {
 			return str.substring(0, size);
 		}
 		
+	}
+	
+	
+	/**
+	 * 替换字符串
+	 * @param str 原始字符串
+	 * @param oldArr 待替换了字符串  如需要将 回车替换成逗号 则这里可输入 new String[]{"\n"}
+	 * @param newStr 替换后的字符串 如需要将回车替换成逗号 则这里可输入 ,
+	 * */
+	public static String replace(String str,String[] oldArr,String newStr){
+		String result=str;
+		
+		for(String replace:oldArr){
+			result=result.replaceAll(replace, newStr);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	/**
+	 * 
+	 * */
+	public static String replace(String str){
+		return replace(str, default_replace_old_array, default_replace_new);
 	}
 
 }

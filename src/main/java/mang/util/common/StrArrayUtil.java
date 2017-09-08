@@ -24,4 +24,25 @@ public class StrArrayUtil {
 		}
 		return flag;
 	}
+	
+	
+	/**
+	 * 判断字符串是否在array中
+	 * 
+	 * @param str 字符串
+	 * @param array 字符串数组
+	 * @return 如果array包含str 则返回true 否则返回false
+	 * */
+	public static boolean arrayContainStr(String str,String[] array){
+		boolean flag=false;
+		if(array!=null && str!=null){
+			for(String strVal:array){
+				if(str.equals(strVal)){
+					flag=true;
+					break;
+				}
+			}
+		}
+		return flag;
+	}
 }

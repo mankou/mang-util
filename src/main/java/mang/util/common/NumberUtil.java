@@ -198,4 +198,25 @@ public class NumberUtil {
 		return result;
 	}
 	
+	/**
+	 * 计算2个double 相加后的值
+	 * 
+	 * @param d1 d1
+	 * @param d2 d2
+	 * @return Double
+	 * */
+	public static Double add(Double d1,Double d2){
+		Double result;
+		if(d1==null && d2!=null){
+			result=d2;
+		}else if(d1!=null && d2==null){
+			result=d1;
+		}else if(d1==null && d2==null){
+			result=null;
+		}else{
+			result=d1+d2;
+		}
+		return result;
+	}
+	
 }
