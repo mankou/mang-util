@@ -1,5 +1,6 @@
 package mang.util.common;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -230,6 +231,77 @@ public class DateUtil {
 	 * */
 	public static String getDateString(Date date){
 		return getDateString(date, default_timeFormat,default_timeZone);
+	}
+	
+	
+	/**
+	 * 用于计算2个日期间的时间差 并转换成易读的方式 .
+	 * <p>endTime-startTime的值，结果是易读的字符串 如 1年5月6天8小时7分5秒
+	 * @param endTime 结束时间
+	 * @param startTime 开始时间
+	 * @param language 语言  en cn english chinese等 分别表示英文、中文
+	 * @return String
+	 * */
+	public static String computeTimeInterval(Date endTime,Date startTime,String language){
+		Long betweenSecond = (endTime.getTime()-startTime.getTime())/1000;//除以1000是为了转换成秒
+		betweenSecond=Math.abs(betweenSecond); //取绝对值
+		
+		Long betweenMills=endTime.getTime()-startTime.getTime();
+		
+		boolean isEnglish=isEnglish(language);
+		
+		
+		String millStr=isEnglish?"ms":"毫秒";
+		String secStr=isEnglish?"s":"秒";
+		String minStr=isEnglish?"min":"分";
+		String houStr=isEnglish?"hour":"小时";
+		String dayStr=isEnglish?"day":"天";
+		String monStr=isEnglish?"month":"月";
+		String yearStr=isEnglish?"year":"年";
+		
+		long year=betweenSecond/(365*24*3600);
+		long month=betweenSecond%(365*24*3600)/(30*24*3600);
+		long day=betweenSecond%(30*24*3600)/(24*3600);
+		long hour=betweenSecond%(24*3600)/3600;
+		long minute=betweenSecond%(3600)/60;
+		long second=betweenSecond%(60);
+		
+		String result="";
+		//注 如果是0年 0月 0天 0分 0秒 则返回0秒 而不能是"" 所以秒没有参加if判断
+		//如果时间间隔是0秒 则显示毫秒数 否则不显示
+		if(betweenSecond==0){
+			result+=betweenMills+millStr;
+		}else{
+			result+=second+secStr;
+		}
+		
+		if(minute!=0){
+			result=minute+minStr+result;
+		}
+		if(hour!=0){
+			result=hour+houStr+result;
+		}
+		if(day!=0){
+			result=day+dayStr+result;
+		}
+		if(month!=0){
+			result=month+monStr+result;
+		}
+		if(year!=0){
+			result=year+yearStr+result;
+		}
+	    
+	    return result;
+	}
+	
+	
+	private static boolean isEnglish(String language){
+		language=language.toLowerCase();
+		if("en".equals(language)||"english".equals(language)){
+			return true;
+		}
+		
+		return false;
 	}
 	
 
