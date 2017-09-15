@@ -10,7 +10,7 @@ import org.junit.Test;
 public class MapUtilTest  {
 	
 	@Test 
-	public void testjava2Map(){
+	public void bean2Map(){
 		User user=new User();
 		user.setName("ma");
 		user.setCode("horse");
