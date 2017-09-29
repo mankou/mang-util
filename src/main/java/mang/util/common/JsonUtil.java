@@ -33,10 +33,7 @@ import org.apache.log4j.Logger;
 /**
  * json处理工具类
  * 
- * 20170221来自rocketmq-console工程 我加了str转list的方法
- * 
  * @author mang
- * 
  * */
 
 
@@ -200,9 +197,8 @@ public class JsonUtil {
 	 * */
 	public static List string2List(String jsonStr,Class classOfT){
 		try {
-			ObjectMapper mapper = new ObjectMapper(); 
-			JavaType javaType = mapper.getTypeFactory().constructParametricType(ArrayList.class, classOfT);
-			List lst =  mapper.readValue(jsonStr, javaType);
+			JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, classOfT);
+			List lst =  objectMapper.readValue(jsonStr, javaType);
 			return lst;
 		} catch (JsonParseException e) {
 			e.printStackTrace();

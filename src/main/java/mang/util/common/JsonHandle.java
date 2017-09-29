@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
@@ -58,6 +59,13 @@ public class JsonHandle {
 		}
 	}
 	
+	/**
+	 * 设置属性转换方式.
+	 * */
+	public void setPropertyNamingStrategy(PropertyNamingStrategy propertyNamingStrategy){
+		objectMapper.setPropertyNamingStrategy(propertyNamingStrategy);
+	}
+	
 	
 	
 	/**
@@ -67,8 +75,6 @@ public class JsonHandle {
 	public void setDateFormater(String formater){
 		this.setDateFormater(formater,default_timeZone);
 	}
-	
-	
 	
 	
 	/**
