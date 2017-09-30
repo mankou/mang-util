@@ -1,11 +1,13 @@
-package mang.util.testjson;
+package mang.util.json.demo.namingStrategy;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy.LowerCaseStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy.PascalCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 
-@JsonNaming(PascalCaseStrategy.class)
-public class Request {
+@JsonNaming(LowerCaseStrategy.class)
+public class Request2 {
 	private String appKey="717BF4F4BC2C4D7982CDD7E19B658AF3";
 	private String appSecret="D9B98A9E3F5A4F9CACB359CD41CA3536";
 	private String cardNo="1234567890";

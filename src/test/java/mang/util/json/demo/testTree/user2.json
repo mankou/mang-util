@@ -1,0 +1,24 @@
+[
+ {
+  "id"   : 1,
+  "name" : {
+    "first" : "Yong",
+    "last" : "Mook Kim"
+  },
+  "contact" : [
+    { "type" : "phone/home", "ref" : "111-111-1234"},
+    { "type" : "phone/work", "ref" : "222-222-2222"}
+  ]
+},
+{
+  "id"   : 2,
+  "name" : {
+    "first" : "Yong",
+    "last" : "Zi Lap"
+  },
+  "contact" : [
+    { "type" : "phone/home", "ref" : "333-333-1234"},
+    { "type" : "phone/work", "ref" : "444-444-4444"}
+  ]
+}
+]

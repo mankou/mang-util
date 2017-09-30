@@ -1,7 +1,8 @@
-package mang.util.testjson;
+package mang.util.json.demo.namingStrategy;
 
 import org.junit.Test;
-import mang.util.common.JsonUtil;
+
+import mang.util.json.JsonUtil;
 
 public class TestJsonNamingStrategy {
 	

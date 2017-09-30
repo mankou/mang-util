@@ -3,8 +3,8 @@ package mang.util.demo.http;
 
 import java.util.Date;
 
-import mang.util.common.JsonUtil;
 import mang.util.http.HttpUtil;
+import mang.util.json.JsonUtil;
 
 /**
  * 演示post传json格式字符串
