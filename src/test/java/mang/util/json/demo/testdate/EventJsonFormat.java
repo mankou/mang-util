@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class EventJsonFormat {
 	public String name;
 	
-	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss",timezone="GMT+8")
+	@JsonFormat(shape =JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	public Date eventDate;
 
 	public String getName() {
