@@ -81,6 +81,32 @@ public class FieldUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 如果属性值为空 则用反射的方式设置某一实例的属性值
+	 * 
+	 * @param obj
+	 *            实例
+	 * @param fieldName
+	 *            属性名
+	 * @param fieldValue
+	 *            属性值
+	 * */
+	public static void setFieldValueIfNull(Object obj, String fieldName, Object fieldValue) {
+		Field targetField;
+		try {
+			Object targetFieldValue=getFieldValue(obj, fieldName);
+			if(targetFieldValue==null){
+				targetField = obj.getClass().getDeclaredField(fieldName);
+					targetField.setAccessible(true);
+					targetField.set(obj, fieldValue);				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * 用反射的方式获取某一类实例的父类中的属性值.
