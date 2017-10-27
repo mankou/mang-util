@@ -1,16 +1,26 @@
 package mang.util.common;
 
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class DateUtil {
 	private  static String default_timeFormat = "yyyy-MM-dd HH:mm:ss";
 	private  static String default_timeZone="GMT+8";
+	
+	 public final static String MILLISECOND = "millisecond";
+	 public final static String SECOND = "second";
+	 public final static String MINUTE = "minute";
+	 public final static String HOUR = "hour";
+	 public final static String DAY = "day";
+	 public final static String MONTH = "month";
+	 public final static String YEAR = "year";
+	
 
 	/**
 	 * @return Date 返回当前时间
@@ -147,23 +157,41 @@ public class DateUtil {
 			c.setTime(date);
 		}
 		
-		if("second".equals(unit)){
+		if(MILLISECOND.equals(unit)){
+			c.add(Calendar.MILLISECOND, interval);
+		}else if(SECOND.equals(unit)){
 			c.add(Calendar.SECOND, interval);
-		}else if("minute".equals(unit)){
+		}else if(MINUTE.equals(unit)){
 			c.add(Calendar.MINUTE, interval); 
-		}else if("hour".equals(unit)){
+		}else if(HOUR.equals(unit)){
 			c.add(Calendar.HOUR, interval); 
-		}else if("day".equals(unit)){
+		}else if(DAY.equals(unit)){
 			c.add(Calendar.DATE, interval);  
-		}else if("month".equals(unit)){
+		}else if(MONTH.equals(unit)){
 			c.add(Calendar.MONTH,interval);
-		}else if("year".equals(unit)){
+		}else if(YEAR.equals(unit)){
 			c.add(Calendar.YEAR, interval);
 		}
 		
 		Date resultDate=c.getTime();
 		return resultDate;
 		
+	}
+	
+	/**
+	 * 给指定的时间加上指定的毫秒数.
+	 * @param date 时间
+	 * @param millisecond 毫秒数
+	 * @return 返回处理后的时间
+	 * */
+	public static Date addTime(Date date,int millisecond){
+		Calendar c = Calendar.getInstance(); 
+		if(date!=null){
+			c.setTime(date);
+		}
+		c.add(Calendar.MILLISECOND, millisecond);
+		Date result=c.getTime();
+		return result;
 	}
 	
 	
@@ -302,6 +330,42 @@ public class DateUtil {
 		}
 		
 		return false;
+	}
+	
+	
+	/**
+	 * 根据开始时间、结束时间 和毫秒时间间隔获取一组时间
+	 * @param startDate 开始时间
+	 * @param endDate 结束时间
+	 * @param millisecond 毫秒时间间隔
+	 * @return 返回一组时间
+	 * */
+	public static List<Date> getDateList(Date startDate,Date endDate,int millisecond){
+		List<Date> lis = new ArrayList<Date>();
+		Date time = new Date(startDate.getTime());
+		while (time.getTime() <= endDate.getTime()) {
+			lis.add(time);
+			time = DateUtil.addTime(time,millisecond);
+		}
+		return lis;
+	}
+	
+	/**
+	 * 根据开始时间、结束时间 和时间间隔获取一组时间
+	 * @param startDate 开始时间
+	 * @param endDate 结束时间
+	 * @param interval 时间间隔
+	 * @param unit 时间间隔单位 second:秒    minute:分钟 hour:小时 day:天 month:月 year:年
+	 * @return 返回一组时间
+	 * */
+	public static List<Date> getDateList(Date startDate,Date endDate,Integer interval, String unit){
+		List<Date> lis = new ArrayList<Date>();
+		Date time = new Date(startDate.getTime());
+		while (time.getTime() <= endDate.getTime()) {
+			lis.add(time);
+			time = DateUtil.addTime(time,interval,unit);
+		}
+		return lis;
 	}
 	
 
