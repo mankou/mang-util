@@ -22,6 +22,7 @@ public class BeanUtil{
 	 * 
 	 * @param lis 源list
 	 * @param targetClazz 目标类 
+	 * @return list
 	 * */
 	public static List copyBeans(List lis,Class targetClazz){
 		List returnLis=new ArrayList<Object>();

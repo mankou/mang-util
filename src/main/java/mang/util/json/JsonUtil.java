@@ -110,7 +110,7 @@ public class JsonUtil {
 	/**
      * obj转简单的map 即将object中的属性名当成map的key object中的value当成map的value
      * 
-     * @param src 
+     * @param src obj
      * @return map
      * */
     public static Map obj2SimpleMap(Object src){
@@ -190,11 +190,8 @@ public class JsonUtil {
 	 * 
 	 * @param jsonStr
 	 *            json字符串
-	 * @param keyClass
-	 *            key的类型
-	 * @param valueClass
-	 *            value的类型
-	 * @return Map
+	 * @param classOfT Set集合中的类类型           
+	 * @return Set
 	 */
 	public static Set string2Set(String jsonStr, Class classOfT) {
 		try {

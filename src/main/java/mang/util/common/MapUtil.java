@@ -13,14 +13,13 @@ public class MapUtil {
 	/**
      * 从map集合中获取属性值
      * 
-     * @param <E>
      * @param map
      *            map集合
      * @param key
      *            键对
      * @param defaultValue
      *            默认值
-     * @return
+     * @return 返回
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public final static <E> E get(Map map, Object key, E defaultValue) {

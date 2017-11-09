@@ -51,6 +51,7 @@ public class FieldUtil {
 	 *            类实例
 	 * @param fieldName
 	 *            属性名
+	 * @return object 设置属性值后的对象
 	 */
 	public static Object getFieldValue(Object obj, String fieldName) {
 
@@ -116,6 +117,8 @@ public class FieldUtil {
 	 *            类实例
 	 * @param fieldName
 	 *            属性名
+	 *            
+	 * @return 返回
 	 */
 	public static Object getSuperClassFieldValue(Object obj, String fieldName) {
 
