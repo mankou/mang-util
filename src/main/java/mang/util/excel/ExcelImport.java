@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-
+/**
+ * excel导入导出工具类的辅助类 用于设置导入时的一些参数
+ * */
 public class ExcelImport {
 	/**
 	 * excel输入流
@@ -35,6 +39,12 @@ public class ExcelImport {
 	 * */
 	private Class beanClass;
 	
+	
+	/**
+	 * 需要强制处理成 字符串类型的列
+	 * 有些列如身份证、电话号码 虽然excel中有可能是数字型，但实际我们需要的是字符型 所以这里专门处理下
+	 * */
+	private Set<String> forceStringFieldName=new HashSet<String>();
 	
 	public ExcelImport(){
 		
@@ -70,6 +80,27 @@ public class ExcelImport {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addForceStringFileld(String fieldName){
+		this.forceStringFieldName.add(fieldName);
+	}
+	
+	
+	/**
+	 * 导入excel
+	 * @return List
+	 * */
+	public List doImport(){
+		List list=null;
+		try {
+//			list = ExcelUtils.importExcel(this.inputStream, this.fileName, this.sheetNum, this.isSkipFirstRow, this.beanClass);
+			list = ExcelUtils.importExcel(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("解析excel 异常");
+		}
+		return list;
 	}
 	
 
@@ -112,21 +143,13 @@ public class ExcelImport {
 	public void setBeanClass(Class beanClass) {
 		this.beanClass = beanClass;
 	}
-	
-	
-	
-	/**
-	 * 导入excel
-	 * @return List
-	 * */
-	public List doImport(){
-		List list=null;
-		try {
-			list = ExcelUtils.importExcel(this.inputStream, this.fileName, this.sheetNum, this.isSkipFirstRow, this.beanClass);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
+
+	public Set<String> getForceStringFieldName() {
+		return forceStringFieldName;
+	}
+
+	public void setForceStringFieldName(Set<String> forceStringFieldName) {
+		this.forceStringFieldName = forceStringFieldName;
 	}
 
 }

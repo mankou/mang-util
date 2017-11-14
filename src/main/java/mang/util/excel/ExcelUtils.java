@@ -1,6 +1,5 @@
 package mang.util.excel;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -13,6 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,26 +41,28 @@ import mang.util.common.FieldUtil;
 import mang.util.common.FileUtil;
 
 
+/**
+ * excel导入导出工具类
+ * */
 public class ExcelUtils {
 
 	/*
 	 * 这是一个通用的方法，利用了JAVA的反射机制，可以将放置在JAVA集合中并且符号一定条件的数据以EXCEL 的形式输出到指定IO设备上
-	 *
-	 * @param title
-	 *            表格标题名
-	 * @param headers
-	 *            表格属性列名数组
-	 * @param dataset
-	 *            需要显示的数据集合,集合中一定要放置符合javabean风格的类的对象。此方法支持的
-	 *            javabean属性的数据类型有基本数据类型及String,Date,byte[](图片数据)
-	 * @param out
-	 *            与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
-	 * @param pattern
-	 *            如果有时间数据，设定输出格式。默认为"yyy-MM-dd"
+	 * 
+	 * @param title 表格标题名
+	 * 
+	 * @param headers 表格属性列名数组
+	 * 
+	 * @param dataset 需要显示的数据集合,集合中一定要放置符合javabean风格的类的对象。此方法支持的
+	 * javabean属性的数据类型有基本数据类型及String,Date,byte[](图片数据)
+	 * 
+	 * @param out 与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
+	 * 
+	 * @param pattern 如果有时间数据，设定输出格式。默认为"yyy-MM-dd"
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void exportExcel(String title, String[] headers, Collection<T> dataset, OutputStream out,
-			String pattern) {
+	public static <T> void exportExcel(String title, String[] headers,
+			Collection<T> dataset, OutputStream out, String pattern) {
 		// 声明一个工作薄
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		// 生成一个表格
@@ -103,7 +105,8 @@ public class ExcelUtils {
 		// 声明一个画图的顶级管理器
 		HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
 		// 定义注释的大小和位置,详见文档
-		HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0, 0, 0, 0, (short) 4, 2, (short) 6, 5));
+		HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0,
+				0, 0, 0, (short) 4, 2, (short) 6, 5));
 		// 设置注释内容
 		comment.setString(new HSSFRichTextString("可以在POI中添加注释！"));
 		// 设置注释作者，当鼠标移动到单元格上是可以在状态栏中看到该内容.
@@ -132,10 +135,13 @@ public class ExcelUtils {
 				cell.setCellStyle(style2);
 				Field field = fields[i];
 				String fieldName = field.getName();
-				String getMethodName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+				String getMethodName = "get"
+						+ fieldName.substring(0, 1).toUpperCase()
+						+ fieldName.substring(1);
 				try {
 					Class tCls = t.getClass();
-					Method getMethod = tCls.getMethod(getMethodName, new Class[] {});
+					Method getMethod = tCls.getMethod(getMethodName,
+							new Class[] {});
 					Object value = getMethod.invoke(t, new Object[] {});
 					// 判断值的类型后进行强制类型转换
 					String textValue = null;
@@ -162,7 +168,7 @@ public class ExcelUtils {
 						textValue = sdf.format(date);
 					} else {
 						// 其它数据类型都当作字符串简单处理
-						if(value == null){
+						if (value == null) {
 							value = "";
 						}
 						textValue = value.toString();
@@ -175,7 +181,8 @@ public class ExcelUtils {
 							// 是数字当作double处理
 							cell.setCellValue(Double.parseDouble(textValue));
 						} else {
-							HSSFRichTextString richString = new HSSFRichTextString(textValue);
+							HSSFRichTextString richString = new HSSFRichTextString(
+									textValue);
 							HSSFFont font3 = workbook.createFont();
 							font3.setColor(HSSFColor.BLUE.index);
 							richString.applyFont(font3);
@@ -208,26 +215,32 @@ public class ExcelUtils {
 	/**
 	 * 由Excel流的Sheet导出至List
 	 * 
-	 * @param is 文件流
-	 * @param fileName 文件名
-	 * @param sheetNum 默认第一个sheet编号为0
-	 * @param isSkipFirst 是否忽略第一行
-	 * @param objClass 要转换成bean的类
+	 * @param is
+	 *            文件流
+	 * @param fileName
+	 *            文件名
+	 * @param sheetNum
+	 *            默认第一个sheet编号为0
+	 * @param isSkipFirst
+	 *            是否忽略第一行
+	 * @param objClass
+	 *            要转换成bean的类
 	 * @return List
-	 * @throws Exception  Exception
+	 * @throws Exception
+	 *             Exception
 	 */
-	public static  List importExcel(InputStream is, String fileName, int sheetNum, boolean isSkipFirst,Class objClass) throws Exception {
-
+	public static List importExcel(ExcelImport ei) throws Exception {
+		InputStream is = ei.getInputStream();
+		String fileName = ei.getFileName();
 		Workbook workbook = null;
-		
-		String postfix=FileUtil.getFileType(fileName);
-		
+
+		String postfix = FileUtil.getFileType(fileName);
 		Assert.notNull(postfix);
-		FileType fileType=FileType.Excel03;
-		if("xls".equals(postfix)){
-			fileType=FileType.Excel03;
-		}else if("xlsx".equals(postfix)){
-			fileType=FileType.Excel07;
+		FileType fileType = FileType.Excel03;
+		if ("xls".equals(postfix)) {
+			fileType = FileType.Excel03;
+		} else if ("xlsx".equals(postfix)) {
+			fileType = FileType.Excel07;
 		}
 
 		if (FileType.Excel03.equals(fileType)) {
@@ -236,79 +249,123 @@ public class ExcelUtils {
 			workbook = new XSSFWorkbook(is);
 		}
 
-		return parseExcel(workbook, sheetNum,isSkipFirst,objClass);
+		return parseExcel(workbook, ei);
 	}
 
-	private static  List parseExcel(Workbook workbook, int sheetNum , boolean isSkipFirst,Class ojbClass) throws Exception{
+	/**
+	 * 解析一个workbook
+	 * */
+	private static List parseExcel(Workbook workbook, ExcelImport ei)
+			throws Exception {
+		List list = new ArrayList();
+		int sheetNum = ei.getSheetNum();
 
-		Sheet sheet = workbook.getSheetAt(sheetNum);
+		int numberOfSheet = workbook.getNumberOfSheets();
+		if (sheetNum == -1) {
+			for (int i = 0; i < numberOfSheet; i++) {
+				System.out.println("===============正在解析sheet" + i
+						+ "===================");
+				Sheet sheet = workbook.getSheetAt(sheetNum);
+				List sheetList = parseSheet(sheet, ei);
+				list.addAll(sheetList);
+			}
+		} else if (sheetNum < numberOfSheet) {
+			System.out.println("===============正在解析sheet" + sheetNum
+					+ "===================");
+			Sheet sheet = workbook.getSheetAt(sheetNum);
+			list = parseSheet(sheet, ei);
+		}
+		return list;
+	}
 
-		// 解析公式结果
-		FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-
+	/**
+	 * 解析一个Sheet
+	 * */
+	private static List parseSheet(Sheet sheet, ExcelImport ei)
+			throws Exception {
 		List list = new ArrayList();
 
+		boolean isSkipFirst = ei.isSkipFirstRow();
+		Class objClass = ei.getBeanClass();
+		Set<String> stringFieldName = ei.getForceStringFieldName();
+
+		Workbook workbook = sheet.getWorkbook();
+
+		// 解析公式结果
+		FormulaEvaluator evaluator = workbook.getCreationHelper()
+				.createFormulaEvaluator();
 		int minRowIx = sheet.getFirstRowNum();
 		int maxRowIx = sheet.getLastRowNum();
-		if(isSkipFirst){
-			minRowIx=minRowIx+1;
+		if (isSkipFirst) {
+			minRowIx = minRowIx + 1;
 		}
 		for (int rowIx = minRowIx; rowIx <= maxRowIx; rowIx++) {
 			Row row = sheet.getRow(rowIx);
-			Object beanObject=ojbClass.newInstance();
-			Field[] fields = ojbClass.getDeclaredFields();
+			Object beanObject = objClass.newInstance();
+			Field[] fields = objClass.getDeclaredFields();
 			int minColIx = 0;
-			int maxColIx = fields.length-1;
+			int maxColIx = fields.length - 1;
+			if (row == null) {
+				System.out.println("第" + rowIx + "行为空跳过");
+				continue;
+			}
+			System.out.println("====正在导入第" + rowIx + "行====");
 			for (int colIx = minColIx; colIx <= maxColIx; colIx++) {
-				
+				System.out.println("====正在导入第" + colIx + "列====");
 				Field field = fields[colIx];
 				field.setAccessible(true);
-				
-//				String fieldName = field.getName();
-//				String getMethodName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-//				Method getMethod = ojbClass.getMethod(getMethodName, new Class[] {field.getType()});
-			
 				Cell cell = row.getCell(new Integer(colIx));
-				CellValue cellValue = evaluator.evaluate(cell);
-				if (cellValue == null) {
+				if (cell == null) {
+					System.out.println("第" + colIx + "列为空跳过");
 					continue;
 				}
+
+				// 针对有些列 强转类型为string
+				if (stringFieldName.contains(field.getName())) {
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				}
+				CellValue cellValue = evaluator.evaluate(cell);
+				System.out.println(cellValue);
 				// 经过公式解析，最后只存在Boolean、Numeric和String三种数据类型，此外就是Error了
 				// 其余数据类型，根据官方文档，完全可以忽略http://poi.apache.org/spreadsheet/eval.html
-				
+				if (cellValue == null) {
+					System.out.println("第" + colIx + "列,值为空跳过");
+					continue;
+				}
+
 				switch (cellValue.getCellType()) {
 				case Cell.CELL_TYPE_BOOLEAN:
-					Boolean booleanValue=cellValue.getBooleanValue();
-					if(FieldUtil.isBooleanClass(field.getType())){
-						field.setBoolean(beanObject, booleanValue.booleanValue());
+					Boolean booleanValue = cellValue.getBooleanValue();
+					if (FieldUtil.isBooleanClass(field.getType())) {
+						field.setBoolean(beanObject, booleanValue
+								.booleanValue());
 					}
 					break;
 				case Cell.CELL_TYPE_NUMERIC:
 					// 这里的日期类型会被转换为数字类型，需要判别后区分处理
 					if (DateUtil.isCellDateFormatted(cell)) {
-						Date dateValue=cell.getDateCellValue();
+						Date dateValue = cell.getDateCellValue();
 						field.set(beanObject, dateValue);
 					} else {
-						Double doubleValue=cellValue.getNumberValue();
-//						if(field.getType()==int.class || field.getType()==Integer.class){
-//							field.setInt(beanObject, doubleValue.intValue());
-//						}else if(field.getType()==long.class || field.getType()==Long.class){
-//							field.setLong(beanObject, doubleValue.longValue());
-//						}
-						 Object objValue=FieldUtil.parseNumber(doubleValue.toString(), field.getType());
-						field.set(beanObject,objValue);
+						Double doubleValue = cellValue.getNumberValue();
+						Object objValue = FieldUtil.parseNumber(doubleValue
+								.toString(), field.getType());
+						field.set(beanObject, objValue);
 					}
 					break;
 				case Cell.CELL_TYPE_STRING:
-					String stringValue=cell.getStringCellValue();
-					 if(("TRUE".equalsIgnoreCase(stringValue) || "FALSE".equalsIgnoreCase(stringValue) ) && FieldUtil.isBooleanClass(field.getType())){
-						 field.setBoolean(beanObject, new Boolean(stringValue));
-					 }else if(FieldUtil.isNumberClass(field.getType())){
-						 Object objValue=FieldUtil.parseNumber(stringValue, field.getType());
-						 field.set(beanObject,objValue);
-					 }else{
-						 field.set(beanObject, stringValue);
-					 }
+					String stringValue = cell.getStringCellValue();
+					if (("TRUE".equalsIgnoreCase(stringValue) || "FALSE"
+							.equalsIgnoreCase(stringValue))
+							&& FieldUtil.isBooleanClass(field.getType())) {
+						field.setBoolean(beanObject, new Boolean(stringValue));
+					} else if (FieldUtil.isNumberClass(field.getType())) {
+						Object objValue = FieldUtil.parseNumber(stringValue,
+								field.getType());
+						field.set(beanObject, objValue);
+					} else {
+						field.set(beanObject, stringValue);
+					}
 					break;
 				case Cell.CELL_TYPE_FORMULA:
 					break;
