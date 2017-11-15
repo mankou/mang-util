@@ -215,16 +215,8 @@ public class ExcelUtils {
 	/**
 	 * 由Excel流的Sheet导出至List
 	 * 
-	 * @param is
-	 *            文件流
-	 * @param fileName
-	 *            文件名
-	 * @param sheetNum
-	 *            默认第一个sheet编号为0
-	 * @param isSkipFirst
-	 *            是否忽略第一行
-	 * @param objClass
-	 *            要转换成bean的类
+	 * @param ExcelImport
+	 *            excel导入辅助类 用于设置一些参数
 	 * @return List
 	 * @throws Exception
 	 *             Exception
