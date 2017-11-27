@@ -368,6 +368,34 @@ public class DateUtil {
 		return lis;
 	}
 	
+	
+	/**
+	 * 比较大小 
+	 * 如果时间1大于时间2 则返回正数<br>  
+	 * 如果时间1等于时间2 则返回0<br>
+	 * 如果时间1小于时间2 则返回负数<br>
+	 * @param date1 时间1
+	 * @param date2 时间2
+	 * */
+	public static long compare(Date date1,Date date2){
+		boolean result;
+		return date1.getTime()-date2.getTime();
+		
+	}
+	
+	/**
+	 * 与N天前时间比较大小
+	 * 如果时间大于N天前时间 则返回正数<br>
+	 * 如果时间等于N天前时间 则返回0<br>
+	 * 如果时间小于N天前时间 则返回负数<br>
+	 * */
+	public static long compare(Date date,int ndayAgo){
+		Date currentDate=getCurrentDate();
+		Date ndaysAgoDate=addTime(currentDate, -ndayAgo, DAY);
+		long result=compare(date,ndaysAgoDate);
+		return result;
+	}
+	
 
 	public static String getDefault_timeFormat() {
 		return default_timeFormat;
