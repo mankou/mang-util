@@ -393,7 +393,7 @@ public class DateUtil {
 	 * @param ndayAgo n天前的n
 	 * @return 返回比较后的结果
 	 * */
-	public static long compare(Date date,int ndayAgo){
+	public static long compareToNdays(Date date,int ndayAgo){
 		Date currentDate=getCurrentDate();
 		Date ndaysAgoDate=addTime(currentDate, -ndayAgo, DAY);
 		long result=compare(date,ndaysAgoDate);
