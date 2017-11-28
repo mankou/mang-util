@@ -96,38 +96,7 @@ public class Sftp {
 
 	/**
 	 * 上传文件
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>参数：绝对路径/相对路径</td>
-	 * <td>上传后</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("testA","upload.txt",new FileInputStream(new
-	 * File("up.txt")))</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/upload.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("testA/testA_B","upload.txt",new FileInputStream(new
-	 * File("up.txt")))</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/testA_B/upload.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("/testA/testA_B","upload.txt",new FileInputStream(new
-	 * File("up.txt")))</td>
-	 * <td>绝对路径</td>
-	 * <td>/testA/testA_B/upload.txt</td>
-	 * </tr>
-	 * </table>
-	 * </p>
 	 * 
 	 * @param pathName
 	 *            SFTP服务器目录
@@ -162,35 +131,7 @@ public class Sftp {
 
 	/**
 	 * 上传文件
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>参数：绝对路径/相对路径</td>
-	 * <td>上传后</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("testA","upload.txt","up.txt")</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/upload.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("testA/testA_B","upload.txt","up.txt")</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/testA_B/upload.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>uploadFile("/testA/testA_B","upload.txt","up.txt")</td>
-	 * <td>绝对路径</td>
-	 * <td>/testA/testA_B/upload.txt</td>
-	 * </tr>
-	 * </table>
-	 * </p>
 	 * 
 	 * @param pathName
 	 *            SFTP服务器目录
@@ -225,36 +166,7 @@ public class Sftp {
 
 	/**
 	 * 下载文件
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>参数：绝对路径/相对路径</td>
-	 * <td>下载后</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>downloadFile("testA","down.txt","D:\\downDir")</td>
-	 * <td>相对路径</td>
-	 * <td>D:\\downDir\\down.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>downloadFile("testA/testA_B","down.txt","D:\\downDir")</td>
-	 * <td>相对路径</td>
-	 * <td>D:\\downDir\\down.txt</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>downloadFile("/testA/testA_B","down.txt","D:\\downDir")</td>
-	 * <td>绝对路径</td>
-	 * <td>D:\\downDir\\down.txt</td>
-	 * </tr>
-	 * </table>
-	 * </p>
-	 * 
 	 * @param remotePath
 	 *            SFTP服务器目录
 	 * @param fileName
@@ -299,6 +211,7 @@ public class Sftp {
 	 *            目标路径可以是目录 也可以是文件 <br>
 	 *            如果是目录表示将文件下载到该目录下 文件名和原文件名一样<br>
 	 *            如果是文件 则文件名以指定的为准
+	 * @return boolean
 	 */
 	public boolean get(String src, String dst) {
 		boolean flag = true;
@@ -316,6 +229,7 @@ public class Sftp {
 	 * 移动路径
 	 * @param oldpath 旧路径
 	 * @param newpath 新路径
+	 * @return boolean 
 	 * */
 	public boolean rename(String oldpath, String newpath) {
 		boolean flag=true;
@@ -330,41 +244,7 @@ public class Sftp {
 
 	/**
 	 * 切换工作目录
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>参数(绝对路径/相对路径)</td>
-	 * <td>切换后的目录</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>changeDir("testA")</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>changeDir("testA/testA_B")</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/testA_B/</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>changeDir("/testA")</td>
-	 * <td>绝对路径</td>
-	 * <td>/testA/</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/testA/testA_B/</td>
-	 * <td>changeDir("/testA")</td>
-	 * <td>绝对路径</td>
-	 * <td>/testA/</td>
-	 * </tr>
-	 * </table>
-	 * </p>
 	 * 
 	 * @param pathName
 	 *            路径
@@ -389,27 +269,7 @@ public class Sftp {
 
 	/**
 	 * 切换到上一级目录
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>切换后的目录</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/testA/</td>
-	 * <td>changeToParentDir()</td>
-	 * <td>/</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/testA/testA_B/</td>
-	 * <td>changeToParentDir()</td>
-	 * <td>/testA/</td>
-	 * </tr>
-	 * </table>
-	 * </p>
-	 * 
 	 * @return boolean
 	 */
 	public boolean changeToParentDir() {
@@ -434,6 +294,7 @@ public class Sftp {
 
 	/**
 	 * 获取当前路径
+	 * @return 当前路径
 	 */
 	public String pwd() {
 		String pwdDir = null;
@@ -447,35 +308,11 @@ public class Sftp {
 
 	/**
 	 * 创建目录
-	 * <p>
 	 * 使用示例，SFTP服务器上的目录结构如下：/testA/testA_B/
-	 * <table border="1">
-	 * <tr>
-	 * <td>当前目录</td>
-	 * <td>方法</td>
-	 * <td>参数(绝对路径/相对路径)</td>
-	 * <td>创建成功后的目录</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/testA/testA_B/</td>
-	 * <td>makeDir("testA_B_C")</td>
-	 * <td>相对路径</td>
-	 * <td>/testA/testA_B/testA_B_C/</td>
-	 * </tr>
-	 * <tr>
-	 * <td>/</td>
-	 * <td>makeDir("/testA/testA_B/testA_B_D")</td>
-	 * <td>绝对路径</td>
-	 * <td>/testA/testA_B/testA_B_D/</td>
-	 * </tr>
-	 * </table>
-	 * <br/>
-	 * <b>注意</b>，当<b>中间目录不存在</b>的情况下，不能够使用绝对路径的方式期望创建中间目录及目标目录。
-	 * 例如makeDir("/testNOEXIST1/testNOEXIST2/testNOEXIST3")，这是错误的。
-	 * </p>
-	 * 
 	 * @param dirName
-	 *            目录
+	 *            目录名 可以是绝对路径 也可以是相对路径
+	 * 当中间目录不存在的情况下，不能够使用绝对路径的方式期望创建中间目录及目标目录。
+	 * 例如makeDir("/testNOEXIST1/testNOEXIST2/testNOEXIST3")，这是错误的。
 	 * @return boolean
 	 */
 	public boolean mkdir(String dirName) {
@@ -491,7 +328,8 @@ public class Sftp {
 
 	/**
 	 * 想写一个mkdir -p 的方式能 创建中间目录
-	 * 
+	 *  @param dirPath 路径名
+	 *  @return boolean 
 	 */
 	public boolean mkdirp(String dirPath) {
 		boolean result = true;
@@ -529,8 +367,7 @@ public class Sftp {
 
 	/**
 	 * 删除文件夹
-	 * 
-	 * @param dirName
+	 * @param dirName  目录名
 	 * @return boolean
 	 */
 	@SuppressWarnings("unchecked")
@@ -606,6 +443,7 @@ public class Sftp {
 
 	/**
 	 * 指定目录下文件及文件夹名称列表
+	 * @param pathName 路径名
 	 * 
 	 * @return String[]
 	 */
@@ -633,6 +471,7 @@ public class Sftp {
 
 	/**
 	 * 指定目录下文件名称列表
+	 * @param pathName 路径名
 	 * 
 	 * @return String[]
 	 */
@@ -660,7 +499,7 @@ public class Sftp {
 
 	/**
 	 * 指定目录下文件夹名称列表
-	 * 
+	 * @param pathName 路径名
 	 * @return String[]
 	 */
 	public String[] lsDirs(String pathName) {

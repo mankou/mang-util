@@ -394,7 +394,8 @@ public class StringUtil {
 	 * 替换字符串
 	 * @param str 原始字符串
 	 * @param oldArr 待替换了字符串  如需要将 回车替换成逗号 则这里可输入 new String[]{"\n"}
-	 * @param newStr 替换后的字符串 如需要将回车替换成逗号 则这里可输入 ,
+	 * @param newStr 替换后的字符串 如需要将回车替换成逗号 则这里可输入 
+	 * @return string
 	 * */
 	public static String replace(String str,String[] oldArr,String newStr){
 		String result=str;
@@ -409,7 +410,8 @@ public class StringUtil {
 	
 	
 	/**
-	 * 
+	 * @param str 字符串
+	 * @return string
 	 * */
 	public static String replace(String str){
 		return replace(str, default_replace_old_array, default_replace_new);

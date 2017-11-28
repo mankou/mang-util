@@ -34,7 +34,7 @@ public class MapUtil {
      * 
      * @param javaBean JavaBean实例对象
      * @param mapList Map数据集对象
-     * @return
+     * @return list
      */
     @SuppressWarnings({ "rawtypes" })
     public static <T> List<T> map2Java(T javaBean, List<Map> mapList) {
@@ -60,7 +60,7 @@ public class MapUtil {
      * 
      * @param javaBean JavaBean实例对象
      * @param map Map对象
-     * @return
+     * @return 返回bean
      */
     @SuppressWarnings({ "rawtypes","unchecked", "hiding" })
     public static <T> T map2Bean(T javaBean, Map map) {
@@ -93,8 +93,8 @@ public class MapUtil {
     /**
      * JavaBean对象转化成Map对象
      * 
-     * @param javaBean
-     * @return
+     * @param javaBean bean
+     * @return map
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static Map bean2Map(Object javaBean) {

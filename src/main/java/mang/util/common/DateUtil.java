@@ -376,6 +376,7 @@ public class DateUtil {
 	 * 如果时间1小于时间2 则返回负数<br>
 	 * @param date1 时间1
 	 * @param date2 时间2
+	 * @return 返回比较后的结果
 	 * */
 	public static long compare(Date date1,Date date2){
 		boolean result;
@@ -388,6 +389,9 @@ public class DateUtil {
 	 * 如果时间大于N天前时间 则返回正数<br>
 	 * 如果时间等于N天前时间 则返回0<br>
 	 * 如果时间小于N天前时间 则返回负数<br>
+	 * @param date 时间
+	 * @param ndayAgo n天前的n
+	 * @return 返回比较后的结果
 	 * */
 	public static long compare(Date date,int ndayAgo){
 		Date currentDate=getCurrentDate();

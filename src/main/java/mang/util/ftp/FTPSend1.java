@@ -18,10 +18,10 @@ public class FTPSend1 {
 	private Boolean isNeedChangeDirectory=true;
     /** 
      * 获得连接-FTP方式 
-     * @param hostname FTP服务器地址 
+     * @param hostName FTP服务器地址 
      * @param port FTP服务器端口 
-     * @param username FTP登录用户名 
-     * @param password FTP登录密码 
+     * @param userName FTP登录用户名 
+     * @param passWord FTP登录密码 
      * @return FTPClient 
      */  
     public FTPClient getConnectionFTP(String hostName, int port, String userName, String passWord) {  
@@ -54,7 +54,7 @@ public class FTPSend1 {
      * 上传文件-FTP方式 
      * @param ftp FTPClient对象 
      * @param path FTP服务器上传地址 
-     * @param filename 本地文件路径 
+     * @param fileName 本地文件路径 
      * @param inputStream 输入流 
      * @param message 调用该方法时传入一些信息 用于写日志
      * @return boolean 
@@ -105,8 +105,7 @@ public class FTPSend1 {
      * 2014-12-9 17:42:09 我自己封装的方法
      * @param ftp FTPClient对象 
      * @param path FTP服务器上传地址 
-     * @param filename 本地文件路径 
-     * @param inputStream 输入流 
+     * @param file 本地文件
      * @param message 调用该方法时传入一些信息 用于写日志
      * @return boolean 
      */  
@@ -175,8 +174,8 @@ public class FTPSend1 {
      * 删除文件-FTP方式 
      * @param ftp FTPClient对象 
      * @param path FTP服务器上传地址 
-     * @param filename FTP服务器上要删除的文件名 
-     * @return 
+     * @param fileName FTP服务器上要删除的文件名 
+     * @return  boolean
      */  
     public boolean deleteFile(FTPClient ftp, String path, String fileName) {  
         boolean success = false;  
@@ -227,9 +226,9 @@ public class FTPSend1 {
       
     /** 
      * 判断是否有重名文件 
-     * @param fileName 
-     * @param fs 
-     * @return 
+     * @param fileName  文件名
+     * @param fs fs
+     * @return  boolean
      */  
     public static boolean isFileExist(String fileName, FTPFile[] fs) {  
         for (int i = 0; i < fs.length; i++) {  
@@ -243,9 +242,9 @@ public class FTPSend1 {
   
     /** 
      * 根据重名判断的结果 生成新的文件的名称 
-     * @param fileName 
-     * @param fs 
-     * @return 
+     * @param fileName  文件名
+     * @param fs  ftpfile
+     * @return 新的文件名称
      */  
     public static String changeName(String fileName, FTPFile[] fs) {  
         int n = 0;  
@@ -267,7 +266,7 @@ public class FTPSend1 {
   
     /** 
      *  
-     * @param args 
+     * @param args 测试参数
      *  
      * @throws FileNotFoundException 
      *  

@@ -86,6 +86,9 @@ public class MD5 {
 	
 	/**
 	 * 校验密码是否正确.
+	 * @param s1 字符串1
+	 * @param s2 字符串2
+	 * @return boolean 
 	 * */
 	public static boolean check(String s1,String s2){
 		try{

@@ -620,6 +620,7 @@ public class TimestampUtil {
 	 * 
 	 * @param timeStr
 	 *            时间字符串 时间格式采用默认的 yyyy-MM-dd HH:mm:ss
+	 * @return Timestamp
 	 */
 	public static Timestamp parse(String timeStr) {
 		return parse(timeStr, default_timeFormat);

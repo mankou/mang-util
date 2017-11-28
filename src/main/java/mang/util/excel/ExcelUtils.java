@@ -215,7 +215,7 @@ public class ExcelUtils {
 	/**
 	 * 由Excel流的Sheet导出至List
 	 * 
-	 * @param ExcelImport
+	 * @param ei
 	 *            excel导入辅助类 用于设置一些参数
 	 * @return List
 	 * @throws Exception
