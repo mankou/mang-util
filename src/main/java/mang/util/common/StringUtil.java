@@ -11,7 +11,10 @@ import java.util.regex.Pattern;
  */
 public class StringUtil {
 	
-	public static String[] default_replace_old_array=new String[]{"\n",","};
+	/*
+	 * 注 被替换的字符串 和 将要替换的字符串不能重复,否则有可能有问题
+	 * */
+	public static String[] default_replace_old_array=new String[]{"\n"};
 	public static String default_replace_new=",";
 	
 	/**
