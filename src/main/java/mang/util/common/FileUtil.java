@@ -83,6 +83,33 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	/**
+	 * 将一个目录下的文件及子目录拷备到目录目录下
+	 * @param sourcePath 源目录路径
+	 * @param destPath 目标路径
+	 * */
+	public static void copyFoldfilesToAnotherFold(String sourcePath,String destPath){
+		File source=new File(sourcePath);
+		File dest=new File(destPath);
+		File[] files=source.listFiles();
+		
+		//已测试 如果目录目录该文件存在则会覆盖掉
+		for(File file:files){
+			try {
+				if(file.isFile()){
+					FileUtils.copyFileToDirectory(file, dest);					
+				}else if(file.isDirectory()){
+					FileUtils.copyDirectoryToDirectory(file, dest);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 
 	/**
 	 * 判断某一文件或者目录的父目录是否存在 如果不存在则创建父目录.

@@ -1,6 +1,9 @@
 package mang.util.file;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import mang.util.common.FileUtil;
@@ -28,5 +31,15 @@ public class FileTest {
 		String targetPath = "c:/test/data2/";
 		FileUtil.moveFoldFilesToDirectory(dirPath, targetPath);
 
+	}
+	
+	@Test
+	public void testCopyFoldFiles(){
+		String sourcePath = "c:/test/data/";
+		String destPath = "c:/test/data2/";
+		
+		FileUtil.copyFoldfilesToAnotherFold(sourcePath,destPath);
+		
+		
 	}
 }
