@@ -381,5 +381,17 @@ public class FileUtil {
 		}
 		return flag;
 	}
+	
+	/**
+	 * 清空某一目录下文件
+	 * @param dirPath 目录路径
+	 * */
+	public static void cleanDir(String dirPath){
+		try {
+			FileUtils.cleanDirectory(new File(dirPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
