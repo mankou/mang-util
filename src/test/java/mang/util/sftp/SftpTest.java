@@ -2,13 +2,8 @@ package mang.util.sftp;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.Arrays;
-
-import org.apache.log4j.xml.DOMConfigurator;
-import org.junit.Before;
 import org.junit.Test;
-
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.SftpException;
 
@@ -17,26 +12,30 @@ import mang.util.common.DateUtil;
 public class SftpTest {
 
 	private static Sftp getSftp() {
-		String host = "192.168.2.147";
+		String host = "10.4.122.106";
 		int port = 22;
 		int timeout = 60000;
-		String username = "test";
-		String password = "test";
+		String username = "shenlong";
+		String password = "shenlong";
 		Sftp sftp = new Sftp(host, port, timeout, username, password);
 
 		return sftp;
 	}
 
-	@Before
-	public void loadLog4j() {
-		URL url = ClassLoader.getSystemResource("log4j.xml");
-		DOMConfigurator.configure(url);
-	}
 
 	@Test
 	public void testLogin() { // OK
 		Sftp sftp = getSftp();
 		sftp.login();
+		String pwd=sftp.pwd();
+		System.out.println(pwd);
+		sftp.changeToHomeDir();
+		String homeDir=sftp.pwd();
+		System.out.println(homeDir);
+		
+		sftp.changeDir("/home/shenlong");
+		String currentDir=sftp.pwd();
+		System.out.println(currentDir);
 		sftp.logout();
 	}
 
