@@ -71,6 +71,20 @@ public class FileUtil {
 	}
 
 	/**
+	 * 创建目录 如果中间目录不存在也直接创建
+	 * 
+	 * @param dirPath
+	 *            目录路径
+	 */
+	public static void forceMkdir(String dirPath) {
+		try {
+			FileUtils.forceMkdir(new File(dirPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * 判断某一文件或者目录的父目录是否存在 如果不存在则创建父目录.
 	 * <p>
 	 * 多用于rename时 因rename时必须保存目标文件的父目录存在
@@ -253,7 +267,7 @@ public class FileUtil {
 		File[] files = sourceFile.listFiles();
 		for (File file : files) {
 			try {
-				//注 已测试如果目标目录有该文件 则不复制
+				// 注 已测试如果目标目录有该文件 则不复制
 				FileUtils.moveToDirectory(file, targetFile, true);
 			} catch (IOException e) {
 				e.printStackTrace();

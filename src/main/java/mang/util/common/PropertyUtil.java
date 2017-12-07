@@ -77,7 +77,8 @@ public class PropertyUtil {
 	 * 取出配置文件中某一属性的值
 	 * @param mclass 基准路径
 	 * @param path 路径
-	 * @param propertyname 键值
+	 * @param propertyName 键值
+	 * @return String
 	 * */
 	public static String getProperty(Class mclass,String path,String propertyName){
 		Properties property = getProperties(mclass, path);
