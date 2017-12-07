@@ -73,6 +73,18 @@ public class PropertyUtil {
 		return property;
 	}
 	
+	/**
+	 * 取出配置文件中某一属性的值
+	 * @param mclass 基准路径
+	 * @param path 路径
+	 * @param propertyname 键值
+	 * */
+	public static String getProperty(Class mclass,String path,String propertyName){
+		Properties property = getProperties(mclass, path);
+		String result=property.getProperty(propertyName);
+		return result;
+	}
+	
 	
 	/**
 	 * 优先从工作目录下开始找配置文件 如果找不到再从类路径下开始找.
