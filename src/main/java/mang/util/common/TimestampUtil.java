@@ -598,7 +598,7 @@ public class TimestampUtil {
 	 * @param timeStr
 	 *            时间字符串
 	 * @param format
-	 *            时间格式 如yyyy-MM-dd HH:mm:ss
+	 *            时间格式 如yyyy-MM-dd HH:mm:ss yyyy-MM-dd'T'HH:mm:ss
 	 * @return Timestamp
 	 */
 	public static Timestamp parse(String timeStr, String format) {
