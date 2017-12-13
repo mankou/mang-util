@@ -2,10 +2,14 @@ package mang.util.ftp.ftp4j;
 
 import java.util.List;
 
+/**
+ * FTP接口  用于统一FTP操作方式的实现
+ * */
 public interface FTPTool {
 	
 	/**
 	 * 登录
+	 * @return boolean
 	 * */
 	public boolean login();
 	
@@ -17,6 +21,7 @@ public interface FTPTool {
 	
 	/**
 	 * 列出当前目录文件名
+	 * @return List 文件名列表
 	 * */
 	public List<String> listNames();
 	
@@ -25,6 +30,7 @@ public interface FTPTool {
 	 * @param fileSpec 路径名
 	 * 例1:out/*.txt 列出out目录下的txt文件 <br>
 	 * 例2:out 列出out目录下的所有文件
+	 * @return List 文件名列表
 	 * */
 	public List<String> listNames(String fileSpec);
 	
@@ -39,12 +45,14 @@ public interface FTPTool {
 	 * 获取某一目录下的文件名
 	 * @param dirPath 目录路径
 	 * @param filter 文件名过滤 如果不过滤传入空
+	 * @return List 文件名列表
 	 * */
 	public List<String> listPathFileName(String dirPath,String filter);
 	
 	
 	/**
 	 * 取得客户端
+	 * @return Object 客户端对象
 	 * */
 	public Object getClient();
 	
@@ -67,6 +75,10 @@ public interface FTPTool {
 	
 	/**
 	 * 递归下载
+	 * @param remoteDirPath 远程目录路径
+	 * @param fileSpec 过滤
+	 * @param localDirpath 本地目录路径
+	 * @param downListener 监听
 	 * */
 	public void downloadRecursive(String remoteDirPath,String fileSpec,String localDirpath,FTPDownListener downListener);
 	
@@ -83,23 +95,28 @@ public interface FTPTool {
 	/**
 	 * 创建目录
 	 * @param directoryName 目录名 可以是级联形式  如a/b/c,也可以是单个的目录名 如a
+	 * @return boolean
 	 * */
 	public boolean createDirectory(String directoryName);
 	
 	/**
 	 * 判断目录是否存在
 	 * @param directoryName 目录名
+	 * @return boolean
 	 * */
 	public boolean existDirectory(String directoryName);
 	
 	
 	/**
 	 * 删除目录
+	 * @param directoryName 目录名
+	 * @param deleteListener 监听
 	 * */
 	public void deleteDirectory(String directoryName,FTPDeleteListener deleteListener);
 	
 	/**
 	 * 删除文件
+	 * @param fileName 文件名
 	 * */
 	public void deleteFile(String fileName);
 	
