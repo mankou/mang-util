@@ -174,7 +174,7 @@ public class ExcelUtils {
 
 	/**
 	 * 生成excel的工具类
-	 * @param title
+	 * @param sheetTile
 	 *            excel sheet的名称
 	 * @param headers
 	 *            excel表头名

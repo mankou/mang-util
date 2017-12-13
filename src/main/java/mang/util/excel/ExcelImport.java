@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * excel导入导出工具类的辅助类 用于设置导入时的一些参数
+ * excel导入的辅助类 用于设置导入时的一些参数
  * */
 public class ExcelImport {
 	/**

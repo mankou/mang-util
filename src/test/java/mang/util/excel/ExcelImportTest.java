@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import mang.util.excel.entity.UserInfo;
+
 public class ExcelImportTest {
 
 	@Test

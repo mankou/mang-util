@@ -287,6 +287,8 @@ public class FileUtil {
 
 	/**
 	 * 将一个目录下的文件移到到另一目录下
+	 * @param sourceFoldPath 源目录路径
+	 * @param targetFoldPath 目标目录路径
 	 */
 	public static void moveFoldFilesToDirectory(String sourceFoldPath, String targetFoldPath) {
 		File sourceFile = new File(sourceFoldPath);

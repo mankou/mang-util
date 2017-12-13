@@ -1,4 +1,4 @@
-package mang.util.excel;
+package mang.util.excel.entity;
 
 import java.util.Date;
 
