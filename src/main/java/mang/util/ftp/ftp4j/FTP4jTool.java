@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPFile;
 
+/**
+ * 基于FTP4j实现的FTP相关的操作
+ * */
 public class FTP4jTool implements FTPTool {
 	private static final Logger log = LoggerFactory.getLogger(FTP4jTool.class);
 
