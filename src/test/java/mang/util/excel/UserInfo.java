@@ -1,10 +1,14 @@
 package mang.util.excel;
 
+import java.util.Date;
 
 public class UserInfo {
 	private String code;
 	private String name;
 	private String city;
+	
+	private Date  birthday;
+	
 	public String getCode() {
 		return code;
 	}
@@ -22,6 +26,13 @@ public class UserInfo {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public Date getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 	@Override
 	public String toString() {

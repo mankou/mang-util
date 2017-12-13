@@ -114,13 +114,14 @@
 			<version>${httpclient.version}</version>
 		</dependency>
 
-
+		<!-- javacsv -->
 		<dependency>
 			<groupId>net.sourceforge.javacsv</groupId>
 			<artifactId>javacsv</artifactId>
 			<version>2.1</version>
 		</dependency>
 
+		<!-- SFTP -->
 		<dependency>
 			<groupId>com.jcraft</groupId>
 			<artifactId>jsch</artifactId>
