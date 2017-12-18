@@ -6,7 +6,7 @@ import java.util.List;
 import mang.util.txt.linehandle.LineHandler;
 import mang.util.txt.reader.SimpleTxtReader;
 import mang.util.txt.reader.TxtReader;
-import mang.util.txt.writer.SimpleTxtWriter;
+import mang.util.txt.writer.SimpleTxtEncodeWriter;
 import mang.util.txt.writer.TxtWriter;
 
 public class SimpleTxtProcess implements TxtProcess {
@@ -14,27 +14,24 @@ public class SimpleTxtProcess implements TxtProcess {
 	/**
 	 * 文件编码
 	 * */
-	private String charset="UTF-8";
+	private String readCharset="UTF-8";
+	private String writeCharset="UTF-8";
 	
 	public SimpleTxtProcess() {
 		
 	}
 	
-	public SimpleTxtProcess(String charset) {
-		this();
-		setCharset(charset);
-	}
 
 	@Override
 	public void processSingleFile(String sourceFilePath,String targetFilePath,List<LineHandler> handleList) {
 		File file = new File(sourceFilePath);
 		File targetFile=new File(targetFilePath);
-		TxtReader reader = new SimpleTxtReader(file,charset);
-		TxtWriter txtWriter = new SimpleTxtWriter(targetFile);
+		TxtReader reader = new SimpleTxtReader(file,readCharset);
+//		TxtWriter txtWriter = new SimpleTxtWriter(targetFile);
+		TxtWriter txtWriter = new SimpleTxtEncodeWriter(targetFile, writeCharset);
 		while (reader.hasNext()) {
 			String currentLine = reader.readLine();
 			String processLine=currentLine;
-			
 			if(handleList!=null){
 				for(LineHandler lineHandler:handleList){
 					processLine=lineHandler.processLine(processLine);					
@@ -47,12 +44,21 @@ public class SimpleTxtProcess implements TxtProcess {
 		txtWriter.close();
 	}
 
-	public String getCharset() {
-		return charset;
+	public String getReadCharset() {
+		return readCharset;
 	}
 
-	public void setCharset(String charset) {
-		this.charset = charset;
+	public void setReadCharset(String readCharset) {
+		this.readCharset = readCharset;
 	}
+
+	public String getWriteCharset() {
+		return writeCharset;
+	}
+
+	public void setWriteCharset(String writeCharset) {
+		this.writeCharset = writeCharset;
+	}
+
 
 }
