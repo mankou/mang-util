@@ -57,8 +57,8 @@ public class FileCharsetDetector {
 	 * @param file
 	 *            File对象实例
 	 * @return 文件编码，若无，则返回null
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException 文件找不到
+	 * @throws IOException IO异常
 	 */
 	public static String checkEncoding(File file) throws FileNotFoundException, IOException {
 		return checkEncoding(file, getNsdetector());
@@ -69,11 +69,11 @@ public class FileCharsetDetector {
 	 * 
 	 * @param file
 	 *            File对象实例
-	 * @param language
+	 * @param lang
 	 *            语言
 	 * @return 文件编码
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException 文件未找到
+	 * @throws IOException IO异常
 	 */
 	public static String checkEncoding(File file, Language lang) throws FileNotFoundException, IOException {
 		return checkEncoding(file, new nsDetector(lang.getHint()));
@@ -85,8 +85,8 @@ public class FileCharsetDetector {
 	 * @param path
 	 *            文件路径
 	 * @return 文件编码，eg：UTF-8,GBK,GB2312形式，若无，则返回null
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException 文件未找到
+	 * @throws IOException IO异常
 	 */
 	public static String checkEncoding(String path) throws FileNotFoundException, IOException {
 		return checkEncoding(new File(path));
@@ -97,11 +97,11 @@ public class FileCharsetDetector {
 	 * 
 	 * @param path
 	 *            文件路径
-	 * @param language
+	 * @param lang
 	 *            语言
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @return 文件编码
+	 * @throws FileNotFoundException 文件未找到
+	 * @throws IOException IO异常
 	 */
 	public static String checkEncoding(String path, Language lang) throws FileNotFoundException, IOException {
 		return checkEncoding(new File(path), lang);
@@ -113,8 +113,8 @@ public class FileCharsetDetector {
 	 * @param file
 	 * @param det
 	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException 文件未找到
+	 * @throws IOException IO异常
 	 */
 	private static String checkEncoding(File file, nsDetector detector) throws FileNotFoundException, IOException {
 
@@ -144,7 +144,7 @@ public class FileCharsetDetector {
 	 *            要检查编码的文件
 	 * @param detector
 	 * @return
-	 * @throws IOException
+	 * @throws IOException IO异常
 	 */
 	private static boolean isAscii(File file, nsDetector detector) throws IOException {
 		BufferedInputStream input = null;

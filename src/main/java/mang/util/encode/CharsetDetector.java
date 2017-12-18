@@ -3,6 +3,8 @@ package mang.util.encode;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+
 import org.mozilla.intl.chardet.nsDetector;
 import org.mozilla.intl.chardet.nsICharsetDetectionObserver;
 
@@ -17,6 +19,22 @@ public class CharsetDetector {
 	
 	public static boolean found = false;
 	private static String encoding;
+	
+	
+	/**
+	 * 检测文件编码
+	 * @param filePath 文件路径
+	 * @return String 文件编码
+	 * */
+	public static String checkCharset(String filePath){
+		File file=new File(filePath);
+		if(!file.exists()||file.isDirectory()){
+			return null;
+		}
+		String encode=checkCharset(file);
+		return encode;
+		
+	}
 
 	/**
 	 * 检测文件编码
@@ -34,10 +52,11 @@ public class CharsetDetector {
 			}
 		});
 
-		FileInputStream fileInputStream;
+		FileInputStream fileInputStream=null;
+		BufferedInputStream imp=null;
 		try {
 			fileInputStream = new FileInputStream(file);
-			BufferedInputStream imp = new BufferedInputStream(fileInputStream);
+			imp = new BufferedInputStream(fileInputStream);
 
 			byte[] buf = new byte[1024];
 			int len;
@@ -93,6 +112,13 @@ public class CharsetDetector {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			try {
+				imp.close();
+				fileInputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

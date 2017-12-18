@@ -96,6 +96,10 @@ public class FileUtil {
 		File dest=new File(destPath);
 		File[] files=source.listFiles();
 		
+		if(files==null){
+			return;
+		}
+		
 		//已测试 如果目录目录该文件存在则会覆盖掉
 		for(File file:files){
 			try {
@@ -294,6 +298,10 @@ public class FileUtil {
 		File sourceFile = new File(sourceFoldPath);
 		File targetFile = new File(targetFoldPath);
 		File[] files = sourceFile.listFiles();
+		if(files==null){
+			return;
+		}
+		
 		for (File file : files) {
 			try {
 				// 注 已测试如果目标目录有该文件 则不复制

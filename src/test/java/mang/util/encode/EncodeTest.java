@@ -93,7 +93,7 @@ public class EncodeTest {
 	
 	@Test
 	public void testMy() throws IOException {
-		String path = "c:/test/testencode/gb18080.txt";
+		String path = "/test/data/20100205pvnotas03p.txt";
 		File file = new File(path);
 		String encode = CharsetDetector.checkCharset(file);
 		System.out.println("my检测结果:" + encode);

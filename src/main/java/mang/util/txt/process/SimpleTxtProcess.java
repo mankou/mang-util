@@ -10,12 +10,26 @@ import mang.util.txt.writer.SimpleTxtWriter;
 import mang.util.txt.writer.TxtWriter;
 
 public class SimpleTxtProcess implements TxtProcess {
+	
+	/**
+	 * 文件编码
+	 * */
+	private String charset="UTF-8";
+	
+	public SimpleTxtProcess() {
+		
+	}
+	
+	public SimpleTxtProcess(String charset) {
+		this();
+		setCharset(charset);
+	}
 
 	@Override
 	public void processSingleFile(String sourceFilePath,String targetFilePath,List<LineHandler> handleList) {
 		File file = new File(sourceFilePath);
 		File targetFile=new File(targetFilePath);
-		TxtReader reader = new SimpleTxtReader(file);
+		TxtReader reader = new SimpleTxtReader(file,charset);
 		TxtWriter txtWriter = new SimpleTxtWriter(targetFile);
 		while (reader.hasNext()) {
 			String currentLine = reader.readLine();
@@ -31,6 +45,14 @@ public class SimpleTxtProcess implements TxtProcess {
 		}
 		reader.close();
 		txtWriter.close();
+	}
+
+	public String getCharset() {
+		return charset;
+	}
+
+	public void setCharset(String charset) {
+		this.charset = charset;
 	}
 
 }
