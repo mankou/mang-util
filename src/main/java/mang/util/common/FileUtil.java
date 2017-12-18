@@ -100,7 +100,7 @@ public class FileUtil {
 			return;
 		}
 		
-		//已测试 如果目录目录该文件存在则会覆盖掉
+		//已测试 如果目标目录该文件存在则会覆盖掉
 		for(File file:files){
 			try {
 				if(file.isFile()){
