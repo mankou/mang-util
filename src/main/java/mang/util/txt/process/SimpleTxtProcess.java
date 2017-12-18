@@ -12,9 +12,13 @@ import mang.util.txt.writer.TxtWriter;
 public class SimpleTxtProcess implements TxtProcess {
 	
 	/**
-	 * 文件编码
+	 * 读取文件时编码
 	 * */
 	private String readCharset="UTF-8";
+	
+	/**
+	 * 写文件时的编码
+	 * */
 	private String writeCharset="UTF-8";
 	
 	public SimpleTxtProcess() {
