@@ -25,7 +25,7 @@ public class JsonUtil {
 
 	private static ObjectMapper objectMapper = new ObjectMapper();
 
-	private JsonUtil() {
+	public JsonUtil() {
 
 	}
 
@@ -279,4 +279,18 @@ public class JsonUtil {
 	private static String escapesSpecialChar(String str) {
 		return str.replace("\n", "\\n").replace("\r", "\\r");
 	}
+
+	public static ObjectMapper getObjectMapper() {
+		return objectMapper;
+	}
+
+	public static void setObjectMapper(ObjectMapper objectMapper) {
+		JsonUtil.objectMapper = objectMapper;
+	}
+	
+	public static void setCustomObjectMapper(ObjectMapper objectMapper) {
+		JsonUtil.objectMapper = objectMapper;
+	}
+	
+	
 }
