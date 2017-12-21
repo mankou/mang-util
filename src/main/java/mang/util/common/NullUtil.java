@@ -72,5 +72,20 @@ public class NullUtil {
 	public static boolean isNotNull(String str){
 		return !isNull(str);
 	}
+	
+	
+	/**
+	 * 如果为null则使用默认值
+	 * @param obj 在判断的值
+	 * @param defaultValue 默认值
+	 * @return Object 
+	 * */
+	public static Object defaultValues(Object obj,Object defaultValue){
+		if(obj==null){
+			return defaultValue;
+		}else{
+			return obj;
+		}
+	}
 
 }
