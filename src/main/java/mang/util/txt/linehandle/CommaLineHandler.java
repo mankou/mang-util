@@ -12,7 +12,7 @@ public class CommaLineHandler implements LineHandler {
 	
 	private String spliter="\\|\\|";
 	
-	private String writerSpliter="||";
+	private String writerSpliter=",";
 	
 	private String inSideStr=",";
 	
