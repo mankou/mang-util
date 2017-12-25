@@ -17,7 +17,7 @@ public class SimpleTxtFilterProcessTest {
 	}
 	
 	private void processSingleFile(String sourceFilePath,String targetFilePath){	
-		AbstractTxtFilterProcess simpleProcess=new SimpleTxtFilterProcess();
+		AbstractTxtFilterProcess simpleProcess=new AnyTxtFilterProcess();
 		simpleProcess.addHandle(new CommaLineHandler());
 		simpleProcess.addBeforeFilter(new BlankFilter());
 		simpleProcess.processSingleFile(sourceFilePath, targetFilePath);

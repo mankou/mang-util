@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 public class BlankFilter implements LineFilter {
 
 	@Override
-	public boolean isFilter(String line) {
+	public boolean isConform(String line) {
 		if(StringUtils.isBlank(line)){
 			return true;
 		}

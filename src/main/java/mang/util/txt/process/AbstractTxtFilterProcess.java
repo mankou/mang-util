@@ -51,12 +51,13 @@ public abstract class AbstractTxtFilterProcess implements TxtFilterProcess {
 		while (reader.hasNext()) {
 			String currentLine = reader.readLine();
 			
-			if(beforeFilter(currentLine,beforeLineFilter)){
+			//true 就是要,false就是不要
+			if(!beforeFilter(currentLine,beforeLineFilter)){
 				continue;
 			}
 			String processLine=null;
 			processLine=processLine(currentLine,handleList);
-			if(afterFilter(processLine,afterLineFilter)){
+			if(!afterFilter(processLine,afterLineFilter)){
 				continue;
 			}
 			txtWriter.writeLine(processLine);
