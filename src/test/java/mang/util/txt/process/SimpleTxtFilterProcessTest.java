@@ -39,6 +39,7 @@ public class SimpleTxtFilterProcessTest {
 	public void testAfterRename(){
 		//演示转换完后重命名文件
 		AbstractTxtProcessor txtFileProcess=new RenameTxtFileProcessor();
+		txtFileProcess.setUserData("prefix", "testPrefix");
 		txtFileProcess.setLineHandleProcessor(new SimpleLineHandleProcessor());
 		txtFileProcess.setLineFilterProcessor(new AllTxtLineFilterProcessor());
 		txtFileProcess.getLineFilterProcessor().addBeforeFilter(new BlankFilter());
