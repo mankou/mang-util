@@ -10,6 +10,8 @@ public class SimpleTxtWriter implements TxtWriter {
 	private FileWriter fileWriter;
 
 	private BufferedWriter bufferWriter;
+	
+	private int writeCount=0;
 
 	public SimpleTxtWriter(File file) {
 		this(file, false);
@@ -30,6 +32,7 @@ public class SimpleTxtWriter implements TxtWriter {
 			bufferWriter.write(content);
 			bufferWriter.newLine();
 			bufferWriter.flush();
+			writeCount++;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -53,5 +56,11 @@ public class SimpleTxtWriter implements TxtWriter {
 			}
 		}
 	}
+
+	public int getWriteCount() {
+		return writeCount;
+	}
+	
+	
 
 }

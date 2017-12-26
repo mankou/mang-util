@@ -14,6 +14,7 @@ public class SimpleTxtReader implements TxtReader {
 	private InputStreamReader inputStreamReader;
 	private BufferedReader bufferedReader;
 	private String currentLine;
+	private int readCount=0;
 
 	
 	public SimpleTxtReader(File file, String charset) {
@@ -36,6 +37,7 @@ public class SimpleTxtReader implements TxtReader {
 	public boolean hasNext() {
 		try {
 			currentLine = bufferedReader.readLine();
+			readCount++;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
@@ -73,6 +75,11 @@ public class SimpleTxtReader implements TxtReader {
 			} catch (IOException e) {
 			}
 		}
+	}
+
+	@Override
+	public int getReadCount() {
+		return readCount;
 	}
 
 }

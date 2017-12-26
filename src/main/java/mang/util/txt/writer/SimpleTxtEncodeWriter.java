@@ -17,6 +17,8 @@ public class SimpleTxtEncodeWriter implements TxtWriter {
 	private BufferedWriter bufferWriter;
 	
 	private String charset;
+	
+	private int writeCount=0;
 
 	public SimpleTxtEncodeWriter(File file) {
 		this(file, false,"UTF-8");
@@ -41,6 +43,7 @@ public class SimpleTxtEncodeWriter implements TxtWriter {
 			bufferWriter.write(content);
 			bufferWriter.newLine();
 			bufferWriter.flush();
+			writeCount++;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +75,12 @@ public class SimpleTxtEncodeWriter implements TxtWriter {
 	public void setCharset(String charset) {
 		this.charset = charset;
 	}
+
+	public int getWriteCount() {
+		return writeCount;
+	}
+	
+	
 
 
 }

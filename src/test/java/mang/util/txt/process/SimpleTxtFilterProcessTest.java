@@ -34,4 +34,16 @@ public class SimpleTxtFilterProcessTest {
 		int count=txtFileProcess.getLineHandleProcessor().getProcessCount();
 		System.out.println("处理行数:"+count);
 	}
+	
+	@Test
+	public void testAfterRename(){
+		//演示转换完后重命名文件
+		AbstractTxtProcessor txtFileProcess=new RenameTxtFileProcessor();
+		txtFileProcess.setLineHandleProcessor(new SimpleLineHandleProcessor());
+		txtFileProcess.setLineFilterProcessor(new AllTxtLineFilterProcessor());
+		txtFileProcess.getLineFilterProcessor().addBeforeFilter(new BlankFilter());
+		txtFileProcess.getLineHandleProcessor().addHandler(new CommaLineHandler());
+		txtFileProcess.processSingleFile(sourceFilePath, targetFilePath);
+		
+	}
 }
