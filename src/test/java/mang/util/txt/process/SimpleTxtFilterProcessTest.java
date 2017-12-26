@@ -24,6 +24,7 @@ public class SimpleTxtFilterProcessTest {
 	
 	@Test
 	public void test2(){
+		//这里多了2句 用于演示设置linehandle和linefilter
 		AbstractTxtProcessor txtFileProcess=new AbstractTxtProcessor();
 		txtFileProcess.setLineHandleProcessor(new SimpleLineHandleProcessor());
 		txtFileProcess.setLineFilterProcessor(new AllTxtLineFilterProcessor());
