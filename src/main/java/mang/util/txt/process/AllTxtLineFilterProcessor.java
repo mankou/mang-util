@@ -4,21 +4,21 @@ import java.util.List;
 
 import mang.util.txt.linefilter.LineFilter;
 
-public class AllTxtFilterProcess extends SimpleTxtFilterProcess {
+public class AllTxtLineFilterProcessor extends AbstractLineFilterProcessor {
 	
 	@Override
-	public boolean beforeFilter(String line, List<LineFilter> filterList) {
-		return filter(line, filterList);
+	public boolean beforeFilter(String line) {
+		return filter(line, this.getBeforeLineFilter());
 	}
 
 	@Override
-	public boolean afterFilter(String line, List<LineFilter> filterList) {
-		return filter(line, filterList);
+	public boolean afterFilter(String line) {
+		return filter(line, this.getAfterLineFilter());
 	}
 	
 	
 	/**
-	 * 所有的条件都保存才保留
+	 * 所有的条件都满足才保留
 	 * */
 	public boolean filter(String line, List<LineFilter> filterList) {
 		if(filterList!=null &&filterList.size()>0){

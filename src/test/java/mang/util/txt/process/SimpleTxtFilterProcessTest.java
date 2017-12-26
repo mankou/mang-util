@@ -7,19 +7,30 @@ import mang.util.txt.linehandle.CommaLineHandler;
 
 public class SimpleTxtFilterProcessTest {
 	
+	private String sourceFilePath="c:/test/data/test1.txt";
+	private String targetFilePath="c:/test/data/test2.csv";
+	
+
 	@Test
-	public void testSingleFile(){
-		String sourceFilePath="c:/test/data/test1.txt";
-		String targetFilePath="c:/test/data/test2.csv";
-		
-		processSingleFile(sourceFilePath, targetFilePath);
-		
+	public void test1(){	
+		AbstractTxtProcessor txtFileProcess=new SimpleTxtFileProcessor();
+		txtFileProcess.getLineFilterProcessor().addBeforeFilter(new BlankFilter());
+		txtFileProcess.getLineHandleProcessor().addHandler(new CommaLineHandler());
+		txtFileProcess.processSingleFile(sourceFilePath, targetFilePath);
+		int count=txtFileProcess.getLineHandleProcessor().getProcessCount();
+		System.out.println("处理行数:"+count);
 	}
 	
-	private void processSingleFile(String sourceFilePath,String targetFilePath){	
-		AbstractTxtFilterProcess simpleProcess=new AnyTxtFilterProcess();
-		simpleProcess.addHandle(new CommaLineHandler());
-		simpleProcess.addBeforeFilter(new BlankFilter());
-		simpleProcess.processSingleFile(sourceFilePath, targetFilePath);
+	
+	@Test
+	public void test2(){
+		AbstractTxtProcessor txtFileProcess=new AbstractTxtProcessor();
+		txtFileProcess.setLineHandleProcessor(new SimpleLineHandleProcessor());
+		txtFileProcess.setLineFilterProcessor(new AllTxtLineFilterProcessor());
+		txtFileProcess.getLineFilterProcessor().addBeforeFilter(new BlankFilter());
+		txtFileProcess.getLineHandleProcessor().addHandler(new CommaLineHandler());
+		txtFileProcess.processSingleFile(sourceFilePath, targetFilePath);
+		int count=txtFileProcess.getLineHandleProcessor().getProcessCount();
+		System.out.println("处理行数:"+count);
 	}
 }

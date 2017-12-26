@@ -7,9 +7,9 @@ public class BlankFilter implements LineFilter {
 	@Override
 	public boolean isConform(String line) {
 		if(StringUtils.isBlank(line)){
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 }
