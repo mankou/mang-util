@@ -28,9 +28,15 @@ public  class AbstractTxtProcessor implements TxtFileProcessor{
 	 * lineFilter
 	 * */
 	private TxtLineFilterProcessor lineFilterProcessor;
+	
+	private String sourceFilePath;
+	
+	private String targetFilePath;
 
 
 	public void processSingleFile(String sourceFilePath, String targetFilePath) {
+		this.sourceFilePath=sourceFilePath;
+		this.targetFilePath=targetFilePath;
 		File file = new File(sourceFilePath);
 		File targetFile=new File(targetFilePath);
 		TxtReader reader = new SimpleTxtReader(file,readCharset);
@@ -96,6 +102,26 @@ public  class AbstractTxtProcessor implements TxtFileProcessor{
 
 	public void setLineFilterProcessor(TxtLineFilterProcessor lineFilterProcessor) {
 		this.lineFilterProcessor = lineFilterProcessor;
+	}
+
+
+	public String getSourceFilePath() {
+		return sourceFilePath;
+	}
+
+
+	public void setSourceFilePath(String sourceFilePath) {
+		this.sourceFilePath = sourceFilePath;
+	}
+
+
+	public String getTargetFilePath() {
+		return targetFilePath;
+	}
+
+
+	public void setTargetFilePath(String targetFilePath) {
+		this.targetFilePath = targetFilePath;
 	}
 
 }
