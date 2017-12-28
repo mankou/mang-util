@@ -50,6 +50,11 @@ public class ListUtil {
 	 */
 	public static boolean equalsAny(String str, List<String> list) {
 		for (String tmp : list) {
+			
+			if(str==null && tmp==null){
+				return true;
+			}
+			
 			if (str.equals(tmp)) {
 				return true;
 			}
