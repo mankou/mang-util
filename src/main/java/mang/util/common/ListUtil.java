@@ -44,4 +44,16 @@ public class ListUtil {
 		}
 		return false;
 	}
+	
+	/**
+	 * 判断一个字符串是否和list中的某一元素相等,只要有一个相等就返回true
+	 */
+	public static boolean equalsAny(String str, List<String> list) {
+		for (String tmp : list) {
+			if (str.equals(tmp)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
