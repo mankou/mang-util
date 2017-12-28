@@ -24,12 +24,12 @@ public class AbstractTxtProcessor implements TxtFileProcessor {
 	/**
 	 * lineProcess
 	 */
-	private TxtLineProcessor lineHandleProcessor;
+	private TxtLineProcessor lineHandleProcessor=new SimpleLineHandleProcessor();
 
 	/**
 	 * lineFilter
 	 */
-	private TxtLineFilterProcessor lineFilterProcessor;
+	private TxtLineFilterProcessor lineFilterProcessor=new AllTxtLineFilterProcessor();
 
 	/**
 	 * 源文件路径
@@ -80,14 +80,6 @@ public class AbstractTxtProcessor implements TxtFileProcessor {
 
 		if (txtReader == null) {
 			txtReader = new SimpleTxtReader(sourceFile, readCharset);
-		}
-
-		if (lineFilterProcessor == null) {
-			lineFilterProcessor = new AllTxtLineFilterProcessor();
-		}
-
-		if (lineHandleProcessor == null) {
-			lineHandleProcessor = new SimpleLineHandleProcessor();
 		}
 	}
 

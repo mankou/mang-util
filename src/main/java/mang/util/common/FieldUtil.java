@@ -2,6 +2,8 @@ package mang.util.common;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FieldUtil {
 	public static boolean isNumberClass(Class objClass) {
@@ -131,5 +133,20 @@ public class FieldUtil {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	
+	/**
+	 * 获取某一类的变量名
+	 * @param clazz 类名
+	 * @return List 属性名
+	 * */
+	public static List<String> getFieldName(Class clazz){
+		Field[] fs = clazz.getDeclaredFields();
+		List<String> fieldNameList=new ArrayList<String>();
+		for(Field field:fs){
+			fieldNameList.add(field.getName());
+		}
+		return fieldNameList;
 	}
 }
