@@ -162,19 +162,23 @@ public class CharsetDetector {
 
 	private static String getPriorityEncode(String prob[], String[] priorityEncode) {
 		String result = null;
+		//我还是第一次遇到跳出多层for循环的场景 这里使用break 标号
+		here:
 		if (prob.length > 0) {
 			if (priorityEncode != null && priorityEncode.length > 0) {
 				result = prob[0];
 				for (String probEncode : prob) {
 					for (String priorEncode : priorityEncode) {
-						if (probEncode.equals(priorEncode)) {
+						if (probEncode.equalsIgnoreCase(priorEncode)) {
 							result = priorEncode;
-							break;
+							break here;
 						}
 					}
 				}
 			}
 		}
+		
+		
 		return result;
 	}
 
