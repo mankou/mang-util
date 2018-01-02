@@ -1,5 +1,8 @@
 package mang.util.txt.linefilter;
 
+/**
+ * 提供一个可统计处理了多少行的LineFilter实现
+ * */
 public abstract class LineCountFilter implements LineFilter {
 	
 	private int lineCount=0;
