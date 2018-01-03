@@ -1,7 +1,7 @@
 package mang.util.txt.process;
 
-import org.junit.Test;
 
+import org.junit.Test;
 import mang.util.txt.linefilter.BlankFilter;
 import mang.util.txt.linehandle.CommaLineHandler;
 
@@ -19,6 +19,15 @@ public class SimpleTxtFilterProcessTest {
 		txtFileProcess.processSingleFile(sourceFilePath, targetFilePath);
 		int count=txtFileProcess.getLineHandleProcessor().getProcessCount();
 		System.out.println("处理行数:"+count);
+	}
+	
+	@Test
+	public void testComma(){
+		String str="1,2,3,,,";
+		String[] array=str.split(",");
+		int length=array.length;
+		System.out.println(length);
+		System.out.println(array);
 	}
 	
 	

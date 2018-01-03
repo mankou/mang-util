@@ -1,6 +1,7 @@
 package mang.util.txt.linehandle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,7 +11,9 @@ import java.util.List;
  * */
 public class CommaLineHandler implements LineHandler {
 	
-	private String spliter="\\|\\|";
+	private String regularSpliter="\\|\\|";
+	
+	private String realSpliter="||";
 	
 	private String writerSpliter=",";
 	
@@ -31,7 +34,14 @@ public class CommaLineHandler implements LineHandler {
 		List<String> strList=new ArrayList<String>();
 		//试验了 用line.split("||") 不能分割  但用line.split("\\|\\|") 可以，估计||是特殊字符
 		
-		String[] values=line.split(spliter);
+		//fix ||结尾问题
+		// 如果8||X3QK1||M0JP||6CFX||||||  则执行split()后,则只能解析出前面的几列,最后面的几列没有
+		//为了解决这个问题我特意加一列,split()后再把最后一列去掉
+//		String[] values=line.split(spliter);
+		String line2=line+realSpliter+" ";
+		String[] valuesTmp=line2.split(regularSpliter);
+		String[] values = Arrays.copyOf(valuesTmp, valuesTmp.length - 1);
+		
 		for(String value:values){
 			if(value.indexOf(inSideStr)>-1){
 				value=outSideStr+value+outSideStr;
@@ -51,12 +61,29 @@ public class CommaLineHandler implements LineHandler {
 		return result;
 	}
 
-	public String getSpliter() {
-		return spliter;
+
+	public String getRegularSpliter() {
+		return regularSpliter;
 	}
 
-	public void setSpliter(String spliter) {
-		this.spliter = spliter;
+	public void setRegularSpliter(String regularSpliter) {
+		this.regularSpliter = regularSpliter;
+	}
+
+	public String getRealSpliter() {
+		return realSpliter;
+	}
+
+	public void setRealSpliter(String realSpliter) {
+		this.realSpliter = realSpliter;
+	}
+
+	public String getWriterSpliter() {
+		return writerSpliter;
+	}
+
+	public void setWriterSpliter(String writerSpliter) {
+		this.writerSpliter = writerSpliter;
 	}
 
 	public String getInSideStr() {
@@ -74,6 +101,7 @@ public class CommaLineHandler implements LineHandler {
 	public void setOutSideStr(String outSideStr) {
 		this.outSideStr = outSideStr;
 	}
+
 
 
 }
