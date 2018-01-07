@@ -1,5 +1,6 @@
 package mang.util.common;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -187,8 +188,27 @@ public class StringUtil {
 			return strArray;
 		}
 		return null;
-
 	}
+	
+	
+	
+	/**
+	 * 将字符串按分隔符转换成数组,但能处理结尾分隔符问题
+	 * @param str 要处理的字符串
+	 * @param regularSpliter 正则表达式分隔符 之所以要分正则表达式分隔符和实际分隔符 是因为如何分隔符是|| 则正则表达式分隔符是 \\|\\| 而实际分隔符是 ||
+	 * @param realSpliter 实际分隔符  
+	 * @return String[] 转换后的数组
+	 * */
+	public static String[] splitToArrayProcessEnd(String str,String regularSpliter,String realSpliter){
+		if(str!=null){
+			String line2=str+realSpliter+" ";
+			String[] valuesTmp=line2.split(regularSpliter);
+			String[] values = Arrays.copyOf(valuesTmp, valuesTmp.length - 1);
+			return values;
+		}
+		return null;
+	}
+	
 	
 	/**
 	 * 拼接sql用. 
