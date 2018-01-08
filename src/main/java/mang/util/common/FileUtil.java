@@ -403,5 +403,21 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 判断某一目录下是否有文件
+	 * @param path 路径名
+	 * @return boolean 
+	 * */
+	public boolean isHaveFiles(String path){
+		File sourceFile=new File(path);
+		if(sourceFile.exists()){
+			String[] files=sourceFile.list();
+			if(files!=null && files.length>0){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
