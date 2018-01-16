@@ -177,14 +177,6 @@
 			<version>20.0</version>
 		</dependency>
 
-		<!-- ftp4j -->
-		<dependency>
-			<groupId>it.sauronsoftware</groupId>
-			<artifactId>ftp4j</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-
-
 		<!-- 文件编码检测 -->
 		<dependency>
 			<groupId>com.googlecode.juniversalchardet</groupId>
