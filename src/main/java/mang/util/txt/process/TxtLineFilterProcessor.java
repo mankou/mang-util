@@ -12,7 +12,7 @@ public interface TxtLineFilterProcessor {
 	
 	
 	/**
-	 * 后置过过滤 用于在转换完后过滤掉数据
+	 * 后置过滤 用于在转换完后过滤掉数据
 	 * */
 	public boolean afterFilter(String line);
 	
