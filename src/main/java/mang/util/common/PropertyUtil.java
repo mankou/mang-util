@@ -167,7 +167,7 @@ public class PropertyUtil {
 
 		if (file.exists()) {
 			log.info("get properties from user.dir",confPath);
-			return getPropertiesFromFile(configPath);
+			return getPropertiesFromFile(confPath);
 		}
 		return null;
 	}
