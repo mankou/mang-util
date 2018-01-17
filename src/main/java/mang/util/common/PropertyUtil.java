@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -245,8 +244,13 @@ public class PropertyUtil {
 		String clazzValue = clazzProperties.getProperty(configItem);
 		
 		log.debug("userDirValue:{},clazzValue:{}",new Object[]{userDirValue,clazzValue});
-		String result = StringUtils.defaultIfBlank(userDirValue, clazzValue);
-		return result;
+		
+		
+		if(userDirValue!=null && !"".equals(userDirValue)){
+			return userDirValue;
+		}else{
+			return clazzValue;
+		}
 	}
 
 	/**
