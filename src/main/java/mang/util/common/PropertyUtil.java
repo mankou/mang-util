@@ -142,7 +142,7 @@ public class PropertyUtil {
 	 * @return Properties 配置项
 	 */
 	public static Properties getPropertiesFromFile(String filePath) {
-		Properties property = null;
+		Properties property = new Properties();
 		File file = new File(filePath);
 		try {
 			FileInputStream fi = new FileInputStream(file);
