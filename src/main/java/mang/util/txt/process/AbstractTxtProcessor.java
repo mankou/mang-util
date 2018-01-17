@@ -1,9 +1,6 @@
 package mang.util.txt.process;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 import mang.util.txt.reader.SimpleTxtReader;
 import mang.util.txt.reader.TxtReader;
 import mang.util.txt.writer.SimpleTxtEncodeWriter;
@@ -58,11 +55,10 @@ public class AbstractTxtProcessor implements TxtFileProcessor {
 	
 	
 	/**
-	 * 用户数据
-	 * 用于在调用时添加 方便取出用户设置的数据
+	 * 处理txt过程中的上下文信息
 	 * */
-	private Map<String,Object> userData=new HashMap<String, Object>();
-
+	private TxtProcessContext context=new TxtProcessContext();
+	
 	/**
 	 * txtReader
 	 */
@@ -83,12 +79,19 @@ public class AbstractTxtProcessor implements TxtFileProcessor {
 		}
 	}
 
+	/**
+	 * 处理入口
+	 * */
 	public void processSingleFile(String sourceFilePath, String targetFilePath) {
 		init(sourceFilePath, targetFilePath);
+		
+		lineFilterProcessor.setContext(context);
 
 		while (txtReader.hasNext()) {
 			String currentLine = txtReader.readLine();
-
+			
+			this.context.addLine();
+			
 			// true 就是要,false就是不要
 			if (!lineFilterProcessor.beforeFilter(currentLine)) {
 				continue;
@@ -114,13 +117,12 @@ public class AbstractTxtProcessor implements TxtFileProcessor {
 	
 	
 	public void setUserData(String key,Object value){
-		this.userData.put(key, value);
+		this.context.putUserData(key, value);
 	}
 	
 	public Object getUserData(String key){
-		return this.userData.get(key);
+		return this.context.getUserData(key);
 	}
-	
 	
 	public String getReadCharset() {
 		return readCharset;

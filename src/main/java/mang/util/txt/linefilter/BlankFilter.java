@@ -2,7 +2,7 @@ package mang.util.txt.linefilter;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class BlankFilter implements LineFilter {
+public class BlankFilter extends SimpleAbstractLineFilter {
 
 	@Override
 	public boolean isConform(String line) {
@@ -11,5 +11,6 @@ public class BlankFilter implements LineFilter {
 		}
 		return true;
 	}
+
 
 }

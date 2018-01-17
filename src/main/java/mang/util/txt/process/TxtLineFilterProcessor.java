@@ -27,4 +27,10 @@ public interface TxtLineFilterProcessor {
 	 * 添加后置过滤器
 	 * */
 	public TxtLineFilterProcessor addAfterFilter(LineFilter lineFilter);
+	
+	
+	/**
+	 * 设置上下文信息
+	 * */
+	public void setContext(TxtProcessContext context);
 }

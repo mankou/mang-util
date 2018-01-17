@@ -7,26 +7,52 @@ import mang.util.txt.linefilter.LineFilter;
 public abstract class AbstractLineFilterProcessor implements TxtLineFilterProcessor {
 
 	@Override
-	public abstract boolean beforeFilter(String line);
-	
-	@Override
-	public abstract boolean afterFilter(String line);
-	
-	
-	private List<LineFilter> beforeLineFilter=new ArrayList<LineFilter>();
+	public boolean beforeFilter(String line) {
+		setContext(this.getBeforeLineFilter());
+		return this.processBeforeFilter(line);
+	}
 
-	
-	private List<LineFilter> afterLineFilter=new ArrayList<LineFilter>();
-	
-	
-	public AbstractLineFilterProcessor addBeforeFilter(LineFilter lineFilter){
+	@Override
+	public boolean afterFilter(String line) {
+		setContext(this.getAfterLineFilter());
+		return this.processAfterFilter(line);
+	}
+
+	public void setContext(List<LineFilter> filterList) {
+		TxtProcessContext context = this.getContext();
+		if(filterList!=null && filterList.size()>0){
+			for(LineFilter lineFilter:filterList){
+				lineFilter.setContext(context);
+			}
+		}
+	}
+
+	private TxtProcessContext context;
+
+	private List<LineFilter> beforeLineFilter = new ArrayList<LineFilter>();
+
+	private List<LineFilter> afterLineFilter = new ArrayList<LineFilter>();
+
+	public abstract boolean processBeforeFilter(String line);
+
+	public abstract boolean processAfterFilter(String line);
+
+	public AbstractLineFilterProcessor addBeforeFilter(LineFilter lineFilter) {
 		this.beforeLineFilter.add(lineFilter);
 		return this;
 	}
-	
-	public AbstractLineFilterProcessor addAfterFilter(LineFilter lineFilter){
+
+	public AbstractLineFilterProcessor addAfterFilter(LineFilter lineFilter) {
 		this.afterLineFilter.add(lineFilter);
 		return this;
+	}
+
+	public void setContext(TxtProcessContext context) {
+		this.context = context;
+	}
+
+	public TxtProcessContext getContext() {
+		return this.context;
 	}
 
 	public List<LineFilter> getBeforeLineFilter() {

@@ -9,7 +9,7 @@ public class SimpleLineHandleProcessor implements TxtLineProcessor{
 	
 	private List<LineHandler> handleList=new ArrayList<LineHandler>();
 	
-	private int lineCount;
+	private int processCount;
 
 	@Override
 	public String processLine(String line) {
@@ -19,7 +19,7 @@ public class SimpleLineHandleProcessor implements TxtLineProcessor{
 				processLine=lineHandler.processLine(processLine);
 			}
 		}
-		lineCount++;
+		processCount++;
 		return processLine;
 	}
 	
@@ -32,7 +32,7 @@ public class SimpleLineHandleProcessor implements TxtLineProcessor{
 
 	@Override
 	public int getProcessCount() {
-		return lineCount;
+		return processCount;
 	}
 
 }

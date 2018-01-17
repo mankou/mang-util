@@ -7,12 +7,12 @@ import mang.util.txt.linefilter.LineFilter;
 public class AllTxtLineFilterProcessor extends AbstractLineFilterProcessor {
 	
 	@Override
-	public boolean beforeFilter(String line) {
+	public boolean processBeforeFilter(String line) {
 		return filter(line, this.getBeforeLineFilter());
 	}
 
 	@Override
-	public boolean afterFilter(String line) {
+	public boolean processAfterFilter(String line) {
 		return filter(line, this.getAfterLineFilter());
 	}
 	
