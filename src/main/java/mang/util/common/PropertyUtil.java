@@ -25,7 +25,10 @@ import org.slf4j.LoggerFactory;
 public class PropertyUtil {
 	private static final Logger log = LoggerFactory.getLogger(PropertyUtil.class);
 
-	
+	/*
+	 * 说明基准类路径有什么用? 在一般的java工程中没用,但在web工程中有用,因为在web工程中目前我还不知道如何获取web工程所在的根路径
+	 * 
+	 * */
 	
 	/**
 	 * 以基准类路径所在路径为基准 取配置
