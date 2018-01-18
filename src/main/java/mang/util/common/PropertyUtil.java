@@ -162,7 +162,7 @@ public class PropertyUtil {
 		// 取工作目录
 		String workPath = System.getProperty("user.dir");
 		String confPath = workPath + File.separator + configPath;
-		log.debug("userDirPath:{}", confPath);
+		log.debug("userDirPath:{}", workPath);
 		File file = new File(confPath);
 		if (file.exists()) {
 			log.info("get properties from user.dir {}",confPath);
@@ -241,13 +241,13 @@ public class PropertyUtil {
 
 		String userDirValue = userDirProperties.getProperty(configItem);
 		String clazzValue = clazzProperties.getProperty(configItem);
-		log.debug("userDirValue:{},clazzValue:{}",new Object[]{userDirValue,clazzValue});
+		log.debug("configItem:{},userDirValue:{},clazzValue:{}",new Object[]{configItem,userDirValue,clazzValue});
 		
 		if(userDirValue!=null && !"".equals(userDirValue)){
-			log.debug("prior select userDirValue {}",userDirValue);
+			log.debug("configItem:{} prior select userDirValue {}",new Object[]{configItem,userDirValue});
 			return userDirValue;
 		}else{
-			log.debug("prior select clazzValue {}",clazzValue);
+			log.debug("configItem:{} prior select clazzValue {}",new Object[]{configItem,clazzValue});
 			return clazzValue;
 		}
 	}
