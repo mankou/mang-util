@@ -165,8 +165,10 @@ public class PropertyUtil {
 		log.debug("userDirPath:{}", workPath);
 		File file = new File(confPath);
 		if (file.exists()) {
-			log.info("get properties from user.dir {}",confPath);
+			log.info("properties file exists {}",confPath);
 			return getPropertiesFromFile(confPath);
+		}else{
+			log.info("properties file not exists {}",confPath);
 		}
 		return null;
 	}
