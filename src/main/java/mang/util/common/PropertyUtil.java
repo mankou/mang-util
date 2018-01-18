@@ -164,9 +164,8 @@ public class PropertyUtil {
 		String confPath = workPath + File.separator + configPath;
 		log.debug("userDirPath:{}", confPath);
 		File file = new File(confPath);
-
 		if (file.exists()) {
-			log.info("get properties from user.dir{}",confPath);
+			log.info("get properties from user.dir {}",confPath);
 			return getPropertiesFromFile(confPath);
 		}
 		return null;
@@ -242,13 +241,13 @@ public class PropertyUtil {
 
 		String userDirValue = userDirProperties.getProperty(configItem);
 		String clazzValue = clazzProperties.getProperty(configItem);
-		
 		log.debug("userDirValue:{},clazzValue:{}",new Object[]{userDirValue,clazzValue});
 		
-		
 		if(userDirValue!=null && !"".equals(userDirValue)){
+			log.debug("prior select userDirValue {}",userDirValue);
 			return userDirValue;
 		}else{
+			log.debug("prior select clazzValue {}",clazzValue);
 			return clazzValue;
 		}
 	}
