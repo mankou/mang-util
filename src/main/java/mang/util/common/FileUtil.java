@@ -404,6 +404,15 @@ public class FileUtil {
 		}
 	}
 	
+	
+	/**
+	 * 判断某一路径是否存在
+	 * */
+	public boolean isExist(String path){
+		File file=new File(path);
+		return file.exists();
+	}
+	
 	/**
 	 * 判断某一目录下是否有文件
 	 * @param path 路径名
