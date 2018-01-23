@@ -399,8 +399,8 @@ public class FileUtil {
 	public static void cleanDir(String dirPath){
 		try {
 			FileUtils.cleanDirectory(new File(dirPath));
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("clean dir error", e);
 		}
 	}
 	
