@@ -408,7 +408,7 @@ public class FileUtil {
 	/**
 	 * 判断某一路径是否存在
 	 * */
-	public boolean isExist(String path){
+	public static boolean isExist(String path){
 		File file=new File(path);
 		return file.exists();
 	}
@@ -418,7 +418,7 @@ public class FileUtil {
 	 * @param path 路径名
 	 * @return boolean 
 	 * */
-	public boolean isHaveFiles(String path){
+	public static boolean isHaveFiles(String path){
 		File sourceFile=new File(path);
 		if(sourceFile.exists()){
 			String[] files=sourceFile.list();
