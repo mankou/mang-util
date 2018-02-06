@@ -1,7 +1,7 @@
 package mang.util.encode;
 
 public class CharsetDetectorUtil {
-	public static String DEFAULT_CHARSET="UTF-8";
+	private static String DEFAULT_CHARSET="UTF-8";
 	
 	/**
 	 * 判断文件编码
