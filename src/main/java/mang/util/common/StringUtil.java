@@ -439,5 +439,20 @@ public class StringUtil {
 	public static String replace(String str){
 		return replace(str, default_replace_old_array, default_replace_new);
 	}
+	
+	/**
+	 * if str equals equalStr then return defaultStr,otherwise return str.
+	 * @param str str 
+	 * @param equalStr equalStr
+	 * @param defaultStr defaultStr
+	 * @return string
+	 * */
+	public static String equalReplace(String str,String equalStr,String defaultStr){
+		if(str!=null&& !"".equals(str)&&str.equals(equalStr)){
+			return defaultStr;
+		}else{
+			return str;
+		}
+	}
 
 }
