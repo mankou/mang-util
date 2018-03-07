@@ -447,8 +447,8 @@ public class StringUtil {
 	 * @param defaultStr defaultStr
 	 * @return string
 	 * */
-	public static String equalReplace(String str,String equalStr,String defaultStr){
-		if(str!=null&& !"".equals(str)&&str.equals(equalStr)){
+	public static String equalsReplace(String str,String equalStr,String defaultStr){
+		if(str!=null&&str.equals(equalStr)){
 			return defaultStr;
 		}else{
 			return str;

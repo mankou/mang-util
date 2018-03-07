@@ -35,7 +35,7 @@ public class CharsetDetectorUtil {
 		String encode=checkCharset(filePath, defaultCharset);
 		if(smartModify){
 			//smartModify if detect encode is GB2312 then replace of GB18030, because GB18030 > GB1212
-			StringUtil.equalReplace(encode, "GB2312", "GB18030");
+			encode=StringUtil.equalsReplace(encode, "GB2312", "GB18030");
 		}
 		return encode;
 	}
@@ -47,12 +47,7 @@ public class CharsetDetectorUtil {
 	 * @param smartModify 自动替换策略 因有时文件编码是GB2312 但实际编码可能是GB18030所以替换下,因为GB18030的字符集大于GB2312
 	 * */
 	public static String checkCharset(String filePath,boolean smartModify) {
-		String encode=checkCharset(filePath, DEFAULT_CHARSET);
-		if(smartModify){
-			//smartModify if detect encode is GB2312 then replace of GB18030, because GB18030 > GB1212
-			StringUtil.equalReplace(encode, "GB2312", "GB18030");
-		}
-		return encode;
+		return checkCharset(filePath, DEFAULT_CHARSET, smartModify);
 	}
 	
 	
