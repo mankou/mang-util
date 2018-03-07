@@ -21,7 +21,7 @@ public class CharsetDetector {
 
 	private static String encoding;
 
-	private static String[] defaultPriorityEncode = new String[] { "UTF-8", "GB2312", "GB18030" };
+	private static String[] defaultPriorityEncode = new String[] { "UTF-8", "GB18030","GB2312" };
 
 	/**
 	 * 检测文件编码
