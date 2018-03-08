@@ -9,7 +9,7 @@ public class SetUtil {
 	 * @param set set
 	 * @return String[]
 	 * */
-	public String[] toStringArray(Set<String> set){
+	public static String[] toStringArray(Set<String> set){
 		String[] array =set.toArray(new String[set.size()]);
 		return array;
 	}
