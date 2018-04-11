@@ -6,8 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 public class DateUtil {
 	private  static String default_timeFormat = "yyyy-MM-dd HH:mm:ss";
@@ -20,6 +24,19 @@ public class DateUtil {
 	 public final static String DAY = "day";
 	 public final static String MONTH = "month";
 	 public final static String YEAR = "year";
+	 
+	 private static Set<String> dateFormatCompate=new HashSet<String>();
+	 
+	 static{
+			 dateFormatCompate.add("yyyy-MM-dd HH:mm:ss");
+			 dateFormatCompate.add("yyyy.MM.dd HH:mm:ss");
+			 dateFormatCompate.add("yyyy/MM/dd HH:mm:ss");
+			 dateFormatCompate.add("yyyyMMddHHmmss");
+			 dateFormatCompate.add("yyyy.MM.dd");
+			 dateFormatCompate.add("yyyy-MM-dd");
+			 dateFormatCompate.add("yyyy/MM/dd");
+			 dateFormatCompate.add("yyyyMMdd");
+		}
 	
 
 	/**
@@ -78,6 +95,40 @@ public class DateUtil {
 	public static Date parse(String timeStr) {
 		return parse(timeStr, default_timeFormat);
 	}
+	
+	
+	/**
+	 * 兼容模式转换时间类
+	 * @param timeStr 时间字符串
+	 * @param format  格式化数组 可传入多个格式化的数组
+	 * */
+	public static Date parseCompate(String timeStr,String[] format){
+		Date date=null;
+		try {
+			date = DateUtils.parseDate(timeStr,format);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	/**
+	 * 兼容模式转换时间类
+	 * @param timeStr 时间字符串
+	 * */
+	public static Date parseCompate(String timeStr){
+		Date date=null;
+		String[] dateFormat=SetUtil.toStringArray(dateFormatCompate);
+		try {
+			date = DateUtils.parseDate(timeStr,dateFormat);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	
+	
 	
 	/**
 	 * @return Date 当天0点时间
@@ -425,5 +476,8 @@ public class DateUtil {
 		return default_timeZone;
 	}
 	
-
+	public static void addDateFormatCompate(String dateFormat){
+		dateFormatCompate.add(dateFormat);
+	}
+	
 }
