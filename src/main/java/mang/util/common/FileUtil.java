@@ -312,6 +312,19 @@ public class FileUtil {
 		}
 
 	}
+	
+	/**
+	 * 将某一文件迁到一目录下
+	 * @param file 文件
+	 * @param destDir 目标目录
+	 * */
+	public static void moveFileToDirectory(File file,File destDir){
+		try {
+			FileUtils.moveFileToDirectory(file, destDir, true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 处理路径末尾分隔符. 如果末尾没有路径分隔符则加上 即如果 传来c:\Users\mang\Desktop\haiguan\Send
