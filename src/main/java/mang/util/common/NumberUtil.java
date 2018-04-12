@@ -1,6 +1,7 @@
 package mang.util.common;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * 数字处理工具包.
@@ -216,6 +217,32 @@ public class NumberUtil {
 		}else{
 			result=d1+d2;
 		}
+		return result;
+	}
+	
+	/**
+	 * 传入一个整数，返回格式化后的字符串. 如传入8 返回0008
+	 * @param l 要格式化的整数
+	 * @param precision 精度
+	 * */
+	public static String format(Long l,int precision){
+		DecimalFormat dfInt = new DecimalFormat("00");
+		String precisionStr = dfInt.format(precision);
+		String format = "%" + precisionStr + "d";
+		String result=String.format(format,l);
+		return result;
+	}
+	
+	/**
+	 * 传入一个整数，返回格式化后的字符串. 如传入8 返回0008
+	 * @param l 要格式化的整数
+	 * @param precision 精度
+	 * */
+	public static String format(Integer i,int precision){
+		DecimalFormat dfInt = new DecimalFormat("00");
+		String precisionStr = dfInt.format(precision);
+		String format = "%" + precisionStr + "d";
+		String result=String.format(format,i);
 		return result;
 	}
 	
