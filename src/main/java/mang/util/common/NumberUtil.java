@@ -224,6 +224,7 @@ public class NumberUtil {
 	 * 传入一个整数，返回格式化后的字符串. 如传入8 返回0008
 	 * @param l 要格式化的整数
 	 * @param precision 精度
+	 * @return long after format
 	 * */
 	public static String format(Long l,int precision){
 		DecimalFormat dfInt = new DecimalFormat("00");
@@ -235,8 +236,9 @@ public class NumberUtil {
 	
 	/**
 	 * 传入一个整数，返回格式化后的字符串. 如传入8 返回0008
-	 * @param l 要格式化的整数
+	 * @param i 要格式化的整数
 	 * @param precision 精度
+	 * @return integer after format
 	 * */
 	public static String format(Integer i,int precision){
 		DecimalFormat dfInt = new DecimalFormat("00");

@@ -101,6 +101,7 @@ public class DateUtil {
 	 * 兼容模式转换时间类
 	 * @param timeStr 时间字符串
 	 * @param format  格式化数组 可传入多个格式化的数组
+	 * @return Date 时间
 	 * */
 	public static Date parseCompate(String timeStr,String[] format){
 		Date date=null;
@@ -115,6 +116,7 @@ public class DateUtil {
 	/**
 	 * 兼容模式转换时间类
 	 * @param timeStr 时间字符串
+	 * @return Date 时间
 	 * */
 	public static Date parseCompate(String timeStr){
 		Date date=null;

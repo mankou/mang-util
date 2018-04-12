@@ -420,6 +420,8 @@ public class FileUtil {
 	
 	/**
 	 * 判断某一路径是否存在
+	 * @param path 路径
+	 * @return boolean true/false
 	 * */
 	public static boolean isExist(String path){
 		File file=new File(path);

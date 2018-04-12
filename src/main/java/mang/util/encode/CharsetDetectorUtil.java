@@ -9,6 +9,7 @@ public class CharsetDetectorUtil {
 	 * 判断文件编码
 	 * @param filePath 文件路径
 	 * @param defaultCharset 如果没有判断出文件编码 则给出一个默认的
+	 * @return encode
 	 * */
 	public static String checkCharset(String filePath, String defaultCharset) {
 		
@@ -30,6 +31,7 @@ public class CharsetDetectorUtil {
 	 * @param filePath 文件路径
 	 * @param defaultCharset 如果没有判断出文件编码 则给出一个默认的
 	 * @param smartModify 是否自动替换
+	 * @return encode
 	 * */
 	public static String checkCharset(String filePath, String defaultCharset,boolean smartModify) {
 		String encode=checkCharset(filePath, defaultCharset);
@@ -45,6 +47,7 @@ public class CharsetDetectorUtil {
 	 * 判断文件编码
 	 * @param filePath 文件路径
 	 * @param smartModify 自动替换策略 因有时文件编码是GB2312 但实际编码可能是GB18030所以替换下,因为GB18030的字符集大于GB2312
+	 * @return encode
 	 * */
 	public static String checkCharset(String filePath,boolean smartModify) {
 		return checkCharset(filePath, DEFAULT_CHARSET, smartModify);
@@ -54,6 +57,7 @@ public class CharsetDetectorUtil {
 	/**
 	 * 判断文件编码
 	 * @param filePath 文件路径
+	 * @return encode
 	 * */
 	public static String checkCharset(String filePath) {
 		return checkCharset(filePath, DEFAULT_CHARSET);

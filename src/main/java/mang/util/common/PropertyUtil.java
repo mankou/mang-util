@@ -228,6 +228,7 @@ public class PropertyUtil {
 	 * 
 	 * @param configItem
 	 *            配置项
+	 * @return property value
 	 */
 	public static String getPriorValue(String userDirConfigPath, Class baseClazz, String baseClazzRelativeConfigPath,
 			String configItem) {
@@ -277,6 +278,10 @@ public class PropertyUtil {
 	 * 优先从工作目录下的配置文件取配置项,如果工作目录下的配置文件不存在或者配置项为空则从工程根路径取配置项
 	 * 
 	 * 使用背景:有时连基准类也不想指定,因为配置文件的路径有可能如下 config/setting.properties,其不需要指定基准类
+	 * 
+	 * @param configPath config path
+	 * @param configItem config item
+	 * @return property value
 	 * */
 	public static String getPriorValue(String configPath,String configItem) {
 		if(!configPath.startsWith("/")){

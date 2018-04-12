@@ -10,6 +10,10 @@ import java.util.List;
 public class ListUtil {
 	/**
 	 * 判断一个对象的某一个成员变量的值是否和List中的某一元素的成员变量值相等,只要有一个相等就返回true
+	 * @param obj object
+	 * @param fieldName fieldName 
+	 * @param list list
+	 * @return boolean
 	 */
 	public static boolean equalsAny(Object obj, String fieldName, List list) {
 		Object fieldValue = FieldUtil.getFieldValue(obj, fieldName);
@@ -29,6 +33,10 @@ public class ListUtil {
 
 	/**
 	 * 判断一个字符串是否和List中的某一元素的成员变量值相等,只要有一个相等就返回true
+	 * @param str string
+	 * @param fieldName field name
+	 * @param list list
+	 * @return boolean
 	 */
 	public static boolean equalsAny(String str, String fieldName, List list) {
 		for (Object tmp : list) {
@@ -47,6 +55,9 @@ public class ListUtil {
 	
 	/**
 	 * 判断一个字符串是否和list中的某一元素相等,只要有一个相等就返回true
+	 * @param str string
+	 * @param list list
+	 * @return boolean 
 	 */
 	public static boolean equalsAny(String str, List<String> list) {
 		for (String tmp : list) {

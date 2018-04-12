@@ -97,6 +97,9 @@ public class SqlUtil {
 	 * 
 	 * 对于一些查询语句 我只想写前面一部分 后面查询条件那块我不想写 所以写了该类用于处理这些情况
 	 * 之所以把值拼接到sql语句中是因为有的值是字符串,有的值不是处理起来比较麻烦
+	 * @param sql sql string
+	 * @param queryMap queryMap
+	 * @return string after process sql string
 	 * */
 	public static String processAndMark(String sql,LinkedHashMap<String,Object> queryMap){
 		StringBuffer sqlBuffer=new StringBuffer(" "+ sql+" ");
