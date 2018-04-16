@@ -292,6 +292,21 @@ public class DateUtil {
 		return str;
 	}
 	
+	/**
+	 * 取时间字符串,但如果传入的date为null 则直接返回null
+	 * 需自己传入时间格式
+	 * @param date 时间
+	 * @param format 日期格式  如yyyy-MM-dd yyyyMMddHHmmss
+	 * @param timezone 时区 如GMT+8 UTC
+	 * @return String 格式化后的时间字符串
+	 * */
+	public static String getRawDateString(Date date,String format,String timezone){
+		if(date==null){
+			return null;
+		}
+		return getDateString(date,format,timezone);
+	}
+	
 	
 	
 	/**
@@ -304,6 +319,20 @@ public class DateUtil {
 		return getDateString(date, format,default_timeZone);
 	}
 	
+
+	/**
+	 * 取时间字符串 但如果传入的date为null 则直接返回null
+	 * @param date 时间
+	 * @param format 时间格式 yyyy-MM-dd HH:mm:ss
+	 * @return String 时间字符串
+	 * */
+	public static String getRawDateString(Date date,String format){
+		if(date==null){
+			return null;
+		}
+		return getDateString(date, format,default_timeZone);
+	}
+	
 	
 	/**
 	 * 取时间字符串  采用默认时间格式和时区
@@ -311,6 +340,18 @@ public class DateUtil {
 	 * @return String 时间字符串
 	 * */
 	public static String getDateString(Date date){
+		return getDateString(date, default_timeFormat,default_timeZone);
+	}
+	
+	/**
+	 * 取时间字符串  采用默认时间格式和时区 但如果传入的date为null 则直接返回null
+	 * @param date 时间
+	 * @return String 时间字符串
+	 * */
+	public static String getRawDateString(Date date){
+		if(date==null){
+			return null;
+		}
 		return getDateString(date, default_timeFormat,default_timeZone);
 	}
 	
