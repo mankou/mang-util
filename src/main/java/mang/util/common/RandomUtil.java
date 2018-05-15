@@ -40,4 +40,18 @@ public class RandomUtil {
 	public static String getRandomStr(int length){
 		return getRandomStr("", length);
 	}
+	
+	/**
+	 * 获取随机数
+	 * @param length 长度
+	 * @return int
+	 * */
+	public static int getRandomInt(int length){
+		if(length==0){
+			return 0;
+		}
+		Random random = new Random();
+		int number = random.nextInt(length);
+		return number;
+	}
 }
