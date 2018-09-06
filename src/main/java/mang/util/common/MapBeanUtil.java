@@ -14,7 +14,8 @@ public class MapBeanUtil {
     private static final Logger log = LoggerFactory.getLogger(MapBeanUtil.class);
     
     /**
-     * 将List<Bean> 转成List<Map>, 而且可以自定义命名策略
+     * 将List<Bean> 转成List<Map>, 而且可以自定义命名策略.
+     * 实际上这里借助了jackson
      * */
     public static List<Map> listBean2ListMap(List lis,PropertyNamingStrategy namingStrategy){
         try{
