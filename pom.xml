@@ -274,12 +274,12 @@
 		<repository>
 			<id>deployment-release</id>
 			<name>deployment-release</name>
-			<url>http://192.168.2.147:7081/repository/common-repo-releases/</url>
+			<url>http://10.4.122.105:7081/repository/common-repo-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>deployment-snapshot</id>
 			<name>deployment-snapshot</name>
-			<url>http://192.168.2.147:7081/repository/common-repo-snapshots/</url>
+			<url>http://10.4.122.105:7081/repository/common-repo-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

@@ -1,5 +1,6 @@
 package mang.util.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,4 +73,18 @@ public class ListUtil {
 		}
 		return false;
 	}
+	
+	/**
+     * 删除list中null元素
+     * */
+    public static List removeNull(List list){
+        List<Object> removeList=new ArrayList<Object>();
+        for(Object obj:list){
+            if(obj==null){
+                removeList.add(obj);
+            }
+        }
+        list.removeAll(removeList);
+        return list;
+    }
 }
