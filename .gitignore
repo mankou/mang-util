@@ -5,3 +5,5 @@ target
 RemoteSystemsTempFiles
 log
 *.log
+.idea
+*.iml

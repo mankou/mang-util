@@ -1,4 +1,6 @@
 ﻿# V3.0.0-SNAPSHOT
+  * + 2018-09-20 正式纳入idea 进行开发
+# V3.0.0-SNAPSHOT
   + 2017-04-11创建
   + 正式独立出mang-util 今天打包、源码包、javadoc包都能install到本地仓库
 # V3.0
